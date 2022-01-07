@@ -1,0 +1,67 @@
+{
+  "residents": [
+    {
+      "id": 1,
+      "name": "Joel",
+      "company_name": "Axie",
+      "location": "g",
+      "email": "fg",
+      "phone": "fg",
+      "project_details": "fg",
+      "further_details": "fg",
+      "project_type": "fg",
+      "credits_number": "fg"
+    },
+    {
+      "id": 2,
+      "name": "a",
+      "company_name": "s",
+      "location": "d",
+      "email": "f",
+      "phone": "g",
+      "project_details": "h",
+      "further_details": "j",
+      "project_type": "k",
+      "credits_number": "l"
+    }
+  ],
+  "categories": [
+    {
+      "id": 2,
+      "name": "dfdhj"
+    },
+    {
+      "id": 3,
+      "name": "fg"
+    },
+    {
+      "id": 4,
+      "name": "sd"
+    }
+  ],
+  "services": [
+    {
+      "id": 1,
+      "name": "wedf",
+      "category": "dfdhj"
+    },
+    {
+      "id": 3,
+      "name": "sd",
+      "category": "fg"
+    },
+    {
+      "id": 4,
+      "name": "f",
+      "category": {
+        "id": 3,
+        "name": "fg"
+      }
+    },
+    {
+      "id": 5,
+      "name": "d",
+      "category": "fg"
+    }
+  ]
+}

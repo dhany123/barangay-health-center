@@ -1,0 +1,37 @@
+version: '3.8'
+
+networks:
+  nuxt-network:
+    driver: bridge
+
+services:
+  nuxt-app:
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: nuxt-webapp 
+    env_file: ./app/.env.prod
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes: 
+      - ./app:/app
+    tty: true  
+    networks:
+      - nuxt-network
+    command: "npm run production"
+
+  nginx:
+    image: nginx:stable
+    container_name: nuxt-nginx
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    restart: unless-stopped
+    networks:
+      - nuxt-network  
+    depends_on:
+      - nuxt-app
