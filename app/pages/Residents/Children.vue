@@ -10,7 +10,7 @@
     />
     <v-data-table
       :headers="headers"
-      :items="leads"
+      :items="children"
       class="elevation-2"
       :search="search"
       item-key="id"
@@ -36,21 +36,21 @@
       </template>
 
       <template v-slot:[`item.actions`]="{ item }">
-        <v-icon medium class="mr-2" color="green" @click="viewLead(item)">
+        <v-icon medium class="mr-2" color="green" @click="viewChild(item)">
           mdi-eye
         </v-icon>
-        <v-icon medium class="mr-2" color="blue" @click="updateLead(item)">
+        <v-icon medium class="mr-2" color="blue" @click="updateChild(item)">
           mdi-pencil
         </v-icon>
 
-        <!-- <v-icon
+        <v-icon
           medium
           class="mr-2"
           color="red"
           @click="showDeleteConfirmation(item)"
         >
           mdi-delete
-        </v-icon> -->
+        </v-icon>
       </template>
     </v-data-table>
   </v-container>
@@ -77,24 +77,24 @@ export default {
 
         {
           text: "Parent Name",
-          value: "company_name",
+          value: "parent_name",
           sortable: false,
         },
 
         {
           text: "Age(in mos.)",
-          value: "location",
+          value: "age",
         },
 
         {
           text: "Date of Birth",
-          value: "email",
+          value: "dob",
           sortable: false,
         },
 
         {
           text: "Weight Status",
-          value: "phone",
+          value: "weight_status",
           sortable: false,
         },
 
@@ -103,18 +103,18 @@ export default {
           value: "actions",
           sortable: false,
           align: "center",
-          width: "105px",
+          width: "150px",
         },
       ],
 
-      leads: [],
+      children: [],
       readOnly: false,
     };
   },
 
   methods: {
-    fetchLeads: call("leads/fetchLeads"),
-    deleteLead: call("leads/removeLead"),
+    fetchChildren: call("residents/children/fetchItems"),
+    deleteChild: call("residents/children/removeItem"),
 
     addChild() {
       this.editChild = null;
@@ -122,20 +122,20 @@ export default {
       this.readOnly = false;
     },
 
-    updateLead(item) {
+    updateChild(item) {
       this.editChild = { ...{}, ...item };
       this.showEditor = true;
       this.readOnly = false;
     },
 
-    viewLead(item) {
+    viewChild(item) {
       this.editChild = { ...{}, ...item };
       this.showEditor = true;
       this.readOnly = true;
     },
 
     deleteItem(item) {
-      this.deleteLead(item.id).then(
+      this.deleteChild(item.id).then(
         (res) => {
           this.showMsg("Successfully deleted!");
         },
@@ -147,13 +147,13 @@ export default {
 
     onSubmitClick(data) {
       if (data.tag === "save") {
-        this.leads.push(data.item);
+        this.children.push(data.item);
         return;
       }
 
       //update
-      this.leads.splice(
-        this.leads.findIndex((items) => items.id === data.item.id),
+      this.children.splice(
+        this.children.findIndex((items) => items.id === data.item.id),
         1,
         data.item
       );
@@ -180,9 +180,9 @@ export default {
   },
 
   async fetch() {
-    this.fetchLeads().then((response) => {
-      this.leads = response.data.leads;
-      console.info(response.data);
+    this.fetchChildren().then((response) => {
+      this.children = response.data;
+      console.info(response);
     });
   },
 };

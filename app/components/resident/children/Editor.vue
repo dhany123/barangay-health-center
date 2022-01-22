@@ -14,60 +14,114 @@
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-card-text class="mt-6 px-4 px-md-16">
-        <v-form ref="form-lead" :readonly="readOnly">
+        <v-form ref="form-child" :readonly="readOnly">
           <v-row dense>
             <v-col cols="12" md="6">
               <label class="label"> Name of Child</label>
               <v-text-field
                 outlined
                 dense
-                v-model="form.company_name"
+                v-model="form.name"
+                :rules="[rules.required]"
               ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label"> Name of Parent</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.parent_name"
+                :rules="[rules.required]"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Gender</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-select
+                :items="genders"
+                v-model="form.gender"
+                item-text="name"
+                item-value="id"
+                outlined
+                dense
+                :rules="[rules.required]"
+              ></v-select>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Date of Birth</label>
-              <v-text-field outlined dense type="date"></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                type="date"
+                v-model="form.dob"
+                :rules="[rules.required]"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Age(in months)</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                type="number"
+                v-model="form.age"
+                :rules="[rules.required]"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Weight</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.weight"
+                :rules="[rules.required]"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Height</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.height"
+                :rules="[rules.required]"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Family no.</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.family_no"
+                :rules="[rules.required]"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Zone/Purok</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.zone_purok"
+                :rules="[rules.required]"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Weight Status</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-select
+                :items="weightStatuses"
+                v-model="form.weight_status"
+                item-text="name"
+                item-value="id"
+                outlined
+                dense
+                :rules="[rules.required]"
+              ></v-select>
             </v-col>
           </v-row>
         </v-form>
@@ -103,7 +157,7 @@ export default {
     leads: get("leads/items"),
     dialogTitle() {
       if (this.readOnly) {
-        return "View Resident";
+        return "View Child";
       }
       return this.item && this.item.id ? "Update Child" : "Add Child";
     },
@@ -116,44 +170,70 @@ export default {
         required: (value) => !!value || "Required.",
       },
       form: null,
-      items: ["Projects", "Tenders", "Intelligence"],
-      projectTags: [
+
+      genders: [
         {
           id: 1,
-          name: "Projects",
+          name: "Male",
         },
+
         {
           id: 2,
-          name: "Tenders",
-        },
-        {
-          id: 3,
-          name: "Intelligence",
+          name: "Female",
         },
       ],
 
-      services: [],
+      weightStatuses: [
+        {
+          id: 1,
+          name: "Underweight",
+        },
+        {
+          id: 2,
+          name: "Normal Weight",
+        },
+        {
+          id: 3,
+          name: "Overweight",
+        },
+
+        {
+          id: 4,
+          name: "Obesity I",
+        },
+
+        {
+          id: 5,
+          name: "Obesity II",
+        },
+
+        {
+          id: 6,
+          name: "Obesity III",
+        },
+      ],
     };
   },
 
   methods: {
-    fetchServices: call("services/fetchServices"),
-    createLead: call("leads/createLead"),
-    updateLead: call("leads/updateLead"),
+    createChild: call("residents/children/createItem"),
+    updateChild: call("residents/children/updateItem"),
 
     add() {
-      this.createLead(this.form)
+      if (!this.$refs["form-child"].validate()) return;
+
+      this.createChild(this.form)
         .then((response) => {
           if (response.data.success) {
             console.info(response.data);
             this.$toast({
               icon: "success",
-              title: "Lead successfully added.",
+              title: "Child successfully added.",
             });
 
             this.$emit("onSubmitClick", {
               tag: "save",
-              item: response.data.lead,
+              item: response.data,
             });
           }
         })
@@ -165,18 +245,18 @@ export default {
     update() {
       console.info(this.form);
 
-      this.updateLead(this.form)
+      this.updateChild(this.form)
         .then((response) => {
           if (response.data.success) {
             console.info(response.data);
             this.$toast({
               icon: "success",
-              title: "Lead successfully updated.",
+              title: "Child successfully updated.",
             });
 
             this.$emit("onSubmitClick", {
               tag: "update",
-              item: response.data.lead,
+              item: response.data,
             });
           }
         })
@@ -193,42 +273,21 @@ export default {
           ...{
             id: null,
             name: "",
-            company_name: "",
-            country: "",
-            state: "",
-            city: "",
-            email: "",
-            phone: "",
-            project_details: "",
-            service_id: "",
-            project_tag_id: "",
-            credit_num: "",
-            lead_further_detail: {
-              buying_stage: "",
-              industry: "",
-              budget: "",
-              time_scales: "",
-            },
-            project_tag: {
-              id: 1,
-              name: "",
-              color: "",
-            },
+            parent_name: "",
+            gender: this.genders[0],
+            dob: "",
+            age: "",
+            weight: "",
+            height: "",
+            family_no: "",
+            zone_purok: "",
+            weight_status: this.weightStatuses[0],
           },
           ...val,
         };
       },
       immediate: true,
     },
-  },
-
-  async fetch() {
-    //fetch all services
-    this.fetchServices().then((response) => {
-      if (response.data.success) {
-        this.services = response.data.services;
-      }
-    });
   },
 };
 </script>
