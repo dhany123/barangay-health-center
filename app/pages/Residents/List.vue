@@ -10,7 +10,7 @@
     />
     <v-data-table
       :headers="headers"
-      :items="leads"
+      :items="residents"
       class="elevation-2"
       :search="search"
       item-key="id"
@@ -36,21 +36,21 @@
       </template>
 
       <template v-slot:[`item.actions`]="{ item }">
-        <v-icon medium class="mr-2" color="green" @click="viewLead(item)">
+        <v-icon medium class="mr-2" color="green" @click="viewResident(item)">
           mdi-eye
         </v-icon>
-        <v-icon medium class="mr-2" color="blue" @click="updateLead(item)">
+        <v-icon medium class="mr-2" color="blue" @click="updateResident(item)">
           mdi-pencil
         </v-icon>
 
-        <!-- <v-icon
+        <v-icon
           medium
           class="mr-2"
           color="red"
           @click="showDeleteConfirmation(item)"
         >
           mdi-delete
-        </v-icon> -->
+        </v-icon>
       </template>
     </v-data-table>
   </v-container>
@@ -68,34 +68,34 @@ export default {
       showEditor: false,
       editResident: null,
       headers: [
-        { text: "Name", value: "name" },
+        { text: "Name", value: "full_name" },
 
         {
           text: "Age",
-          value: "company_name",
+          value: "age",
           sortable: false,
         },
 
         {
-          text: "Sex",
-          value: "location",
+          text: "Gender",
+          value: "gender",
         },
 
         {
           text: "Civil Status",
-          value: "email",
+          value: "civil_status",
           sortable: false,
         },
 
         {
           text: "Address",
-          value: "phone",
+          value: "address",
           sortable: false,
         },
 
         {
           text: "4Ps Member",
-          value: "credit_num",
+          value: "is_4ps",
         },
 
         {
@@ -103,18 +103,18 @@ export default {
           value: "actions",
           sortable: false,
           align: "center",
-          width: "105px",
+          width: "150px",
         },
       ],
 
-      leads: [],
+      residents: [],
       readOnly: false,
     };
   },
 
   methods: {
-    fetchLeads: call("leads/fetchLeads"),
-    deleteLead: call("leads/removeLead"),
+    fetchResidents: call("residents/fetchItems"),
+    deleteResident: call("residents/removeItem"),
 
     addResident() {
       this.editResident = null;
@@ -122,20 +122,20 @@ export default {
       this.readOnly = false;
     },
 
-    updateLead(item) {
+    updateResident(item) {
       this.editResident = { ...{}, ...item };
       this.showEditor = true;
       this.readOnly = false;
     },
 
-    viewLead(item) {
+    viewResident(item) {
       this.editResident = { ...{}, ...item };
       this.showEditor = true;
       this.readOnly = true;
     },
 
     deleteItem(item) {
-      this.deleteLead(item.id).then(
+      this.deleteResident(item.id).then(
         (res) => {
           this.showMsg("Successfully deleted!");
         },
@@ -147,13 +147,13 @@ export default {
 
     onSubmitClick(data) {
       if (data.tag === "save") {
-        this.leads.push(data.item);
+        this.residents.push(data.item);
         return;
       }
 
       //update
-      this.leads.splice(
-        this.leads.findIndex((items) => items.id === data.item.id),
+      this.residents.splice(
+        this.residents.findIndex((items) => items.id === data.item.id),
         1,
         data.item
       );
@@ -180,8 +180,8 @@ export default {
   },
 
   async fetch() {
-    this.fetchLeads().then((response) => {
-      this.leads = response.data.leads;
+    this.fetchResidents().then((response) => {
+      this.residents = response.data;
       console.info(response.data);
     });
   },

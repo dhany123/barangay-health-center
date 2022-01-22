@@ -11,7 +11,7 @@ export const actions = {
     async fetchItems({ commit }) {
         try {
             let response = await Resident.get()
-            console.info('subjects', response)
+            console.info('residents', response)
             return response
         } catch (error) {
             console.error(error)
@@ -21,7 +21,7 @@ export const actions = {
     async createItem({ commit }, data) {
         try {
             let response = await Resident.add(data)
-            console.info('subjects', response)
+            console.info('residents', response)
             return response
         } catch (error) {
             console.error(error)
@@ -31,7 +31,7 @@ export const actions = {
     async updateItem({ commit }, data) {
         try {
             let response = await Resident.update(data)
-            console.info('subjects', response)
+            console.info('residents', response)
             return response
         } catch (error) {
             console.error(error)

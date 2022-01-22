@@ -1,6 +1,6 @@
 import ApiClient from '~/api/Client';
 
-const endpoint = 'residents';
+const endpoint = '/residents';
 
 export default {
     get(data) {

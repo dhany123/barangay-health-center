@@ -14,100 +14,176 @@
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-card-text class="mt-6 px-4 px-md-16">
-        <v-form ref="form-lead" :readonly="readOnly">
+        <v-form ref="form-resident" :readonly="readOnly">
           <v-row dense>
             <v-col cols="12" md="6">
               <label class="label">Last Name</label>
               <v-text-field
                 outlined
                 dense
-                v-model="form.company_name"
+                v-model="form.last_name"
+                :rules="[rules.required]"
               ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">First Name</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.first_name"
+                :rules="[rules.required]"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Middle Name</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.middle_name"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Gender</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-select
+                :items="genders"
+                v-model="form.gender"
+                item-text="name"
+                outlined
+                dense
+                :rules="[rules.required]"
+              ></v-select>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Date of Birth</label>
-              <v-text-field outlined dense type="date"></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                type="date"
+                v-model="form.dob"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Age</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field outlined dense v-model="form.age"></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Civil Status</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-select
+                :items="civilStatusItems"
+                v-model="form.civil_status"
+                item-text="name"
+                outlined
+                dense
+              ></v-select>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Educational Attainment</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.educational_attainment"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Place of Birth</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.place_of_birth"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Relationship with the Head</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.relationship_with_the_head"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Occupation</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.occupation"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Religion</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.religion"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Citizenship</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.citizenship"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Family no.</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.family_no"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Household no.</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.household_no"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Building no.</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.building_no"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Zone/Purok</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.zone_purok"
+                :rules="[rules.required]"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">4Ps Member</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-select
+                :items="yesOrNo"
+                v-model="form.is_4ps"
+                item-text="name"
+                outlined
+                dense
+                :rules="[rules.required]"
+              ></v-select>
             </v-col>
           </v-row>
         </v-form>
@@ -130,7 +206,6 @@
 import { DialogMixin } from "~/mixins/DialogMixin";
 import { call, get } from "vuex-pathify";
 import Swal from "sweetalert2";
-import { last } from "lodash";
 
 export default {
   props: {
@@ -141,7 +216,6 @@ export default {
 
   mixins: [DialogMixin],
   computed: {
-    leads: get("leads/items"),
     dialogTitle() {
       if (this.readOnly) {
         return "View Resident";
@@ -157,19 +231,42 @@ export default {
         required: (value) => !!value || "Required.",
       },
       form: null,
-      items: ["Projects", "Tenders", "Intelligence"],
-      projectTags: [
+      genders: [
         {
           id: 1,
-          name: "Projects",
+          name: "Male",
         },
         {
           id: 2,
-          name: "Tenders",
+          name: "Female",
+        },
+      ],
+      civilStatusItems: [
+        {
+          id: 1,
+          name: "Single",
+        },
+        {
+          id: 2,
+          name: "Married",
         },
         {
           id: 3,
-          name: "Intelligence",
+          name: "Divorced",
+        },
+        {
+          id: 4,
+          name: "Widowed",
+        },
+      ],
+      yesOrNo: [
+        {
+          id: 1,
+          name: "No",
+        },
+        {
+          id: 2,
+          name: "Yes",
         },
       ],
 
@@ -178,23 +275,24 @@ export default {
   },
 
   methods: {
-    fetchServices: call("services/fetchServices"),
-    createLead: call("leads/createLead"),
-    updateLead: call("leads/updateLead"),
+    createResident: call("residents/createItem"),
+    updateResident: call("residents/updateItem"),
 
     add() {
-      this.createLead(this.form)
+      if (!this.$refs["form-resident"].validate()) return;
+
+      this.createResident(this.form)
         .then((response) => {
           if (response.data.success) {
             console.info(response.data);
             this.$toast({
               icon: "success",
-              title: "Lead successfully added.",
+              title: "Resident successfully added.",
             });
 
             this.$emit("onSubmitClick", {
               tag: "save",
-              item: response.data.lead,
+              item: response.data,
             });
           }
         })
@@ -206,18 +304,18 @@ export default {
     update() {
       console.info(this.form);
 
-      this.updateLead(this.form)
+      this.updateResident(this.form)
         .then((response) => {
           if (response.data.success) {
             console.info(response.data);
             this.$toast({
               icon: "success",
-              title: "Lead successfully updated.",
+              title: "Resident successfully updated.",
             });
 
             this.$emit("onSubmitClick", {
               tag: "update",
-              item: response.data.lead,
+              item: response.data,
             });
           }
         })
@@ -233,43 +331,28 @@ export default {
         this.form = {
           ...{
             id: null,
-            name: "",
-            company_name: "",
-            country: "",
-            state: "",
-            city: "",
-            email: "",
-            phone: "",
-            project_details: "",
-            service_id: "",
-            project_tag_id: "",
-            credit_num: "",
-            lead_further_detail: {
-              buying_stage: "",
-              industry: "",
-              budget: "",
-              time_scales: "",
-            },
-            project_tag: {
-              id: 1,
-              name: "",
-              color: "",
-            },
+            last_name: "",
+            first_name: "",
+            middle_name: "",
+            gender: this.genders[0],
+            dob: "",
+            age: "",
+            civil_status: this.civilStatusItems[0],
+            educational_attainment: "",
+            relationship_with_the_head: "",
+            occupation: "",
+            religion: "",
+            citizenship: "",
+            family_no: "",
+            household_no: "",
+            zone_purok: "",
+            is_4ps: this.yesOrNo[0],
           },
           ...val,
         };
       },
       immediate: true,
     },
-  },
-
-  async fetch() {
-    //fetch all services
-    this.fetchServices().then((response) => {
-      if (response.data.success) {
-        this.services = response.data.services;
-      }
-    });
   },
 };
 </script>
