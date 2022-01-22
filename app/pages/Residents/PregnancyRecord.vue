@@ -1,16 +1,16 @@
 <template>
   <v-container>
-    <ResidentPregnantEditor
+    <ResidentPregnancyEditor
       v-if="showEditor"
       :isDialogOpen="showEditor"
       @close="showEditor = false"
-      :item="editLead"
+      :item="editRecord"
       @onSubmitClick="onSubmitClick"
       :readOnly="readOnly"
     />
     <v-data-table
       :headers="headers"
-      :items="leads"
+      :items="pregnancyRecords"
       class="elevation-2"
       :search="search"
       item-key="id"
@@ -31,26 +31,26 @@
             class="ml-4 pt-6 mb-6"
           ></v-text-field>
           <v-spacer></v-spacer>
-          <v-btn color="primary" @click="addLead"> Add </v-btn>
+          <v-btn color="primary" @click="addRecord"> Add </v-btn>
         </div>
       </template>
 
       <template v-slot:[`item.actions`]="{ item }">
-        <v-icon medium class="mr-2" color="green" @click="viewLead(item)">
+        <v-icon medium class="mr-2" color="green" @click="viewRecord(item)">
           mdi-eye
         </v-icon>
-        <v-icon medium class="mr-2" color="blue" @click="updateLead(item)">
+        <v-icon medium class="mr-2" color="blue" @click="updateRecord(item)">
           mdi-pencil
         </v-icon>
 
-        <!-- <v-icon
+        <v-icon
           medium
           class="mr-2"
           color="red"
           @click="showDeleteConfirmation(item)"
         >
           mdi-delete
-        </v-icon> -->
+        </v-icon>
       </template>
     </v-data-table>
   </v-container>
@@ -71,31 +71,34 @@ export default {
     return {
       search: "",
       showEditor: false,
-      editLead: null,
+      editRecord: null,
       headers: [
-        { text: "Name of Parent", value: "name" },
+        { text: "Name of Parent", value: "parent_name" },
 
         {
           text: "Date of Birth",
-          value: "email",
+          value: "dob",
           sortable: false,
         },
 
         {
           text: "Age",
-          value: "location",
+          value: "age",
         },
 
         {
           text: "Household No.",
-          value: "phone",
-          sortable: false,
+          value: "household_no",
         },
 
         {
           text: "Family No.",
-          value: "phone",
-          sortable: false,
+          value: "family_no",
+        },
+
+        {
+          text: "Name of Child",
+          value: "child_name",
         },
 
         {
@@ -103,39 +106,39 @@ export default {
           value: "actions",
           sortable: false,
           align: "center",
-          width: "105px",
+          width: "150px",
         },
       ],
 
-      leads: [],
+      pregnancyRecords: [],
       readOnly: false,
     };
   },
 
   methods: {
-    fetchLeads: call("leads/fetchLeads"),
-    deleteLead: call("leads/removeLead"),
+    fetchRecords: call("residents/pregnancyrecord/fetchItems"),
+    deleteRecord: call("residents/pregnancyrecord/removeItem"),
 
-    addLead() {
-      this.editLead = null;
+    addRecord() {
+      this.editRecord = null;
       this.showEditor = true;
       this.readOnly = false;
     },
 
-    updateLead(item) {
-      this.editLead = { ...{}, ...item };
+    updateRecord(item) {
+      this.editRecord = { ...{}, ...item };
       this.showEditor = true;
       this.readOnly = false;
     },
 
-    viewLead(item) {
-      this.editLead = { ...{}, ...item };
+    viewRecord(item) {
+      this.editRecord = { ...{}, ...item };
       this.showEditor = true;
       this.readOnly = true;
     },
 
     deleteItem(item) {
-      this.deleteLead(item.id).then(
+      this.deleteRecord(item.id).then(
         (res) => {
           this.showMsg("Successfully deleted!");
         },
@@ -147,13 +150,13 @@ export default {
 
     onSubmitClick(data) {
       if (data.tag === "save") {
-        this.leads.push(data.item);
+        this.pregnancyRecords.push(data.item);
         return;
       }
 
       //update
-      this.leads.splice(
-        this.leads.findIndex((items) => items.id === data.item.id),
+      this.pregnancyRecords.splice(
+        this.pregnancyRecords.findIndex((items) => items.id === data.item.id),
         1,
         data.item
       );
@@ -180,8 +183,8 @@ export default {
   },
 
   async fetch() {
-    this.fetchLeads().then((response) => {
-      this.leads = response.data.leads;
+    this.fetchRecords().then((response) => {
+      this.pregnancyRecords = response.data;
       console.info(response.data);
     });
   },
