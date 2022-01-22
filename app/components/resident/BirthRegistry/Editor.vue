@@ -21,7 +21,7 @@
               <v-text-field
                 outlined
                 dense
-                v-model="form.company_name"
+                v-model="form.last_name"
               ></v-text-field>
             </v-col>
 
@@ -30,7 +30,7 @@
               <v-text-field
                 outlined
                 dense
-                v-model="form.company_name"
+                v-model="form.first_name"
               ></v-text-field>
             </v-col>
 
@@ -39,58 +39,105 @@
               <v-text-field
                 outlined
                 dense
-                v-model="form.company_name"
+                v-model="form.middle_name"
               ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label"> Name of Parent</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.parent_name"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Date of Birth</label>
-              <v-text-field outlined dense type="date"></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                type="date"
+                v-model="form.dob"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Household no.</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.household_no"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Family no.</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.family_no"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Zone/Purok</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.zone_purok"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Gender</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-select
+                :items="genders"
+                v-model="form.gender"
+                item-text="name"
+                item-value="id"
+                outlined
+                dense
+              ></v-select>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Birth Weight</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.birth_weight"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Place of Birth</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.birth_place"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Att. of Birth</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.birth_attendant"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Registered</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-select
+                :items="yesOrNo"
+                v-model="form.is_registered"
+                item-text="name"
+                item-value="id"
+                outlined
+                dense
+              ></v-select>
             </v-col>
           </v-row>
         </v-form>
@@ -126,7 +173,7 @@ export default {
     leads: get("leads/items"),
     dialogTitle() {
       if (this.readOnly) {
-        return "View Resident";
+        return "View Child";
       }
       return this.item && this.item.id ? "Update Child" : "Add Child";
     },
@@ -139,44 +186,46 @@ export default {
         required: (value) => !!value || "Required.",
       },
       form: null,
-      items: ["Projects", "Tenders", "Intelligence"],
-      projectTags: [
+      genders: [
         {
           id: 1,
-          name: "Projects",
+          name: "Male",
         },
         {
           id: 2,
-          name: "Tenders",
-        },
-        {
-          id: 3,
-          name: "Intelligence",
+          name: "Female",
         },
       ],
-
-      services: [],
+      yesOrNo: [
+        {
+          id: 1,
+          name: "No",
+        },
+        {
+          id: 2,
+          name: "Yes",
+        },
+      ],
     };
   },
 
   methods: {
-    fetchServices: call("services/fetchServices"),
-    createLead: call("leads/createLead"),
-    updateLead: call("leads/updateLead"),
+    createRecord: call("residents/birthregistry/createItem"),
+    updateRecord: call("residents/birthregistry/updateItem"),
 
     add() {
-      this.createLead(this.form)
+      this.createRecord(this.form)
         .then((response) => {
           if (response.data.success) {
             console.info(response.data);
             this.$toast({
               icon: "success",
-              title: "Lead successfully added.",
+              title: "Record successfully added.",
             });
 
             this.$emit("onSubmitClick", {
               tag: "save",
-              item: response.data.lead,
+              item: response.data,
             });
           }
         })
@@ -188,18 +237,18 @@ export default {
     update() {
       console.info(this.form);
 
-      this.updateLead(this.form)
+      this.updateRecord(this.form)
         .then((response) => {
           if (response.data.success) {
             console.info(response.data);
             this.$toast({
               icon: "success",
-              title: "Lead successfully updated.",
+              title: "Record successfully updated.",
             });
 
             this.$emit("onSubmitClick", {
               tag: "update",
-              item: response.data.lead,
+              item: response.data,
             });
           }
         })
@@ -215,43 +264,25 @@ export default {
         this.form = {
           ...{
             id: null,
-            name: "",
-            company_name: "",
-            country: "",
-            state: "",
-            city: "",
-            email: "",
-            phone: "",
-            project_details: "",
-            service_id: "",
-            project_tag_id: "",
-            credit_num: "",
-            lead_further_detail: {
-              buying_stage: "",
-              industry: "",
-              budget: "",
-              time_scales: "",
-            },
-            project_tag: {
-              id: 1,
-              name: "",
-              color: "",
-            },
+            last_name: "",
+            first_name: "",
+            middle_name: "",
+            parent_name: "",
+            dob: "",
+            household_no: "",
+            family_no: "",
+            zone_purok: "",
+            gender: this.genders[0],
+            birth_weight: "",
+            birth_place: "",
+            birth_attendant: "",
+            is_registered: this.yesOrNo[0],
           },
           ...val,
         };
       },
       immediate: true,
     },
-  },
-
-  async fetch() {
-    //fetch all services
-    this.fetchServices().then((response) => {
-      if (response.data.success) {
-        this.services = response.data.services;
-      }
-    });
   },
 };
 </script>
