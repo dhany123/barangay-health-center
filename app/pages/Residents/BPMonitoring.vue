@@ -4,13 +4,13 @@
       v-if="showEditor"
       :isDialogOpen="showEditor"
       @close="showEditor = false"
-      :item="editLead"
+      :item="editRecord"
       @onSubmitClick="onSubmitClick"
       :readOnly="readOnly"
     />
     <v-data-table
       :headers="headers"
-      :items="leads"
+      :items="bPRecords"
       class="elevation-2"
       :search="search"
       item-key="id"
@@ -36,21 +36,21 @@
       </template>
 
       <template v-slot:[`item.actions`]="{ item }">
-        <v-icon medium class="mr-2" color="green" @click="viewLead(item)">
+        <v-icon medium class="mr-2" color="green" @click="viewRecord(item)">
           mdi-eye
         </v-icon>
-        <v-icon medium class="mr-2" color="blue" @click="updateLead(item)">
+        <v-icon medium class="mr-2" color="blue" @click="updateRecord(item)">
           mdi-pencil
         </v-icon>
 
-        <!-- <v-icon
+        <v-icon
           medium
           class="mr-2"
           color="red"
           @click="showDeleteConfirmation(item)"
         >
           mdi-delete
-        </v-icon> -->
+        </v-icon>
       </template>
     </v-data-table>
   </v-container>
@@ -71,71 +71,68 @@ export default {
     return {
       search: "",
       showEditor: false,
-      editLead: null,
+      editRecord: null,
       headers: [
         { text: "Name", value: "name" },
 
         {
           text: "Age",
-          value: "company_name",
-          sortable: false,
+          value: "age",
         },
 
         {
           text: "BP",
-          value: "location",
+          value: "bp",
         },
 
         {
           text: "Level",
-          value: "email",
-          sortable: false,
+          value: "level",
         },
 
         {
           text: "Date",
-          value: "phone",
-          sortable: false,
+          value: "date",
         },
 
-        // {
-        //   text: "Actions",
-        //   value: "actions",
-        //   sortable: false,
-        //   align: "center",
-        //   width: "105px",
-        // },
+        {
+          text: "Actions",
+          value: "actions",
+          sortable: false,
+          align: "center",
+          width: "150px",
+        },
       ],
 
-      leads: [],
+      bPRecords: [],
       readOnly: false,
     };
   },
 
   methods: {
-    fetchLeads: call("leads/fetchLeads"),
-    deleteLead: call("leads/removeLead"),
+    fetchRecord: call("residents/bpmonitoring/fetchItems"),
+    deleteRecord: call("residents/bpmonitoring/removeItem"),
 
     add() {
-      this.editLead = null;
+      this.editRecord = null;
       this.showEditor = true;
       this.readOnly = false;
     },
 
-    // updateLead(item) {
-    //   this.editLead = { ...{}, ...item };
-    //   this.showEditor = true;
-    //   this.readOnly = false;
-    // },
+    updateRecord(item) {
+      this.editRecord = { ...{}, ...item };
+      this.showEditor = true;
+      this.readOnly = false;
+    },
 
-    // viewLead(item) {
-    //   this.editLead = { ...{}, ...item };
-    //   this.showEditor = true;
-    //   this.readOnly = true;
-    // },
+    viewRecord(item) {
+      this.editRecord = { ...{}, ...item };
+      this.showEditor = true;
+      this.readOnly = true;
+    },
 
     deleteItem(item) {
-      this.deleteLead(item.id).then(
+      this.deleteRecord(item.id).then(
         (res) => {
           this.showMsg("Successfully deleted!");
         },
@@ -147,13 +144,13 @@ export default {
 
     onSubmitClick(data) {
       if (data.tag === "save") {
-        this.leads.push(data.item);
+        this.bPRecords.push(data.item);
         return;
       }
 
       //update
-      this.leads.splice(
-        this.leads.findIndex((items) => items.id === data.item.id),
+      this.bPRecords.splice(
+        this.bPRecords.findIndex((items) => items.id === data.item.id),
         1,
         data.item
       );
@@ -180,8 +177,8 @@ export default {
   },
 
   async fetch() {
-    this.fetchLeads().then((response) => {
-      this.leads = response.data.leads;
+    this.fetchRecord().then((response) => {
+      this.bPRecords = response.data;
       console.info(response.data);
     });
   },

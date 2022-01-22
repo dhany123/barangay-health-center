@@ -9,40 +9,71 @@
       <v-toolbar flat dark color="primary" height="60px">
         <v-spacer></v-spacer>
 
-        <v-toolbar-title> BP Record Form </v-toolbar-title>
+        <v-toolbar-title> {{ dialogTitle }}</v-toolbar-title>
 
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-card-text class="mt-6 px-4 px-md-16">
-        <v-form ref="form-lead" :readonly="readOnly">
+        <v-img
+          :src="require('@/assets/images/bpreadings.jpg')"
+          max-height="250px"
+          contain
+          class="mx-auto"
+        ></v-img>
+        <v-form ref="form-record" :readonly="readOnly">
           <v-row dense>
-            <v-col cols="12" md="6">
+            <v-col cols="12">
               <label class="label"> Name</label>
               <v-text-field
                 outlined
                 dense
-                v-model="form.company_name"
+                v-model="form.name"
+                :rules="[rules.required]"
               ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label"> Age</label>
-              <v-text-field outlined dense></v-text-field>
-            </v-col>
-
-            <v-col cols="12" md="6">
-              <label class="label">BP</label>
-              <v-text-field outlined dense></v-text-field>
-            </v-col>
-
-            <v-col cols="12" md="6">
-              <label class="label">Level</label>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.age"
+                :rules="[rules.required]"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Date</label>
-              <v-text-field outlined dense type="date"></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                type="date"
+                v-model="form.date"
+                :rules="[rules.required]"
+              ></v-text-field>
+            </v-col>
+
+            <v-col cols="12" md="6">
+              <label class="label">BP</label>
+              <v-text-field
+                outlined
+                dense
+                v-model="form.bp"
+                :rules="[rules.required]"
+              ></v-text-field>
+            </v-col>
+
+            <v-col cols="12" md="6">
+              <label class="label">Level</label>
+              <v-select
+                :items="bpLevels"
+                v-model="form.level"
+                item-text="name"
+                item-value="id"
+                outlined
+                dense
+                :rules="[rules.required]"
+              ></v-select>
             </v-col>
           </v-row>
         </v-form>
@@ -75,12 +106,11 @@ export default {
 
   mixins: [DialogMixin],
   computed: {
-    leads: get("leads/items"),
     dialogTitle() {
       if (this.readOnly) {
-        return "View Resident";
+        return "View Record";
       }
-      return this.item && this.item.id ? "Update Child" : "Add Child";
+      return this.item && this.item.id ? "Update Record" : "BP Record Form";
     },
   },
 
@@ -91,19 +121,28 @@ export default {
         required: (value) => !!value || "Required.",
       },
       form: null,
-      items: ["Projects", "Tenders", "Intelligence"],
-      projectTags: [
+
+      bpLevels: [
         {
           id: 1,
-          name: "Projects",
+          name: "Normal",
         },
         {
           id: 2,
-          name: "Tenders",
+          name: "Elevated",
         },
         {
           id: 3,
-          name: "Intelligence",
+          name: "High Blood Pressure Stage 1",
+        },
+
+        {
+          id: 4,
+          name: "High Blood Pressure Stage 2",
+        },
+        {
+          id: 5,
+          name: "Hypertensive Crisis",
         },
       ],
 
@@ -112,23 +151,24 @@ export default {
   },
 
   methods: {
-    fetchServices: call("services/fetchServices"),
-    createLead: call("leads/createLead"),
-    updateLead: call("leads/updateLead"),
+    createBPRecord: call("residents/bpmonitoring/createItem"),
+    updateBPRecord: call("residents/bpmonitoring/updateItem"),
 
     add() {
-      this.createLead(this.form)
+      if (!this.$refs["form-record"].validate()) return;
+
+      this.createBPRecord(this.form)
         .then((response) => {
           if (response.data.success) {
             console.info(response.data);
             this.$toast({
               icon: "success",
-              title: "Lead successfully added.",
+              title: "Record successfully added.",
             });
 
             this.$emit("onSubmitClick", {
               tag: "save",
-              item: response.data.lead,
+              item: response.data,
             });
           }
         })
@@ -140,18 +180,18 @@ export default {
     update() {
       console.info(this.form);
 
-      this.updateLead(this.form)
+      this.updateBPRecord(this.form)
         .then((response) => {
           if (response.data.success) {
             console.info(response.data);
             this.$toast({
               icon: "success",
-              title: "Lead successfully updated.",
+              title: "Record successfully updated.",
             });
 
             this.$emit("onSubmitClick", {
               tag: "update",
-              item: response.data.lead,
+              item: response.data,
             });
           }
         })
@@ -168,42 +208,16 @@ export default {
           ...{
             id: null,
             name: "",
-            company_name: "",
-            country: "",
-            state: "",
-            city: "",
-            email: "",
-            phone: "",
-            project_details: "",
-            service_id: "",
-            project_tag_id: "",
-            credit_num: "",
-            lead_further_detail: {
-              buying_stage: "",
-              industry: "",
-              budget: "",
-              time_scales: "",
-            },
-            project_tag: {
-              id: 1,
-              name: "",
-              color: "",
-            },
+            age: "",
+            date: "",
+            bp: "",
+            level: this.bpLevels[0],
           },
           ...val,
         };
       },
       immediate: true,
     },
-  },
-
-  async fetch() {
-    //fetch all services
-    this.fetchServices().then((response) => {
-      if (response.data.success) {
-        this.services = response.data.services;
-      }
-    });
   },
 };
 </script>
