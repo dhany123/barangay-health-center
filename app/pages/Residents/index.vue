@@ -10,7 +10,7 @@
     >
       <v-tab href="#all-residents"> All Residents </v-tab>
       <v-tab href="#children"> 0-71 months </v-tab>
-      <v-tab href="#"> 4Ps</v-tab>
+      <v-tab href="#4ps"> 4Ps</v-tab>
       <v-tab href="#bp-monitoring"> BP Monitoring </v-tab>
       <v-tab href="#pregnancy-record"> Pregnancy Record </v-tab>
       <v-tab href="#birth-registry"> Birth Registry </v-tab>
@@ -25,6 +25,10 @@
 
       <v-tab-item value="children">
         <v-container> <Children /> </v-container>
+      </v-tab-item>
+
+      <v-tab-item value="4ps">
+        <v-container> <FOURPs /> </v-container>
       </v-tab-item>
 
       <v-tab-item value="bp-monitoring">
@@ -50,6 +54,7 @@
 <script>
 import ResidentsList from "~/pages/Residents/List";
 import Children from "~/pages/Residents/Children";
+import FOURPs from "~/pages/Residents/4ps";
 import BPMonitoring from "~/pages/Residents/BPMonitoring";
 import PregnancyRecord from "~/pages/Residents/PregnancyRecord";
 import BirthRegistry from "~/pages/Residents/BirthRegistry";
@@ -58,6 +63,7 @@ export default {
   components: {
     ResidentsList,
     Children,
+    FOURPs,
     BPMonitoring,
     PregnancyRecord,
     BirthRegistry,
