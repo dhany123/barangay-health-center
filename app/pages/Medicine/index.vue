@@ -7,31 +7,24 @@
       active-class="active-tab"
       hide-slider
     >
-      <v-tab href="#all-residents"> Medicine Record </v-tab>
-      <v-tab href="#children"> Medicine Release Form </v-tab>
+      <v-tab href="#medicines"> Medicine Detail </v-tab>
+      <v-tab href="#medicine-form"> Medicine Release Form </v-tab>
+      <v-tab href="#removed-medicine"> Removed Medicine Record</v-tab>
     </v-tabs>
 
     <v-tabs-items :value="tab" touchless style="background-color: transparent">
-      <v-tab-item value="all-residents">
+      <v-tab-item value="medicines">
         <v-container>
-          <MedicineRecord />
+          <MedicineDetail />
         </v-container>
       </v-tab-item>
 
-      <v-tab-item value="children">
-        <v-container> <Children /> </v-container>
+      <v-tab-item value="medicine-form">
+        <v-container> <ReleaseForm /> </v-container>
       </v-tab-item>
 
-      <v-tab-item value="bp-monitoring">
-        <v-container> <BPMonitoring /> </v-container>
-      </v-tab-item>
-
-      <v-tab-item value="pregnancy-record">
-        <v-container> <PregnancyRecord /> </v-container>
-      </v-tab-item>
-
-      <v-tab-item value="birth-registry">
-        <v-container> <BirthRegistry /> </v-container>
+      <v-tab-item value="removed-medicine">
+        <v-container> <MedicineRemoved /> </v-container>
       </v-tab-item>
     </v-tabs-items>
   </div>
@@ -43,11 +36,15 @@
 </router>
 
 <script>
-import MedicineRecord from "~/pages/Medicine/MedicineRecord";
+import MedicineDetail from "~/pages/Medicine/Detail";
+import ReleaseForm from "~/pages/Medicine/ReleaseForm";
+import MedicineRemoved from "~/pages/Medicine/Remove";
 
 export default {
   components: {
-    MedicineRecord,
+    MedicineDetail,
+    ReleaseForm,
+    MedicineRemoved,
   },
   data() {
     return {

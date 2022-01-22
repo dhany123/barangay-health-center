@@ -115,7 +115,7 @@ export default {
       mini: false,
       dialog: false,
       items: [
-        { title: "Dashboard", href: "", icon: "mdi-view-dashboard" },
+        // { title: "Dashboard", href: "", icon: "mdi-view-dashboard" },
         {
           title: "Residents",
           href: `/residents`,
