@@ -9,6 +9,7 @@
     >
       <v-tab href="#medicines"> Medicine Detail </v-tab>
       <v-tab href="#medicine-form"> Medicine Release Form </v-tab>
+      <v-tab href="#medicine-record"> Medicine Records</v-tab>
       <v-tab href="#removed-medicine"> Removed Medicine Record</v-tab>
     </v-tabs>
 
@@ -21,6 +22,10 @@
 
       <v-tab-item value="medicine-form">
         <v-container> <ReleaseForm /> </v-container>
+      </v-tab-item>
+
+      <v-tab-item value="medicine-record">
+        <v-container> <MedicineRecords /> </v-container>
       </v-tab-item>
 
       <v-tab-item value="removed-medicine">
@@ -38,12 +43,14 @@
 <script>
 import MedicineDetail from "~/pages/Medicine/Detail";
 import ReleaseForm from "~/pages/Medicine/ReleaseForm";
+import MedicineRecords from "~/pages/Medicine/Records";
 import MedicineRemoved from "~/pages/Medicine/Remove";
 
 export default {
   components: {
     MedicineDetail,
     ReleaseForm,
+    MedicineRecords,
     MedicineRemoved,
   },
   data() {

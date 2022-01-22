@@ -22,7 +22,7 @@
         >
           <v-text-field
             append-icon="mdi-magnify"
-            placeholder="Search Children"
+            placeholder="Search Released Medicines"
             filled
             rounded
             dense

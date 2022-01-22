@@ -37,7 +37,7 @@
         >
           <v-text-field
             append-icon="mdi-magnify"
-            placeholder="Search Children"
+            placeholder="Search Medicine"
             filled
             rounded
             dense

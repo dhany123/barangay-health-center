@@ -14,7 +14,7 @@
         >
           <v-text-field
             append-icon="mdi-magnify"
-            placeholder="Search Children"
+            placeholder="Search Remove Medicine"
             filled
             rounded
             dense

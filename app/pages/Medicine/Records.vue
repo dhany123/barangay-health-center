@@ -1,0 +1,94 @@
+<template>
+  <v-container>
+    <v-data-table
+      :headers="headers"
+      :items="medicines"
+      class="elevation-2"
+      :search="search"
+      item-key="id"
+    >
+      <template v-slot:top>
+        <div
+          class="d-inline-flex justify-space-between align-center"
+          style="width: 98%"
+        >
+          <v-text-field
+            append-icon="mdi-magnify"
+            placeholder="Search Record"
+            filled
+            rounded
+            dense
+            v-model="search"
+            style="width: 40%"
+            class="ml-4 pt-6 mb-6"
+          ></v-text-field>
+          <v-spacer></v-spacer>
+        </div>
+      </template>
+    </v-data-table>
+  </v-container>
+</template>
+
+<router lang="yaml">
+    path: /medicine/record
+    name: medicine-record
+</router>
+
+<script>
+import Swal from "sweetalert2";
+import { call, get } from "vuex-pathify";
+export default {
+  computed: {},
+
+  data() {
+    return {
+      search: "",
+
+      headers: [
+        {
+          text: " Name",
+          value: "name",
+        },
+
+        {
+          text: "Type",
+          value: "type",
+        },
+
+        {
+          text: "Description",
+          value: "description",
+          sortable: false,
+        },
+
+        {
+          text: "Quantity",
+          value: "stock",
+        },
+
+        {
+          text: "Date Supplied",
+          value: "stock",
+        },
+        {
+          text: "Supplier",
+          value: "stock",
+        },
+      ],
+
+      medicines: [],
+    };
+  },
+
+  methods: {
+    fetchMedicines: call("medicines/fetchItems"),
+  },
+
+  async fetch() {
+    this.fetchMedicines().then((response) => {
+      this.medicines = response.data;
+      console.info(response.data);
+    });
+  },
+};
+</script>
