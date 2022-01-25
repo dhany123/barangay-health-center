@@ -8,6 +8,9 @@
       @onSubmitClick="onSubmitClick"
       :readOnly="readOnly"
     />
+
+    <TitleHeader title="Pregnancy Record" />
+
     <v-data-table
       :headers="headers"
       :items="pregnancyRecords"

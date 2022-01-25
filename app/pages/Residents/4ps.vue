@@ -8,6 +8,8 @@
       @onSubmitClick="onSubmitClick"
       :readOnly="readOnly"
     />
+    <TitleHeader title="List of 4Ps" />
+
     <v-data-table
       :headers="headers"
       :items="residents"
@@ -31,7 +33,11 @@
             class="ml-4 pt-6 mb-6"
           ></v-text-field>
           <v-spacer></v-spacer>
-          <v-btn color="primary" @click="addResident"> Add </v-btn>
+          <v-text-field
+            v-model="filterValue"
+            class="ml-4 pt-6 mb-6 d-none"
+          ></v-text-field>
+          <!-- <v-btn color="primary" @click="addResident"> Add </v-btn> -->
         </div>
       </template>
 
@@ -56,6 +62,12 @@
   </v-container>
 </template>
 
+<router lang="yaml">
+    path: /residents/4Ps
+    name: residents-4Ps
+</router>
+
+
 <script>
 import Swal from "sweetalert2";
 import { call, get } from "vuex-pathify";
@@ -68,7 +80,6 @@ export default {
         {
           text: "Age",
           value: "age",
-          sortable: false,
         },
 
         {
@@ -91,7 +102,8 @@ export default {
         {
           text: "4Ps Member",
           value: "is_4ps",
-          // filter: "Yes",
+          filter: this.isFiltered,
+          sortable: false,
         },
 
         {
@@ -110,7 +122,7 @@ export default {
       search: "",
       showEditor: false,
       editResident: null,
-      isMember: "Yes",
+      filterValue: "Yes",
 
       residents: [],
       readOnly: false,
@@ -120,6 +132,16 @@ export default {
   methods: {
     fetchResidents: call("residents/fetchItems"),
     deleteResident: call("residents/removeItem"),
+
+    isFiltered(value) {
+      if (!this.filterValue) {
+        return true;
+      }
+
+      // Check if the current loop value (The calories value)
+      // equals to the selected value at the <v-select>.
+      return value === this.filterValue;
+    },
 
     addResident() {
       this.editResident = null;

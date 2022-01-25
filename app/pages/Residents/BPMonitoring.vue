@@ -8,6 +8,8 @@
       @onSubmitClick="onSubmitClick"
       :readOnly="readOnly"
     />
+    <TitleHeader title="Blood Pressure Monitoring" />
+
     <v-data-table
       :headers="headers"
       :items="bPRecords"

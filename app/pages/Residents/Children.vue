@@ -8,6 +8,9 @@
       @onSubmitClick="onSubmitClick"
       :readOnly="readOnly"
     />
+
+    <TitleHeader title="0-71 months old" />
+
     <v-data-table
       :headers="headers"
       :items="children"

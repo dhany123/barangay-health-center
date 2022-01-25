@@ -8,6 +8,9 @@
       @onSubmitClick="onSubmitClick"
       :readOnly="readOnly"
     />
+
+    <TitleHeader title="Medicine Release Form" />
+
     <v-data-table
       :headers="headers"
       :items="releasedItems"

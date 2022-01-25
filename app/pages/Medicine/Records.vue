@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <TitleHeader title="Medicine Records" />
     <v-data-table
       :headers="headers"
       :items="medicines"
@@ -30,8 +31,8 @@
 </template>
 
 <router lang="yaml">
-    path: /medicine/record
-    name: medicine-record
+    path: /medicine/records
+    name: medicine-records
 </router>
 
 <script>

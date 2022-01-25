@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <TitleHeader title="Removed Medicine Record" />
     <v-data-table
       :headers="headers"
       :items="leads"
@@ -48,8 +49,8 @@
 </template>
 
 <router lang="yaml">
-    path: /medicine/remove
-    name: medicine-remove
+    path: /medicine/removed
+    name: medicine-removed
 </router>
 
 <script>

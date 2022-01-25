@@ -23,6 +23,8 @@
       @close="showRemoveEditor = false"
       :readOnly="readOnly"
     />
+    <TitleHeader title="Medicine Details" />
+
     <v-data-table
       :headers="headers"
       :items="medicines"
@@ -70,8 +72,8 @@
 </template>
 
 <router lang="yaml">
-    path: /medicine/record
-    name: medicine-record
+    path: /medicine/detail
+    name: medicine-detail
 </router>
 
 <script>
