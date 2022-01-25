@@ -24,45 +24,67 @@
         </v-list-item>
       </v-list>
       <!-- <v-divider></v-divider> -->
-      <v-list class="mx-3">
-        <v-list-item
-          v-for="item in items"
-          :key="item.title"
-          link
-          :to="item.href"
-          active-class="active-list"
-        >
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
 
-      <!-- <v-list-group
+      <v-list-group
         class="mx-3"
-        :value="true"
-        prepend-icon="mdi-cog"
         active-class="settings-menu"
+        :value="true"
+        prepend-icon="mdi-account-group"
       >
         <template v-slot:activator>
-          <v-list-item-title>Settings</v-list-item-title>
+          <v-list-item-title class="ml-n5">Residents</v-list-item-title>
         </template>
         <v-list>
           <v-list-item
-            class="pl-8"
-            v-for="(menu, i) in settingsMenu"
+            class="pl-4 ml-10"
+            v-for="(menu, i) in residentsMenu"
             :key="i"
             link
             :to="menu.href"
             active-class="active-list"
+            exact
           >
             <v-list-item-title v-text="menu.title"></v-list-item-title>
           </v-list-item>
         </v-list>
-      </v-list-group> -->
+      </v-list-group>
+
+      <v-list-group
+        class="mx-3"
+        active-class="settings-menu"
+        :value="true"
+        prepend-icon="mdi-medical-bag"
+      >
+        <template v-slot:activator>
+          <v-list-item-title class="ml-n5 mr-n6"
+            >Medicine Stocks</v-list-item-title
+          >
+        </template>
+        <v-list>
+          <v-list-item
+            class="pl-4 ml-10 pr-n6"
+            v-for="(menu, i) in medicinesMenu"
+            :key="i"
+            link
+            :to="menu.href"
+            active-class="active-list"
+            exact
+          >
+            <v-list-item-title v-text="menu.title"></v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-list-group>
+
+      <v-list class="mx-3">
+        <v-list-item active-class="active-list">
+          <v-list-item-icon>
+            <v-icon>mdi-file-chart</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content class="ml-n5">
+            <v-list-item-title>Reports</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
     </v-navigation-drawer>
 
     <v-app-bar app color="#fff" elevation="1">
@@ -138,10 +160,21 @@ export default {
         },
       ],
 
-      // settingsMenu: [
-      //   { title: "Services", href: "/services" },
-      //   { title: "Service Category", href: "/categories" },
-      // ],
+      residentsMenu: [
+        { title: "All Residents", href: "/residents" },
+        { title: "0-71 months ", href: "/residents/children" },
+        { title: "4Ps", href: "/residents/4Ps" },
+        { title: "BP Monitoring", href: "/residents/bp-monitoring" },
+        { title: "Pregnancy Record", href: "/residents/pregancy-record" },
+        { title: "Birth Registry", href: "/residents/birth-registry" },
+      ],
+
+      medicinesMenu: [
+        { title: "Medicine Details", href: "/medicine/detail" },
+        { title: "Release Form", href: "/medicine/release-form" },
+        { title: "Medicine Records", href: "/medicine/records" },
+        { title: "Removed Medicine", href: "/medicine/removed" },
+      ],
 
       account: [
         {
