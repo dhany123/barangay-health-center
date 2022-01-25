@@ -52,7 +52,7 @@
                 outlined
                 dense
                 type="number"
-                v-model="form.quantity"
+                v-model="form.stocks.quantity"
                 :rules="[rules.required]"
               ></v-text-field>
             </v-col>
@@ -63,7 +63,7 @@
                 outlined
                 dense
                 type="date"
-                v-model="form.date_received"
+                v-model="form.stocks.date_received"
                 :rules="[rules.required]"
               ></v-text-field>
             </v-col>
@@ -73,7 +73,7 @@
               <v-text-field
                 outlined
                 dense
-                v-model="form.supplier_name"
+                v-model="form.stocks.supplier_name"
                 :rules="[rules.required]"
               ></v-text-field>
             </v-col>
@@ -84,7 +84,7 @@
                 outlined
                 dense
                 type="date"
-                v-model="form.expiry_date"
+                v-model="form.stocks.expiry_date"
                 :rules="[rules.required]"
               ></v-text-field>
             </v-col>
@@ -139,7 +139,6 @@ export default {
       this.createMedicine(this.form)
         .then((response) => {
           if (response.data.success) {
-            console.info(response.data);
             this.$toast({
               icon: "success",
               title: "Lead successfully added.",
@@ -155,7 +154,6 @@ export default {
           this.showDialog = false;
         });
     },
-
     update() {
       console.info(this.form);
 
@@ -186,10 +184,15 @@ export default {
         this.form = {
           ...{
             id: null,
-            quantity: "",
-            date_received: "",
-            supplier_name: "",
-            expiry_date: "",
+            stocks: [
+              {
+                id: "",
+                quantity: "",
+                date_received: "",
+                supplier_name: "",
+                expiry_date: "",
+              },
+            ],
           },
           ...val,
         };

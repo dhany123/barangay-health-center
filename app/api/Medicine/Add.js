@@ -1,6 +1,6 @@
 import ApiClient from '~/api/Client';
 
-const endpoint = '/removed_medicine';
+const endpoint = '/add_medicine';
 
 export default {
     get(data) {

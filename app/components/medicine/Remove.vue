@@ -21,13 +21,13 @@
               <v-text-field
                 outlined
                 dense
-                v-model="form.company_name"
+                v-model="form.quantity"
               ></v-text-field>
             </v-col>
 
             <v-col cols="12">
               <label class="label">Medicine Issue</label>
-              <v-textarea rows="2" outlined></v-textarea>
+              <v-textarea rows="2" outlined v-model="form.issue"></v-textarea>
             </v-col>
           </v-row>
         </v-form>

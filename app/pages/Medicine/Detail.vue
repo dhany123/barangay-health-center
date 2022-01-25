@@ -12,7 +12,7 @@
     <MedicineAddStock
       v-if="showAddStockEditor"
       :isDialogOpen="showAddStockEditor"
-      :item="editChild"
+      :item="addStocks"
       @close="showAddStockEditor = false"
       :readOnly="readOnly"
     />
@@ -136,7 +136,8 @@ export default {
     },
 
     addStock(item) {
-      this.editChild = { ...{}, ...item };
+      this.addStocks = { ...{}, ...item };
+      this.addStocks.stocks = { ...{}, ...item.stocks };
       this.showAddStockEditor = true;
     },
     updateMedicine(item) {

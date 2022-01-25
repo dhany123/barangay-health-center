@@ -64,16 +64,16 @@ export default {
 
         {
           text: "Quantity",
-          value: "stock",
+          value: "stocks.quantity",
         },
 
         {
           text: "Date Supplied",
-          value: "stock",
+          value: "stocks.date_supplied",
         },
         {
           text: "Supplier",
-          value: "stock",
+          value: "stocks.supplier_name",
         },
       ],
 
