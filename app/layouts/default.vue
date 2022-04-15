@@ -25,7 +25,7 @@
       </v-list>
       <!-- <v-divider></v-divider> -->
 
-      <v-list-group
+      <!-- <v-list-group
         class="mx-3"
         active-class="settings-menu"
         :value="true"
@@ -73,7 +73,54 @@
             <v-list-item-title v-text="menu.title"></v-list-item-title>
           </v-list-item>
         </v-list>
-      </v-list-group>
+      </v-list-group> -->
+
+      <v-list class="mx-3">
+        <v-list-item active-class="active-list" to="/immunization">
+          <v-list-item-icon>
+            <v-icon>mdi-needle</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content class="ml-n5">
+            <v-list-item-title>Immunization</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+
+      <v-list class="mx-3">
+        <v-list-item active-class="active-list" to="/maternal-record">
+          <v-list-item-icon>
+            <v-icon>mdi-human-pregnant</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content class="ml-n5">
+            <v-list-item-title>Maternal</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+
+      <v-list class="mx-3">
+        <v-list-item active-class="active-list" to="">
+          <v-list-item-icon>
+            <v-icon>mdi-human-male-female-child</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content class="ml-n5">
+            <v-list-item-title>Family Planning</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+
+      <v-list class="mx-3">
+        <v-list-item active-class="active-list" to="">
+          <v-list-item-icon>
+            <v-icon>mdi-pill</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content class="ml-n5">
+            <v-list-item-title
+              >Non-communicable disease prevention and control
+              services</v-list-item-title
+            >
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
 
       <v-list class="mx-3">
         <v-list-item active-class="active-list">
@@ -86,7 +133,6 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-
     <v-app-bar app color="#fff" elevation="1">
       <v-app-bar-nav-icon @click="toggleDrawer" />
       <v-spacer></v-spacer>
@@ -150,6 +196,13 @@ export default {
           href: `/medicine`,
 
           icon: "mdi-medical-bag",
+        },
+
+        {
+          title: "Reports",
+          href: `/services`,
+
+          icon: "mdi-file-chart",
         },
 
         {
