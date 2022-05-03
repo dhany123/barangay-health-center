@@ -98,7 +98,7 @@
       </v-list>
 
       <v-list class="mx-3">
-        <v-list-item active-class="active-list" to="">
+        <v-list-item active-class="active-list" to="/family-planning">
           <v-list-item-icon>
             <v-icon>mdi-human-male-female-child</v-icon>
           </v-list-item-icon>
