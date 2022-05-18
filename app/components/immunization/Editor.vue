@@ -9,9 +9,8 @@
       v-if="showEditor"
       :isDialogOpen="showEditor"
       @close="showEditor = false"
-      :item="editResident"
-      @onSubmitClick="onSubmitClick"
-      :readOnly="readOnly"
+      :item="record"
+      @add-record="onAddClick"
     />
 
     <v-card>
@@ -59,7 +58,6 @@
               <v-select
                 :items="genders"
                 v-model="form.sex"
-                item-text="name"
                 outlined
                 dense
                 :rules="[rules.required]"
@@ -350,7 +348,7 @@
 
           <v-data-table
             :headers="headers"
-            :items="immunization_record"
+            :items="form.immunization_record.records"
             class="elevation-2"
             item-key="id"
           >
@@ -419,78 +417,31 @@ export default {
         required: (value) => !!value || "Required.",
       },
       form: null,
-      genders: [
-        {
-          id: 1,
-          name: "Male",
-        },
-        {
-          id: 2,
-          name: "Female",
-        },
-      ],
-      deliveryItems: [
-        {
-          id: 1,
-          name: "Normal",
-        },
-        {
-          id: 2,
-          name: "Abnormal",
-        },
-      ],
+      genders: ["Male", "Female"],
 
-      birthTypeItems: [
-        {
-          id: 1,
-          name: "Single",
-        },
-        {
-          id: 2,
-          name: "Multiple",
-        },
-      ],
+      deliveryItems: ["Normal", "Abnormal"],
 
-      deliveredByItems: [
-        {
-          id: 1,
-          name: "Midwife",
-        },
-        {
-          id: 2,
-          name: "Hilot",
-        },
-        {
-          id: 3,
-          name: "Doctor",
-        },
-      ],
-      yesOrNo: [
-        {
-          id: 1,
-          name: "No",
-        },
-        {
-          id: 2,
-          name: "Yes",
-        },
-      ],
+      birthTypeItems: ["Single", "Multiple"],
+
+      deliveredByItems: ["Midwife", "Hilot", "Doctor"],
+
+      yesOrNo: ["No", "Yes"],
 
       headers: [
         {
           text: "Date",
-          value: "records.date",
+          value: "date",
         },
 
         {
           text: "Complaints/Diagnosis",
-          value: "records.complaints_diagnosis",
+          value: "complaints_diagnosis",
           sortable: false,
         },
 
         {
           text: "Treatment",
-          value: "records.treatment",
+          value: "treatment",
           sortable: false,
         },
 
@@ -504,6 +455,11 @@ export default {
       ],
 
       immunization_record: [],
+      record: {
+        date: null,
+        complaints_diagnosis: null,
+        treatment: null,
+      },
     };
   },
 
@@ -513,6 +469,15 @@ export default {
 
     addImmunization() {
       this.showEditor = true;
+    },
+    onAddClick() {
+      this.form.immunization_record.records.push({ ...this.record });
+      console.log(this.form.immunization_record.records);
+      this.showEditor = false;
+    },
+
+    showDeleteConfirmation(item) {
+      this.form.immunization_record.records.splice(item, 1)
     },
 
     add() {
@@ -602,14 +567,7 @@ export default {
               pcv_3: "",
               measles: "",
               mmr: "",
-              records: [
-                {
-                  id: "",
-                  date: "",
-                  complaints_diagnosis: "",
-                  treatment: "",
-                },
-              ],
+              records: [],
             },
           },
           ...val,

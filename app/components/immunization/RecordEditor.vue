@@ -21,14 +21,18 @@
               <v-text-field
                 outlined
                 dense
-                v-model="form.name"
+                v-model="item.date"
                 type="date"
               ></v-text-field>
             </v-col>
 
             <v-col cols="12">
               <label class="label">Complaints/Diagnosis</label>
-              <v-textarea outlined rows="2" v-model="form.type"></v-textarea>
+              <v-textarea
+                outlined
+                rows="2"
+                v-model="item.complaints_diagnosis"
+              ></v-textarea>
             </v-col>
 
             <v-col cols="12">
@@ -36,7 +40,7 @@
               <v-textarea
                 outlined
                 rows="2"
-                v-model="form.description"
+                v-model="item.treatment"
               ></v-textarea>
             </v-col>
           </v-row>
@@ -48,9 +52,7 @@
       <v-card-actions>
         <v-btn @click="closeDialog"> Cancel </v-btn>
         <v-spacer></v-spacer>
-        <v-btn color="primary" @click="item && item.id ? update() : add()">
-          Save
-        </v-btn>
+        <v-btn color="primary" @click="add"> Save </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -58,9 +60,6 @@
 
 <script>
 import { DialogMixin } from "~/mixins/DialogMixin";
-import { call, get } from "vuex-pathify";
-import Swal from "sweetalert2";
-import { last } from "lodash";
 
 export default {
   props: {
@@ -71,84 +70,9 @@ export default {
 
   mixins: [DialogMixin],
 
-  data() {
-    return {
-      valid: true,
-      rules: {
-        required: (value) => !!value || "Required.",
-      },
-      form: null,
-    };
-  },
-
   methods: {
-    createMedicine: call("medicines/createItem"),
-    updateMedicine: call("medicines/updateItem"),
-
     add() {
-      if (!this.$refs["form-record"].validate()) return;
-      this.createMedicine(this.form)
-        .then((response) => {
-          if (response.data.success) {
-            this.$toast({
-              icon: "success",
-              title: "Lead successfully added.",
-            });
-
-            this.$emit("onSubmitClick", {
-              tag: "save",
-              item: response.data,
-            });
-          }
-        })
-        .finally(() => {
-          this.showDialog = false;
-        });
-    },
-    update() {
-      console.info(this.form);
-
-      this.updateMedicine(this.form)
-        .then((response) => {
-          if (response.data.success) {
-            console.info(response.data);
-            this.$toast({
-              icon: "success",
-              title: "Lead successfully updated.",
-            });
-
-            this.$emit("onSubmitClick", {
-              tag: "update",
-              item: response.data,
-            });
-          }
-        })
-        .finally(() => {
-          this.showDialog = false;
-        });
-    },
-  },
-
-  watch: {
-    item: {
-      handler(val) {
-        this.form = {
-          ...{
-            id: null,
-            stocks: [
-              {
-                id: "",
-                quantity: "",
-                date_received: "",
-                supplier_name: "",
-                expiry_date: "",
-              },
-            ],
-          },
-          ...val,
-        };
-      },
-      immediate: true,
+      this.$emit("add-record");
     },
   },
 };
