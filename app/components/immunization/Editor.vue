@@ -354,17 +354,18 @@
           >
             <template v-slot:top>
               <div class="text-right pt-3 pr-3">
-                <v-btn color="primary" @click="addImmunization"> Add </v-btn>
+                <v-btn
+                  color="primary"
+                  @click="addImmunization"
+                  v-show="!readOnly"
+                >
+                  Add
+                </v-btn>
               </div>
             </template>
 
             <template v-slot:[`item.actions`]="{ item }">
-              <v-icon
-                medium
-                class="mr-2"
-                color="red"
-                @click="showDeleteConfirmation(item)"
-              >
+              <v-icon medium class="mr-2" color="red" @click="deleteItem(item)">
                 mdi-delete
               </v-icon>
             </template>
@@ -476,8 +477,8 @@ export default {
       this.showEditor = false;
     },
 
-    showDeleteConfirmation(item) {
-      this.form.immunization_record.records.splice(item, 1)
+    deleteItem(item) {
+      this.form.immunization_record.records.splice(item, 1);
     },
 
     add() {

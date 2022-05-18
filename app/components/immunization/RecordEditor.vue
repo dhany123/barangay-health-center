@@ -64,8 +64,6 @@ import { DialogMixin } from "~/mixins/DialogMixin";
 export default {
   props: {
     item: Object,
-    value: Boolean,
-    readOnly: Boolean,
   },
 
   mixins: [DialogMixin],

@@ -24,17 +24,17 @@
                 outlined
                 dense
                 type="date"
-                v-model="form.date"
+                v-model="item.date"
               ></v-text-field>
             </v-col>
             <v-col cols="12" md="6">
               <label class="label"> UT/WT</label>
-              <v-text-field outlined dense v-model="form.ut_wt"></v-text-field>
+              <v-text-field outlined dense v-model="item.ut_wt"></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">BP</label>
-              <v-text-field outlined dense v-model="form.bp"></v-text-field>
+              <v-text-field outlined dense v-model="item.bp"></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
@@ -42,7 +42,7 @@
               <v-text-field
                 outlined
                 dense
-                v-model="form.fundic_ht"
+                v-model="item.fundic_ht"
               ></v-text-field>
             </v-col>
 
@@ -51,18 +51,18 @@
               <v-text-field
                 outlined
                 dense
-                v-model="form.presentation_fhb"
+                v-model="item.presentation_fhb"
               ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Hb</label>
-              <v-text-field outlined dense v-model="form.hb"></v-text-field>
+              <v-text-field outlined dense v-model="item.hb"></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
               <label class="label">Urine</label>
-              <v-text-field outlined dense v-model="form.urine"></v-text-field>
+              <v-text-field outlined dense v-model="item.urine"></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
@@ -72,14 +72,14 @@
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.exam_sugar_1"
+                    v-model="item.exam_sugar_1"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="6">
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.exam_sugar_2"
+                    v-model="item.exam_sugar_2"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -92,9 +92,7 @@
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="primary" @click="item && item.id ? update() : add()">
-          Save
-        </v-btn>
+        <v-btn color="primary" @click="add"> Save </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -103,6 +101,9 @@
 import { DialogMixin } from "~/mixins/DialogMixin";
 
 export default {
+  props: {
+    item: Object,
+  },
   mixins: [DialogMixin],
   data() {
     return {
@@ -118,6 +119,11 @@ export default {
         exam_sugar_2: "",
       },
     };
+  },
+  methods: {
+    add() {
+      this.$emit("add-record");
+    },
   },
 };
 </script>

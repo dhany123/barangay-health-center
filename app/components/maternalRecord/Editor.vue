@@ -7,8 +7,11 @@
     fullscreen
   >
     <MaternalRecordAntePartumVisitEditor
+      v-if="showAntePartumDialog"
       :isDialogOpen="showAntePartumDialog"
       @close="showAntePartumDialog = false"
+      :item="ante_partum_record"
+      @add-record="onAddAntePartumRecord"
     />
     <v-card>
       <v-toolbar flat dark color="primary" height="60px">
@@ -53,7 +56,6 @@
                     outlined
                     dense
                     v-model="form.husband"
-                    :rules="[rules.required]"
                   ></v-text-field>
                 </v-col>
 
@@ -202,13 +204,14 @@
               </div>
               <v-divider></v-divider>
 
-              <v-row dense class="mt-2">
+              <v-row dense class="mt-2" v-show="!readOnly">
                 <v-col cols="12" md="4">
                   <label class="label">Date</label>
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.date"
+                    v-model="family_planning_record.date"
+                    type="date"
                   ></v-text-field>
                 </v-col>
 
@@ -217,7 +220,7 @@
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.methods"
+                    v-model="family_planning_record.methods"
                   ></v-text-field>
                 </v-col>
 
@@ -226,29 +229,34 @@
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.remarks"
+                    v-model="family_planning_record.remarks"
                   ></v-text-field>
                 </v-col>
 
                 <v-col cols="12">
                   <div class="text-center">
-                    <v-btn color="primary">Add</v-btn>
+                    <v-btn
+                      color="primary"
+                      @click="addFamilyPlanningHistoryRecord"
+                      >Add</v-btn
+                    >
                   </div>
                 </v-col>
               </v-row>
 
               <v-data-table
                 :headers="headers"
-                :items="family_planning_history"
+                :items="form.family_planning_history"
                 class="elevation-2 my-4"
                 item-key="id"
+                mobile-breakpoint="0"
               >
                 <template v-slot:[`item.action`]="{ item }">
                   <v-icon
                     medium
                     class="mr-2"
                     color="red"
-                    @click="showDeleteConfirmation(item)"
+                    @click="deleteFamilyPlanningRecord(item)"
                   >
                     mdi-delete
                   </v-icon>
@@ -379,43 +387,50 @@
                   color="primary"
                   class="my-2"
                   @click="onAddAntePartumClick"
+                  v-show="!readOnly"
                   >Add</v-btn
                 >
               </div>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>UT/WT</th>
-                    <th>BP</th>
-                    <th>FUNDIC Ht</th>
-                    <th>Presenation FHB</th>
-                    <th>Hb</th>
-                    <th>Urine</th>
-                    <th colspan="2">Exam Sugar</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr
-                    v-for="item in form.present_pregnancy.ante_partum_visits"
-                    :key="item.id"
-                  >
-                    <td>{{ item.date }}</td>
-                    <td>{{ item.ut_wt }}</td>
-                    <td>{{ item.bp }}</td>
-                    <td>{{ item.fundic_ht }}</td>
-                    <td>{{ item.presentation_fhb }}</td>
-                    <td>{{ item.hb }}</td>
-                    <td>{{ item.urine }}</td>
-                    <td>{{ item.exam_sugar_1 }}</td>
-                    <td>{{ item.exam_sugar_2 }}</td>
-                    <td>
-                      <v-icon color="red">mdi-delete</v-icon>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <div style="max-width: 100%; overflow-x: auto">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>UT/WT</th>
+                      <th>BP</th>
+                      <th>FUNDIC Ht</th>
+                      <th>Presenation FHB</th>
+                      <th>Hb</th>
+                      <th>Urine</th>
+                      <th colspan="2">Exam Sugar</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      v-for="item in form.present_pregnancy.ante_partum_visits"
+                      :key="item.id"
+                    >
+                      <td>{{ item.date }}</td>
+                      <td>{{ item.ut_wt }}</td>
+                      <td>{{ item.bp }}</td>
+                      <td>{{ item.fundic_ht }}</td>
+                      <td>{{ item.presentation_fhb }}</td>
+                      <td>{{ item.hb }}</td>
+                      <td>{{ item.urine }}</td>
+                      <td>{{ item.exam_sugar_1 }}</td>
+                      <td>{{ item.exam_sugar_2 }}</td>
+                      <td>
+                        <v-icon
+                          color="red"
+                          @click="deleteAntePartumRecord(item)"
+                          >mdi-delete</v-icon
+                        >
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </v-form>
           </v-col>
         </v-row>
@@ -508,17 +523,17 @@ export default {
       ],
 
       headers: [
-        { text: "Date", value: "full_name" },
+        { text: "Date", value: "date" },
 
         {
           text: "Methods",
-          value: "age",
+          value: "methods",
           sortable: false,
         },
 
         {
           text: "Remarks",
-          value: "gender",
+          value: "remarks",
         },
 
         {
@@ -530,6 +545,23 @@ export default {
       ],
 
       services: [],
+      family_planning_record: {
+        date: "",
+        methods: "",
+        remarks: "",
+      },
+
+      ante_partum_record: {
+        date: "",
+        ut_wt: "",
+        bp: "",
+        fundic_ht: "",
+        presentation_fhb: "",
+        hb: "",
+        urine: "",
+        exam_sugar_1: "",
+        exam_sugar_2: "",
+      },
     };
   },
 
@@ -537,8 +569,30 @@ export default {
     createResident: call("maternalrecord/createItem"),
     updateResident: call("maternalrecord/updateItem"),
 
+    addFamilyPlanningHistoryRecord() {
+      this.form.family_planning_history.push({
+        ...this.family_planning_record,
+      });
+    },
+
+    deleteFamilyPlanningRecord(item) {
+      this.form.family_planning_history.splice(item, 1);
+    },
+
     onAddAntePartumClick() {
       this.showAntePartumDialog = !this.showAntePartumDialog;
+    },
+
+    onAddAntePartumRecord() {
+      this.form.present_pregnancy.ante_partum_visits.push({
+        ...this.ante_partum_record,
+      });
+
+      this.showAntePartumDialog = false;
+    },
+
+    deleteAntePartumRecord(item) {
+      this.form.present_pregnancy.ante_partum_visits.splice(item, 1);
     },
 
     add() {
@@ -611,13 +665,7 @@ export default {
             still_births: "",
             post_partum_hemorrhage: "",
             birth_weight_2500_grams: "",
-            family_planning_history: [
-              {
-                id: "",
-                methods: "",
-                remarks: "",
-              },
-            ],
+            family_planning_history: [],
 
             tt_history: {
               tt_1: "",
@@ -634,18 +682,7 @@ export default {
               edc: "",
               g: "",
               p: "",
-              ante_partum_visits: [
-                {
-                  id: 1,
-                  date: "",
-                  ut_wt: "",
-                  bp: "",
-                  fundic_ht: "",
-                  hb: "",
-                  urine: "",
-                  exam_sugar: "",
-                },
-              ],
+              ante_partum_visits: [],
             },
           },
           ...val,
