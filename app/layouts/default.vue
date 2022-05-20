@@ -108,7 +108,7 @@
         </v-list-item>
       </v-list>
 
-      <v-list class="mx-3">
+      <!-- <v-list class="mx-3">
         <v-list-item active-class="active-list" to="">
           <v-list-item-icon>
             <v-icon>mdi-pill</v-icon>
@@ -120,7 +120,7 @@
             >
           </v-list-item-content>
         </v-list-item>
-      </v-list>
+      </v-list> -->
 
       <v-list class="mx-3">
         <v-list-item active-class="active-list">

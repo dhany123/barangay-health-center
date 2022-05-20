@@ -11,7 +11,7 @@
     <TitleHeader title="FAMILY PLANNING" />
     <v-data-table
       :headers="headers"
-      :items="immunizations"
+      :items="family_planners"
       class="elevation-2"
       :search="search"
       item-key="id"
@@ -34,6 +34,10 @@
           <v-spacer></v-spacer>
           <v-btn color="primary" @click="addResident"> Add </v-btn>
         </div>
+      </template>
+
+      <template v-slot:[`item.name`]="{ item }">
+        <div>{{ item.last_name }}, {{ item.given_name }}</div>
       </template>
 
       <template v-slot:[`item.actions`]="{ item }">
@@ -77,19 +81,13 @@ export default {
         { text: "Name", value: "name" },
 
         {
-          text: "Date of Birth",
-          value: "dob",
-          sortable: false,
+          text: "Age",
+          value: "age",
         },
 
         {
-          text: "Gender",
-          value: "sex",
-        },
-
-        {
-          text: "Mother's Name",
-          value: "mothers_name",
+          text: "Contact Number",
+          value: "contact_number",
           sortable: false,
         },
 
@@ -108,14 +106,14 @@ export default {
         },
       ],
 
-      immunizations: [],
+      family_planners: [],
       readOnly: false,
     };
   },
 
   methods: {
-    fetchChildRecord: call("immunization/fetchItems"),
-    deleteChildRecord: call("immunization/removeItem"),
+    fetchResidents: call("familyPlanning/fetchItems"),
+    deleteResident: call("familyPlanning/removeItem"),
 
     addResident() {
       this.editRecord = null;
@@ -136,7 +134,7 @@ export default {
     },
 
     deleteItem(item) {
-      this.deleteChildRecord(item.id).then(
+      this.deleteResident(item.id).then(
         (res) => {
           this.showMsg("Successfully deleted!");
         },
@@ -148,13 +146,13 @@ export default {
 
     onSubmitClick(data) {
       if (data.tag === "save") {
-        this.immunizations.push(data.item);
+        this.family_planners.push(data.item);
         return;
       }
 
       //update
-      this.immunizations.splice(
-        this.immunizations.findIndex((items) => items.id === data.item.id),
+      this.family_planners.splice(
+        this.family_planners.findIndex((items) => items.id === data.item.id),
         1,
         data.item
       );
@@ -181,8 +179,8 @@ export default {
   },
 
   async fetch() {
-    this.fetchChildRecord().then((response) => {
-      this.immunizations = response.data;
+    this.fetchResidents().then((response) => {
+      this.family_planners = response.data;
       console.info(response.data);
     });
   },

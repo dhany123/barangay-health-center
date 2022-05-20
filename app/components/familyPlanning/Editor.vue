@@ -6,15 +6,6 @@
     transition="slide-x-reverse-transition"
     fullscreen
   >
-    <ImmunizationRecordEditor
-      v-if="showEditor"
-      :isDialogOpen="showEditor"
-      @close="showEditor = false"
-      :item="editResident"
-      @onSubmitClick="onSubmitClick"
-      :readOnly="readOnly"
-    />
-
     <v-card>
       <v-toolbar flat dark color="primary" height="60px">
         <v-spacer></v-spacer>
@@ -29,7 +20,7 @@
         </v-btn>
       </v-toolbar>
       <v-card-text class="mt-6 px-4 px-md-16 d-flex justify-center">
-        <v-form ref="form-immunization" :readonly="readOnly">
+        <v-form ref="form-family-planning" :readonly="readOnly">
           <v-row dense class="justify-center">
             <v-col cols="12" md="6">
               <v-row dense>
@@ -38,7 +29,7 @@
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.family_record_no"
+                    v-model="form.client_id"
                   ></v-text-field>
                 </v-col>
 
@@ -47,18 +38,18 @@
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.family_record_no"
+                    v-model="form.philhealth_no"
                   ></v-text-field>
                 </v-col>
 
                 <v-col cols="12" md="4" class="d-flex align-center">
-                  <v-checkbox class="mr-6 mt-4" dense value="Worldwide">
+                  <v-checkbox class="mr-6 mt-4" dense value="form.nhts">
                     <template v-slot:label>
                       <div class="text-subtitle-2 mt-1">NHTS?</div>
                     </template>
                   </v-checkbox>
 
-                  <v-checkbox class="mt-4" dense value="Worldwide">
+                  <v-checkbox class="mt-4" dense value="form.4ps">
                     <template v-slot:label>
                       <div class="text-subtitle-2 mt-1">4Ps?</div>
                     </template>
@@ -74,7 +65,7 @@
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.name"
+                    v-model="form.last_name"
                     :rules="[rules.required]"
                   ></v-text-field>
                 </v-col>
@@ -83,7 +74,7 @@
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.name"
+                    v-model="form.given_name"
                     :rules="[rules.required]"
                   ></v-text-field>
                 </v-col>
@@ -93,8 +84,7 @@
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.name"
-                    :rules="[rules.required]"
+                    v-model="form.middle_initial"
                   ></v-text-field>
                 </v-col>
 
@@ -105,7 +95,6 @@
                     dense
                     type="date"
                     v-model="form.dob"
-                    :rules="[rules.required]"
                   ></v-text-field>
                 </v-col>
 
@@ -114,8 +103,7 @@
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.dob"
-                    :rules="[rules.required]"
+                    v-model="form.age"
                   ></v-text-field>
                 </v-col>
 
@@ -124,7 +112,7 @@
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.mothers_name"
+                    v-model="form.educational_attainment"
                   ></v-text-field>
                 </v-col>
 
@@ -133,7 +121,7 @@
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.fathers_occupation"
+                    v-model="form.occupation"
                   ></v-text-field>
                 </v-col>
 
@@ -153,15 +141,15 @@
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.dob"
+                    v-model="form.contact_number"
                   ></v-text-field>
                 </v-col>
 
                 <v-col cols="12" md="3" class="mt-n2">
                   <label class="label">Civil Status</label>
                   <v-select
-                    :items="birthTypeItems"
-                    v-model="form.past_history.birth_type"
+                    :items="civilStatuses"
+                    v-model="form.civil_status"
                     item-text="name"
                     outlined
                     dense
@@ -173,7 +161,7 @@
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.dob"
+                    v-model="form.religion"
                   ></v-text-field>
                 </v-col>
 
@@ -187,8 +175,7 @@
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.name"
-                    :rules="[rules.required]"
+                    v-model="form.spouse.last_name"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="11" md="5" class="mt-n2">
@@ -196,8 +183,7 @@
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.name"
-                    :rules="[rules.required]"
+                    v-model="form.spouse.first_name"
                   ></v-text-field>
                 </v-col>
 
@@ -206,8 +192,7 @@
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.name"
-                    :rules="[rules.required]"
+                    v-model="form.spouse.middle_initial"
                   ></v-text-field>
                 </v-col>
 
@@ -216,8 +201,7 @@
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.dob"
-                    :rules="[rules.required]"
+                    v-model="form.spouse.dob"
                   ></v-text-field>
                 </v-col>
 
@@ -226,8 +210,7 @@
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.dob"
-                    :rules="[rules.required]"
+                    v-model="form.spouse.age"
                   ></v-text-field>
                 </v-col>
 
@@ -236,8 +219,7 @@
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.dob"
-                    :rules="[rules.required]"
+                    v-model="form.spouse.occupation"
                   ></v-text-field>
                 </v-col>
 
@@ -250,7 +232,7 @@
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.dob"
+                    v-model="form.living_children_no"
                   ></v-text-field>
                 </v-col>
 
@@ -259,7 +241,7 @@
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.dob"
+                    v-model="form.plan_to_have_more_children"
                   ></v-text-field>
                 </v-col>
 
@@ -268,7 +250,7 @@
                   <v-text-field
                     outlined
                     dense
-                    v-model="form.dob"
+                    v-model="form.average_monthly_income"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -278,37 +260,42 @@
                   <label class="label">Type of Client</label>
                   <v-select
                     :items="clientTypes"
-                    v-model="selectedClientType"
+                    v-model="form.selected_client_type"
                     item-text="name"
                     outlined
                     dense
                     :rules="[rules.required]"
                   ></v-select>
                 </v-col>
-                <template v-if="selectedClientType == 'New Acceptor'">
+                <template v-if="form.selected_client_type == 'New Acceptor'">
                   <v-col cols="12" md="3">
                     <label class="label">Reason for FP</label>
                     <v-select
-                      :items="currentUserReason"
-                      v-model="form.past_history.birth_type"
+                      :items="newAcceptorReason"
+                      v-model="form.reason_for_fp"
                       item-text="name"
                       outlined
                       dense
                     ></v-select>
                   </v-col>
-                  <v-col cols="12" md="3">
+                  <v-col
+                    cols="12"
+                    md="3"
+                    v-if="form.reason_for_fp === 'Others'"
+                  >
+                    <label class="label">Others</label>
                     <v-text-field
                       outlined
                       dense
-                      v-model="form.family_record_no"
+                      v-model="form.other_reason"
                     ></v-text-field>
                   </v-col>
                 </template>
-                <template v-if="selectedClientType == 'Current User'">
+                <template v-if="form.selected_client_type == 'Current User'">
                   <v-col cols="12" md="3">
                     <v-select
                       :items="currentUserType"
-                      v-model="selectedCurrentUserType"
+                      v-model="form.selected_current_user"
                       item-text="name"
                       outlined
                       dense
@@ -318,41 +305,54 @@
                     <label class="label">Reason</label>
                     <v-select
                       :items="currentUserReason"
-                      v-model="form.past_history.birth_type"
+                      v-model="form.current_user_reason"
                       item-text="name"
                       outlined
                       dense
                     ></v-select>
                   </v-col>
-                  <v-col cols="12" md="3">
+                  <v-col
+                    cols="12"
+                    md="3"
+                    v-if="form.current_user_reason === 'Side Effects'"
+                  >
+                    <label class="label">Side effects</label>
                     <v-text-field
                       outlined
                       dense
-                      v-model="form.family_record_no"
+                      v-model="form.reason_side_effects"
                     ></v-text-field>
                   </v-col>
                 </template>
 
-                <template v-if="selectedCurrentUserType === 'Changing Method'">
-                  <v-col cols="12" md="3">
-                    <label class="label">Method currently used</label>
-                    <v-select
-                      :items="clientTypes"
-                      v-model="client_type"
-                      item-text="name"
-                      outlined
-                      dense
-                      :rules="[rules.required]"
-                    ></v-select>
-                  </v-col>
-                  <v-col cols="12" md="3">
-                    <v-text-field
-                      outlined
-                      dense
-                      v-model="form.family_record_no"
-                    ></v-text-field>
-                  </v-col>
-                </template>
+                <v-row>
+                  <template
+                    v-if="form.selected_current_user === 'Changing Method'"
+                  >
+                    <v-col cols="12" md="3">
+                      <label class="label">Method currently used</label>
+                      <v-select
+                        :items="methodCurrentlyUsedItems"
+                        v-model="form.method_currently_used"
+                        item-text="name"
+                        outlined
+                        dense
+                      ></v-select>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      md="3"
+                      v-if="form.method_currently_used === 'Others'"
+                    >
+                      <label class="label">Others(Specify)</label>
+                      <v-text-field
+                        outlined
+                        dense
+                        v-model="form.other_method_currently_used"
+                      ></v-text-field>
+                    </v-col>
+                  </template>
+                </v-row>
                 <v-col cols="12">
                   <v-divider></v-divider>
 
@@ -376,7 +376,14 @@
                         v-if="item.text === 'with disability?'"
                       >
                         (if YES please specify:
-                        <v-text-field outlined dense class="mx-2"></v-text-field
+                        <v-text-field
+                          outlined
+                          dense
+                          class="mx-2"
+                          v-model="
+                            form.medical_history.disability_specification
+                          "
+                        ></v-text-field
                         >)
                       </div>
                     </template>
@@ -419,7 +426,7 @@
                       <v-text-field
                         outlined
                         dense
-                        v-model="form.family_record_no"
+                        v-model="form.obstretical_history.pregnancy_no_g"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="3" md="2">
@@ -427,7 +434,7 @@
                       <v-text-field
                         outlined
                         dense
-                        v-model="form.family_record_no"
+                        v-model="form.obstretical_history.pregnancy_no_p"
                       ></v-text-field>
                     </v-col>
                   </v-row>
@@ -439,7 +446,7 @@
                     <v-text-field
                       outlined
                       dense
-                      v-model="form.family_record_no"
+                      v-model="form.obstretical_history.full_term"
                     ></v-text-field>
                   </v-col>
 
@@ -448,7 +455,7 @@
                     <v-text-field
                       outlined
                       dense
-                      v-model="form.family_record_no"
+                      v-model="form.obstretical_history.premature"
                     ></v-text-field>
                   </v-col>
 
@@ -457,7 +464,7 @@
                     <v-text-field
                       outlined
                       dense
-                      v-model="form.family_record_no"
+                      v-model="form.obstretical_history.abortion"
                     ></v-text-field>
                   </v-col>
 
@@ -466,7 +473,7 @@
                     <v-text-field
                       outlined
                       dense
-                      v-model="form.family_record_no"
+                      v-model="form.obstretical_history.living_children"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -477,7 +484,7 @@
                     <v-text-field
                       outlined
                       dense
-                      v-model="form.family_record_no"
+                      v-model="form.obstretical_history.last_delivery_date"
                       type="date"
                     ></v-text-field>
                   </v-col>
@@ -486,11 +493,10 @@
                     <label> Type of last delivery</label>
                     <v-select
                       :items="lastDeliveryTypes"
-                      v-model="selectedDeliveryType"
+                      v-model="form.obstretical_history.last_delivery_type"
                       item-text="name"
                       outlined
                       dense
-                      :rules="[rules.required]"
                     ></v-select>
                   </v-col>
 
@@ -500,7 +506,7 @@
                       outlined
                       dense
                       type="date"
-                      v-model="form.family_record_no"
+                      v-model="form.obstretical_history.last_menstrual_period"
                     ></v-text-field>
                   </v-col>
 
@@ -510,7 +516,9 @@
                       outlined
                       dense
                       type="date"
-                      v-model="form.family_record_no"
+                      v-model="
+                        form.obstretical_history.previous_menstrual_period
+                      "
                     ></v-text-field>
                   </v-col>
 
@@ -519,16 +527,17 @@
                       <label> Menstrual flow</label>
                       <v-select
                         :items="menstrualFlows"
-                        v-model="selectedmentrualFlo"
+                        v-model="form.obstretical_history.menstrual_flow"
                         item-text="name"
                         outlined
                         dense
-                        :rules="[rules.required]"
                       ></v-select>
                     </v-col>
 
                     <v-col cols="12" md="3">
-                      <v-checkbox v-model="checkbox">
+                      <v-checkbox
+                        v-model="form.obstretical_history.dysmenorrhea"
+                      >
                         <template v-slot:label>
                           <div class="text-subtitle-2 mt-1">Dysmenorrhea</div>
                         </template></v-checkbox
@@ -536,7 +545,9 @@
                     </v-col>
 
                     <v-col cols="12" md="3">
-                      <v-checkbox v-model="checkbox">
+                      <v-checkbox
+                        v-model="form.obstretical_history.hydatidiform_mole"
+                      >
                         <template v-slot:label>
                           <div class="text-subtitle-2 mt-1">
                             Hydatidiform mole (within the last 12 mons.)
@@ -546,7 +557,11 @@
                     </v-col>
 
                     <v-col cols="12" md="3">
-                      <v-checkbox v-model="checkbox">
+                      <v-checkbox
+                        v-model="
+                          form.obstretical_history.ectopic_pregnancy_history
+                        "
+                      >
                         <template v-slot:label>
                           <div class="text-subtitle-2 mt-1">
                             History of ectopic pregnancy
@@ -585,13 +600,18 @@
                         "
                       >
                         <i> if "YES" please indicate it from: </i>
-                        <v-radio-group row dense class="mt-n2 mb-n6 ml-2">
-                          <v-radio value="yes">
+                        <v-radio-group
+                          row
+                          dense
+                          class="mt-n2 mb-n6 ml-2"
+                          v-model="form.risks_for_sti.specify_if_yes"
+                        >
+                          <v-radio value="vagina">
                             <template v-slot:label>
                               <div class="ml-n2">Vagina</div>
                             </template>
                           </v-radio>
-                          <v-radio value="no">
+                          <v-radio value="penis">
                             <template v-slot:label>
                               <div class="ml-n2">Penis</div>
                             </template>
@@ -707,7 +727,7 @@
                     <v-text-field
                       outlined
                       dense
-                      v-model="form.family_record_no"
+                      v-model="form.physical_examination.weight"
                       suffix="kg"
                     ></v-text-field>
                   </v-col>
@@ -717,7 +737,7 @@
                     <v-text-field
                       outlined
                       dense
-                      v-model="form.family_record_no"
+                      v-model="form.physical_examination.height"
                       suffix="m"
                     ></v-text-field>
                   </v-col>
@@ -727,7 +747,7 @@
                     <v-text-field
                       outlined
                       dense
-                      v-model="form.family_record_no"
+                      v-model="form.physical_examination.blood_pressure"
                       suffix="mmHg"
                     ></v-text-field>
                   </v-col>
@@ -737,7 +757,7 @@
                     <v-text-field
                       outlined
                       dense
-                      v-model="form.family_record_no"
+                      v-model="form.physical_examination.pulse_rate"
                       suffix="/min"
                     ></v-text-field>
                   </v-col>
@@ -745,8 +765,8 @@
                   <v-col cols="12" md="3">
                     <label> SKIN </label>
                     <v-select
-                      :items="birthTypeItems"
-                      v-model="form.past_history.birth_type"
+                      :items="skin"
+                      v-model="form.physical_examination.skin"
                       item-text="name"
                       outlined
                       dense
@@ -756,8 +776,8 @@
                   <v-col cols="12" md="3">
                     <label> CONJUNCTIVA </label>
                     <v-select
-                      :items="birthTypeItems"
-                      v-model="form.past_history.birth_type"
+                      :items="conjunctiva"
+                      v-model="form.physical_examination.conjunctiva"
                       item-text="name"
                       outlined
                       dense
@@ -767,8 +787,8 @@
                   <v-col cols="12" md="3">
                     <label> NECK </label>
                     <v-select
-                      :items="birthTypeItems"
-                      v-model="form.past_history.birth_type"
+                      :items="neck"
+                      v-model="form.physical_examination.neck"
                       item-text="name"
                       outlined
                       dense
@@ -778,8 +798,8 @@
                   <v-col cols="12" md="3">
                     <label> BREAST </label>
                     <v-select
-                      :items="birthTypeItems"
-                      v-model="form.past_history.birth_type"
+                      :items="breast"
+                      v-model="form.physical_examination.breast"
                       item-text="name"
                       outlined
                       dense
@@ -789,8 +809,8 @@
                   <v-col cols="12" md="3">
                     <label> ABDOMEN </label>
                     <v-select
-                      :items="birthTypeItems"
-                      v-model="form.past_history.birth_type"
+                      :items="abdomen"
+                      v-model="form.physical_examination.abdomen"
                       item-text="name"
                       outlined
                       dense
@@ -800,40 +820,199 @@
                   <v-col cols="12" md="3">
                     <label> EXTREMITIES </label>
                     <v-select
-                      :items="birthTypeItems"
-                      v-model="form.past_history.birth_type"
+                      :items="extremities"
+                      v-model="form.physical_examination.extremities"
                       item-text="name"
                       outlined
                       dense
                     ></v-select>
                   </v-col>
 
-                  <v-col cols="12" md="6">
-                      <label> PELVIC EXAMINATION (For IUD acceptors) </label>
-                   <v-row dense>
-                     <v-col cols="12" md="6">
-                      
-                    <v-select
-                      :items="birthTypeItems"
-                      v-model="form.past_history.birth_type"
-                      item-text="name"
-                      outlined
-                      dense
-                    ></v-select>
-                     </v-col>
+                  <v-col cols="12">
+                    <label> PELVIC EXAMINATION (For IUD acceptors) </label>
+                    <v-row align="center">
+                      <v-col cols="12" md="4">
+                        <v-checkbox dense>
+                          <template v-slot:label>
+                            <div class="text-subtitle-2 mt-1">normal</div>
+                          </template>
+                        </v-checkbox>
+                        <v-checkbox dense>
+                          <template v-slot:label>
+                            <div class="text-subtitle-2 mt-1">mass</div>
+                          </template>
+                        </v-checkbox>
+                        <v-checkbox dense>
+                          <template v-slot:label>
+                            <div class="text-subtitle-2 mt-1">
+                              abdominal discharge
+                            </div>
+                          </template>
+                        </v-checkbox>
+                      </v-col>
+                      <v-col cols="12" md="4">
+                        <v-checkbox dense>
+                          <template v-slot:label>
+                            <div class="text-subtitle-2 mt-1">
+                              cervical tenderness
+                            </div>
+                          </template>
+                        </v-checkbox>
 
-                     <v-col  cols="12" md="6">
-<v-text-field
-                      outlined
-                      dense
-                      v-model="form.family_record_no"
-                      suffix="kg"
-                    ></v-text-field>
-                     </v-col>
-                   </v-row>
+                        <label> cervical abnormalities </label>
+                        <v-select
+                          :items="cervical_abnormalities"
+                          v-model="form.physical_examination.pelvic_examination"
+                          item-text="name"
+                          outlined
+                          dense
+                        ></v-select>
+
+                        <label> cervical consistency </label>
+                        <v-select
+                          :items="cervical_consistency"
+                          v-model="form.physical_examination.pelvic_examination"
+                          item-text="name"
+                          outlined
+                          dense
+                        ></v-select>
+                      </v-col>
+                      <v-col cols="12" md="4">
+                        <v-checkbox dense>
+                          <template v-slot:label>
+                            <div class="text-subtitle-2 mt-1">
+                              adnexal mass / tenderness
+                            </div>
+                          </template>
+                        </v-checkbox>
+
+                        <label> uterine position </label>
+                        <v-select
+                          :items="uterine_position"
+                          v-model="form.physical_examination.pelvic_examination"
+                          item-text="name"
+                          outlined
+                          dense
+                        ></v-select>
+
+                        <label> uterine depth </label>
+                        <v-text-field
+                          outlined
+                          dense
+                          v-model="form.physical_examination.blood_pressure"
+                          suffix="cm"
+                        ></v-text-field>
+                      </v-col>
+                    </v-row>
                   </v-col>
                 </v-row>
               </v-row>
+
+              <v-col cols="12">
+                <v-divider></v-divider>
+
+                <div class="mt-1 text-center">
+                  FAMILY PLANNING CLIENT ASSESSMENT RECORD
+                </div>
+              </v-col>
+
+              <v-dialog
+                v-model="showAssessmentDialog"
+                max-width="800"
+                scrollable
+                transition="slide-x-reverse-transition"
+              >
+                <v-card>
+                  <v-toolbar flat dark color="primary" height="60px">
+                    <v-spacer></v-spacer>
+
+                    <v-toolbar-title>
+                      Family Planning Client Assessment Record
+                    </v-toolbar-title>
+
+                    <v-spacer></v-spacer>
+                    <v-btn icon @click="showAssessmentDialog = false">
+                      <v-icon>mdi-close</v-icon>
+                    </v-btn>
+                  </v-toolbar>
+
+                  <v-card-text class="px-md-16 py-8">
+                    <label class="label">Date of visit</label>
+                    <v-text-field
+                      outlined
+                      dense
+                      type="date"
+                      v-model="assessment_record.date_of_visit"
+                    ></v-text-field>
+
+                    <label class="label">Medical Findings</label>
+                    <v-textarea
+                      outlined
+                      auto-grow
+                      v-model="assessment_record.medical_findings"
+                    ></v-textarea>
+
+                    <label class="label">Method Accepted</label>
+                    <v-text-field
+                      outlined
+                      dense
+                      v-model="assessment_record.method_accepted"
+                    ></v-text-field>
+
+                    <label class="label">Name of Service Provider</label>
+                    <v-text-field
+                      outlined
+                      dense
+                      v-model="assessment_record.service_provider_name"
+                    ></v-text-field>
+
+                    <label class="label">Date of follow-up visit</label>
+                    <v-text-field
+                      outlined
+                      dense
+                      type="date"
+                      v-model="assessment_record.follow_up_visit_date"
+                    ></v-text-field>
+                  </v-card-text>
+                  <v-divider></v-divider>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="primary" @click="addAssessmentRecord">
+                      Save
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+
+              <v-data-table
+                :headers="familyPlanningClientAssessmentRecordHeaders"
+                :items="form.assessment_records"
+                item-key="id"
+                disable-pagination
+                hide-default-footer
+                mobile-breakpoint="0"
+              >
+                <template v-slot:top>
+                  <div
+                    class="d-inline-flex justify-space-between align-center"
+                    style="width: 98%"
+                  >
+                    <v-spacer></v-spacer>
+                    <v-btn color="primary" @click="onAddAssessmentClick">
+                      Add
+                    </v-btn>
+                  </div>
+                </template>
+                <template v-slot:[`item.actions`]="{ item }">
+                  <v-btn icon>
+                    <v-icon color="green">mdi-pencil</v-icon>
+                  </v-btn>
+
+                  <v-btn icon>
+                    <v-icon color="red">mdi-delete</v-icon>
+                  </v-btn>
+                </template>
+              </v-data-table>
             </v-col>
           </v-row>
         </v-form>
@@ -865,26 +1044,16 @@ export default {
   },
 
   mixins: [DialogMixin],
-  computed: {
-    dialogTitle() {
-      if (this.readOnly) {
-        return "View Child";
-      }
-      return this.item && this.item.id
-        ? "Update Child Record"
-        : "Add Child Record";
-    },
-  },
 
   data() {
     return {
       valid: true,
-      showEditor: false,
+      showAssessmentDialog: false,
       rules: {
         required: (value) => !!value || "Required.",
       },
       form: null,
-      selectedClientType: "",
+      selected_client_type: "",
       clientTypes: [
         {
           id: 1,
@@ -895,7 +1064,7 @@ export default {
           name: "Current User",
         },
       ],
-      selectedCurrentUserType: "",
+      selected_current_user: "",
 
       currentUserType: [
         {
@@ -923,92 +1092,6 @@ export default {
         },
       ],
 
-      medicalHistoryHeaders: [
-        {
-          text: "Does the client have any of the following",
-          value: "text",
-          sortable: false,
-        },
-
-        {
-          text: "",
-          value: "options",
-          sortable: false,
-          align: "center",
-        },
-      ],
-
-      medical_history_questions: [
-        {
-          id: 1,
-          text: "severe headaches",
-          value: "yes",
-        },
-
-        {
-          id: 2,
-          text: "history of stroke / heart attack / hypertension",
-          value: "yes",
-        },
-        {
-          id: 3,
-          text: "non-traumatic hematoma / frequent bruising or gum bleeding",
-          value: "no",
-        },
-        {
-          id: 4,
-          text: "current or history of breast cancer / breat mass",
-          value: "no",
-        },
-
-        {
-          id: 5,
-          text: "severe chest pain",
-          value: "no",
-        },
-
-        {
-          id: 6,
-          text: "cough for more than 14 days",
-          value: "no",
-        },
-
-        {
-          id: 7,
-          text: "jaundice",
-          value: "no",
-        },
-
-        {
-          id: 8,
-          text: "unexpected vaginal bleeding",
-          value: "no",
-        },
-
-        {
-          id: 9,
-          text: "abnormal vaginal discharge",
-          value: "no",
-        },
-
-        {
-          id: 10,
-          text: "intake of phenobarbital (anti-seizure) or rifampicin(anti-TB)",
-          value: "no",
-        },
-
-        {
-          id: 2,
-          text: "is client a SMOKER?",
-          value: "no",
-        },
-
-        {
-          id: 2,
-          text: "with disability?",
-          value: "no",
-        },
-      ],
       selectedDeliveryType: "",
 
       lastDeliveryTypes: [
@@ -1017,7 +1100,7 @@ export default {
           name: "Vaginal",
         },
         {
-          id: 1,
+          id: 2,
           name: "Cesarian Section",
         },
       ],
@@ -1029,132 +1112,27 @@ export default {
           name: "scanty (1-2 pads per day)",
         },
         {
-          id: 1,
+          id: 2,
           name: "moderate (3-5 pads per day)",
         },
 
         {
-          id: 1,
+          id: 3,
           name: "heavy (>5 pads per day)",
         },
       ],
-
-      risksForSTIHeaders: [
-        {
-          text: "Does the client or the client's partner have any of the following?",
-          value: "text",
-          sortable: false,
-        },
-
-        {
-          text: "",
-          value: "options",
-          sortable: false,
-          align: "center",
-        },
-      ],
-
-      risks_for_sti_questions: [
+      civilStatuses: [
         {
           id: 1,
-          text: "abnormal discharge from the genital area",
-          value: "yes",
-        },
-
-        {
-          id: 2,
-          text: "sores or ulcers in the genital area",
-          value: "yes",
-        },
-
-        {
-          id: 3,
-          text: "pain or burning sensation in the genital area",
-          value: "yes",
-        },
-
-        {
-          id: 4,
-          text: "history of treatment for sexually transmitted infections",
-          value: "yes",
-        },
-
-        {
-          id: 5,
-          text: "HIV / AIDS / Pelvic inflammatory disease",
-          value: "yes",
-        },
-      ],
-
-      risksForVAWHeaders: [
-        {
-          text: "",
-          value: "text",
-          sortable: false,
-        },
-
-        {
-          text: "",
-          value: "options",
-          sortable: false,
-          align: "center",
-        },
-      ],
-
-      risks_for_vaw_questions: [
-        {
-          id: 1,
-          text: "unpleasant relationship with partner",
-          value: "yes",
-        },
-
-        {
-          id: 2,
-          text: "partner does not approve of the visit to FP clinic",
-          value: "yes",
-        },
-
-        {
-          id: 3,
-          text: "history of domestic violence or VAW",
-          value: "",
-        },
-      ],
-      selectedOrganization: "",
-
-      referredToOrganizations: [
-        {
-          id: 1,
-          name: "DSWD",
+          name: "Single",
         },
         {
           id: 2,
-          name: "WCPU",
-        },
-
-        {
-          id: 3,
-          name: "NGOs",
-        },
-
-        {
-          id: 4,
-          name: "Others",
+          name: "Married",
         },
       ],
 
-      checkbox: "",
-
-      genders: [
-        {
-          id: 1,
-          name: "Male",
-        },
-        {
-          id: 2,
-          name: "Female",
-        },
-      ],
+      genders: ["Male", "Female"],
       deliveryItems: [
         {
           id: 1,
@@ -1202,22 +1180,440 @@ export default {
         },
       ],
 
-      headers: [
+      newAcceptorReason: [
         {
-          text: "Date",
-          value: "records.date",
+          id: 1,
+          name: "Spacing",
+        },
+        {
+          id: 2,
+          name: "Limiting",
+        },
+        {
+          id: 3,
+          name: "Others",
+        },
+      ],
+
+      methodCurrentlyUsedItems: [
+        {
+          id: 1,
+          name: "COC",
+        },
+        {
+          id: 2,
+          name: "POP",
+        },
+        {
+          id: 3,
+          name: "Injectable",
+        },
+        {
+          id: 4,
+          name: "Implant",
+        },
+        {
+          id: 5,
+          name: "IUD(Interval)",
+        },
+        {
+          id: 6,
+          name: "IUD(Post-Partum)",
+        },
+        {
+          id: 7,
+          name: "Condom",
+        },
+        {
+          id: 8,
+          name: "BOM/CMM",
+        },
+        {
+          id: 9,
+          name: "BBT",
+        },
+        {
+          id: 10,
+          name: "STM",
+        },
+        {
+          id: 11,
+          name: "SDM",
+        },
+        {
+          id: 12,
+          name: "LAM",
+        },
+        {
+          id: 13,
+          name: "Others",
+        },
+      ],
+
+      selectedOrganization: "",
+
+      referredToOrganizations: [
+        {
+          id: 1,
+          name: "DSWD",
+        },
+        {
+          id: 2,
+          name: "WCPU",
         },
 
         {
-          text: "Complaints/Diagnosis",
-          value: "records.complaints_diagnosis",
+          id: 3,
+          name: "NGOs",
+        },
+
+        {
+          id: 4,
+          name: "Others",
+        },
+      ],
+
+      skin: [
+        {
+          id: 1,
+          name: "normal",
+        },
+        {
+          id: 2,
+          name: "pale",
+        },
+        {
+          id: 3,
+          name: "yellowish",
+        },
+        {
+          id: 4,
+          name: "hematoma",
+        },
+      ],
+
+      conjunctiva: [
+        {
+          id: 1,
+          name: "normal",
+        },
+        {
+          id: 2,
+          name: "pale",
+        },
+        {
+          id: 3,
+          name: "yellowish",
+        },
+      ],
+
+      neck: [
+        {
+          id: 1,
+          name: "normal",
+        },
+        {
+          id: 2,
+          name: "neck mass",
+        },
+        {
+          id: 3,
+          name: "enlarge lymph node",
+        },
+      ],
+
+      breast: [
+        {
+          id: 1,
+          name: "normal",
+        },
+        {
+          id: 2,
+          name: "mass",
+        },
+        {
+          id: 3,
+          name: "nipple discharge",
+        },
+      ],
+
+      abdomen: [
+        {
+          id: 1,
+          name: "normal",
+        },
+        {
+          id: 2,
+          name: "abdominal mass",
+        },
+        {
+          id: 3,
+          name: "varicosities",
+        },
+      ],
+
+      extremities: [
+        {
+          id: 1,
+          name: "normal",
+        },
+        {
+          id: 2,
+          name: "edema",
+        },
+        {
+          id: 3,
+          name: "varicosities",
+        },
+      ],
+
+      cervical_abnormalities: [
+        {
+          id: 1,
+          name: "warts",
+        },
+        {
+          id: 2,
+          name: "polyp or cyst",
+        },
+        {
+          id: 3,
+          name: "inflammation or erosion",
+        },
+        {
+          id: 4,
+          name: "bloody discharge",
+        },
+      ],
+
+      cervical_consistency: [
+        {
+          id: 1,
+          name: "firm",
+        },
+        {
+          id: 2,
+          name: "soft",
+        },
+      ],
+
+      uterine_position: [
+        {
+          id: 1,
+          name: "mid",
+        },
+        {
+          id: 2,
+          name: "anteflexed",
+        },
+        {
+          id: 3,
+          name: "retroflexed",
+        },
+      ],
+
+      medicalHistoryHeaders: [
+        {
+          text: "Does the client have any of the following",
+          value: "text",
           sortable: false,
         },
 
         {
-          text: "Treatment",
-          value: "records.treatment",
+          text: "",
+          value: "options",
           sortable: false,
+          align: "center",
+        },
+      ],
+
+      medical_history_questions: [
+        {
+          id: 1,
+          text: "severe headaches / migraine",
+          value: "severe_headaches_migraine",
+        },
+
+        {
+          id: 2,
+          text: "history of stroke / heart attack / hypertension",
+          value: "history_of_stroke_heart_attack_hypertension",
+        },
+        {
+          id: 3,
+          text: "non-traumatic hematoma / frequent bruising or gum bleeding",
+          value: "traumatic_hematoma_frequent_bruishing_or_gum_bleeding",
+        },
+        {
+          id: 4,
+          text: "current or history of breast cancer / breat mass",
+          value: "current_or_history_of_breast_cancer_breast_mass",
+        },
+
+        {
+          id: 5,
+          text: "severe chest pain",
+          value: "severe_chest_pain",
+        },
+
+        {
+          id: 6,
+          text: "cough for more than 14 days",
+          value: "cough_more_than_14_days",
+        },
+
+        {
+          id: 7,
+          text: "jaundice",
+          value: "jaundice",
+        },
+
+        {
+          id: 8,
+          text: "unexpected vaginal bleeding",
+          value: "unexplained_vaginal_bleeding",
+        },
+
+        {
+          id: 9,
+          text: "abnormal vaginal discharge",
+          value: "abnormal_vaginal_discharge",
+        },
+
+        {
+          id: 10,
+          text: "intake of phenobarbital (anti-seizure) or rifampicin(anti-TB)",
+          value: "intake_of_phenobarbital_or_rifampicin",
+        },
+
+        {
+          id: 11,
+          text: "is client a SMOKER?",
+          value: "is_the_client_a_smoker",
+        },
+
+        {
+          id: 12,
+          text: "with disability?",
+          value: "with_disability",
+        },
+      ],
+
+      risksForSTIHeaders: [
+        {
+          text: "Does the client or the client's partner have any of the following?",
+          value: "text",
+          sortable: false,
+        },
+
+        {
+          text: "",
+          value: "options",
+          sortable: false,
+          align: "center",
+        },
+      ],
+
+      risks_for_sti_questions: [
+        {
+          id: 1,
+          text: "abnormal discharge from the genital area",
+          value: "abnormal_discharge_from_the_genital_area",
+        },
+
+        {
+          id: 2,
+          text: "sores or ulcers in the genital area",
+          value: "sores_or_ulcers_in_the_genital_area",
+        },
+
+        {
+          id: 3,
+          text: "pain or burning sensation in the genital area",
+          value: "pain_or_burning_sensation_in_the_genital_area",
+        },
+
+        {
+          id: 4,
+          text: "history of treatment for sexually transmitted infections",
+          value: "history_of_treatment_for_sti",
+        },
+
+        {
+          id: 5,
+          text: "HIV / AIDS / Pelvic inflammatory disease",
+          value: "hiv_aids_pelvic_inflammatory_disease",
+        },
+      ],
+
+      risksForVAWHeaders: [
+        {
+          text: "",
+          value: "text",
+          sortable: false,
+        },
+
+        {
+          text: "",
+          value: "options",
+          sortable: false,
+          align: "center",
+        },
+      ],
+
+      risks_for_vaw_questions: [
+        {
+          id: 1,
+          text: "unpleasant relationship with partner",
+          value: "yes",
+        },
+
+        {
+          id: 2,
+          text: "partner does not approve of the visit to FP clinic",
+          value: "yes",
+        },
+
+        {
+          id: 3,
+          text: "history of domestic violence or VAW",
+          value: "",
+        },
+      ],
+
+      familyPlanningClientAssessmentRecordHeaders: [
+        {
+          text: "Date of Visit",
+          value: "date_of_visit",
+          sortable: false,
+        },
+
+        {
+          text: "Medical Findings",
+          value: "medical_findings",
+          sortable: false,
+          align: "center",
+        },
+
+        {
+          text: "Method Accepted",
+          value: "method_accepted",
+          sortable: false,
+          align: "center",
+        },
+
+        {
+          text: "Name of Service Provider",
+          value: "service_provider_name",
+          sortable: false,
+          align: "center",
+        },
+
+        {
+          text: "Date of Follow-up visit",
+          value: "follow_up_visit_date",
+          sortable: false,
+          align: "center",
         },
 
         {
@@ -1225,24 +1621,69 @@ export default {
           value: "actions",
           sortable: false,
           align: "center",
-          width: "150px",
         },
       ],
 
-      immunization_record: [],
+      familyPlanningAssesmentItems: [
+        {
+          id: 1,
+          date_of_visit: "DSWD",
+          medical_findings: "",
+          method_accepted: "",
+          service_provider_name: "",
+          follow_up_visit_date: "",
+        },
+        {
+          id: 2,
+          date_of_visit: "DSWD",
+          medical_findings: "",
+          method_accepted: "",
+          service_provider_name: "",
+          follow_up_visit_date: "",
+        },
+
+        {
+          id: 3,
+          date_of_visit: "DSWD",
+          medical_findings: "",
+          method_accepted: "",
+          service_provider_name: "",
+          follow_up_visit_date: "",
+        },
+
+        {
+          id: 4,
+          date_of_visit: "DSWD",
+          medical_findings: "",
+          method_accepted: "",
+          service_provider_name: "",
+          follow_up_visit_date: "",
+        },
+      ],
+
+      assessment_record: {
+        medical_findings: "",
+        method_accepted: "",
+        service_provider_name: "",
+        follow_up_visit_date: "",
+      },
     };
   },
 
   methods: {
-    createRecord: call("immunization/createItem"),
-    updateRecord: call("immunization/updateItem"),
+    createRecord: call("familyPlanning/createItem"),
+    updateRecord: call("familyPlanning/updateItem"),
 
-    addImmunization() {
-      this.showEditor = true;
+    onAddAssessmentClick() {
+      this.showAssessmentDialog = true;
+    },
+    addAssessmentRecord() {
+      this.form.assessment_records.push({ ...this.assessment_record });
+      this.showAssessmentDialog = false;
     },
 
     add() {
-      if (!this.$refs["form-immunization"].validate()) return;
+      if (!this.$refs["form-family-planning"].validate()) return;
 
       this.createRecord(this.form)
         .then((response) => {
@@ -1293,50 +1734,105 @@ export default {
       handler(val) {
         this.form = {
           ...{
-            id: null,
-            family_record_no: "",
-            name: "",
+            id: "",
+            client_id: "",
+            philhealth_no: "",
+            nhts: "",
+            "4ps": "",
+            last_name: "",
+            given_name: "",
+            middle_initial: "",
             dob: "",
-            sex: this.genders[0],
-            mothers_name: "",
-            fathers_occupation: "",
+            age: "",
+            educational_attainment: "",
+            occupation: "",
             address: "",
-            past_history: {
-              delivery: this.deliveryItems[0],
-              specify: "",
-              birth_order_no: "",
-              birth_type: this.birthTypeItems[0],
-              delivered_by: this.deliveredByItems[0],
-              others: "",
-              past_disease: "",
-              age_teething_started: "",
-              sit_with_support: "",
-              stand_without_abnormality: "",
-              walk_first_step: "",
+            contact_number: "",
+            civil_status: this.civilStatuses[0],
+            religion: "",
+            spouse: {
+              last_name: "",
+              first_name: "",
+              middle_initial: "",
+              dob: "",
+              age: "",
+              occupation: "",
             },
-            immunization_record: {
-              bcg: "",
-              scar: this.yesOrNo[0],
-              pentavalent_1: "",
-              pentavalent_2: "",
-              pentavalent_3: "",
-              opv_1: "",
-              opv_2: "",
-              opv_3: "",
-              pcv_1: "",
-              pcv_2: "",
-              pcv_3: "",
-              measles: "",
-              mmr: "",
-              records: [
-                {
-                  id: "",
-                  date: "",
-                  complaints_diagnosis: "",
-                  treatment: "",
-                },
-              ],
+            living_children_no: "",
+            plan_to_have_more_children: "",
+            average_monthly_income: "",
+            selected_client_type: this.clientTypes[0],
+            reason_for_fp: this.newAcceptorReason[0],
+            other_reason: "",
+            selected_current_user: this.currentUserType[0],
+            current_user_reason: this.currentUserReason[0],
+            reason_side_effects: "",
+            method_currently_used: this.methodCurrentlyUsedItems[0],
+            other_method_currently_used: "",
+            medical_history: {
+              severe_headaches_migraine: "",
+              history_of_stroke_heart_attack_hypertension: "",
+              non_traumatic_hematoma_frequent_bruishing_or_gum_bleeding: "",
+              current_or_history_of_breast_cancer_breast_mass: "",
+              severe_chest_pain: "",
+              cough_more_than_14_days: "",
+              jaundice: "",
+              unexplained_vaginal_bleeding: "",
+              abnormal_vaginal_discharge: "",
+              intake_of_phenobarbital_or_rifampicin: "",
+              is_the_client_a_smoker: "",
+              with_disability: "",
+              disability_specification: "",
             },
+            obstretical_history: {
+              pregnancy_no_p: "",
+              pregnancy_no_g: "",
+              full_term: "",
+              premature: "",
+              abortion: "",
+              living_children: "",
+              last_delivery_date: "",
+              last_delivery_type: this.lastDeliveryTypes[0],
+              last_menstrual_period: "",
+              previous_menstrual_period: "",
+              menstrual_flow: this.menstrualFlows[0],
+              dysmenorrhea: "",
+              hydatidiform_mole: "",
+              ectopic_pregnancy_history: "",
+            },
+            risks_for_sti: {
+              abnormal_discharge_from_the_genital_area: "",
+              specify_if_yes: "",
+              sores_or_ulcers_in_the_genital_area: "",
+              pain_or_burning_sensation_in_the_genital_area: "",
+              history_of_treatment_for_sti: "",
+              hiv_aids_pelvic_inflammatory_disease: "",
+            },
+            risks_for_vaw: {
+              unpleasant_relationship_with_partner: "",
+              partner_does_not_approve_of_the_visit_to_fp_clinic: "",
+              history_of_domestic_violence_or_vaw: "",
+              referred_to: this.referredToOrganizations[0],
+              others_specify: "",
+            },
+            physical_examination: {
+              weight: "",
+              height: "",
+              blood_pressure: "",
+              pulse_rate: "",
+              skin: "",
+              conjunctiva: "",
+              neck: "",
+              breast: "",
+              abdomen: "",
+              extremities: "",
+              pelvic_examination: "",
+              cervical_abnormalities: "",
+              cervical_consistency: "",
+              uterine_position: "",
+              uterine_depth: "",
+            },
+            assessment_records: [],
           },
           ...val,
         };
