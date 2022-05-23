@@ -252,7 +252,8 @@
                 mobile-breakpoint="0"
               >
                 <template v-slot:[`item.action`]="{ item }">
-                  <v-icon
+                 <v-btn icon :disabled="readOnly">
+                    <v-icon
                     medium
                     class="mr-2"
                     color="red"
@@ -260,6 +261,7 @@
                   >
                     mdi-delete
                   </v-icon>
+                 </v-btn>
                 </template>
               </v-data-table>
 
@@ -421,11 +423,13 @@
                       <td>{{ item.exam_sugar_1 }}</td>
                       <td>{{ item.exam_sugar_2 }}</td>
                       <td>
-                        <v-icon
+                       <v-btn icon :disabled="readOnly">
+                          <v-icon
                           color="red"
                           @click="deleteAntePartumRecord(item)"
                           >mdi-delete</v-icon
                         >
+                       </v-btn>
                       </td>
                     </tr>
                   </tbody>

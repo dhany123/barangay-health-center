@@ -774,13 +774,7 @@
       "still_births": "8",
       "post_partum_hemorrhage": "67",
       "birth_weight_2500_grams": "7",
-      "family_planning_history": [
-        {
-          "id": "",
-          "methods": "",
-          "remarks": ""
-        }
-      ],
+      "family_planning_history": [],
       "tt_history": {
         "tt_1": "2022-04-26",
         "tt_2": "2022-04-19",
@@ -795,18 +789,7 @@
         "edc": "2022-04-27",
         "g": "t",
         "p": "y",
-        "ante_partum_visits": [
-          {
-            "id": 1,
-            "date": "",
-            "ut_wt": "",
-            "bp": "",
-            "fundic_ht": "",
-            "hb": "",
-            "urine": "",
-            "exam_sugar": ""
-          }
-        ]
+        "ante_partum_visits": []
       }
     },
     {
@@ -882,13 +865,7 @@
       "still_births": "",
       "post_partum_hemorrhage": "",
       "birth_weight_2500_grams": "",
-      "family_planning_history": [
-        {
-          "id": "",
-          "methods": "",
-          "remarks": ""
-        }
-      ],
+      "family_planning_history": [],
       "tt_history": {
         "tt_1": "",
         "tt_2": "",
@@ -903,18 +880,7 @@
         "edc": "",
         "g": "",
         "p": "",
-        "ante_partum_visits": [
-          {
-            "id": 1,
-            "date": "",
-            "ut_wt": "",
-            "bp": "",
-            "fundic_ht": "",
-            "hb": "",
-            "urine": "",
-            "exam_sugar": ""
-          }
-        ]
+        "ante_partum_visits": []
       }
     },
     {
@@ -975,108 +941,6 @@
   ],
   "family_planning": [
     {
-      "id": 1,
-      "client_id": "",
-      "philhealth_no": "",
-      "nhts": "",
-      "4ps": "",
-      "last_name": "gfhfgdg",
-      "given_name": "ssddsf",
-      "middle_initial": "",
-      "dob": "",
-      "age": "12",
-      "educational_attainment": "",
-      "occupation": "",
-      "address": "",
-      "contact_number": "",
-      "civil_status": "",
-      "religion": "",
-      "spouse": {
-        "last_name": "",
-        "first_name": "",
-        "middle_initial": "",
-        "dob": "",
-        "age": "",
-        "occupation": ""
-      },
-      "living_children_no": "",
-      "plan_to_have_more_children": "",
-      "average_monthly_income": "",
-      "client_type": "",
-      "reason_for_fp": "",
-      "other_reason": "",
-      "selected_current_user": "",
-      "current_user_reason": "",
-      "reason_side_effects": "",
-      "method_currently_used": "",
-      "other_method_currently_used": "",
-      "medical_history": {
-        "severe_headaches_migraine": "",
-        "history_of_stroke_heart_attack_hypertension": "",
-        "non_traumatic_hematoma_frequent_bruishing_or_gum_bleeding": "",
-        "current_or_history_of_breast_cancer_breast_mass": "",
-        "severe_chest_pain": "",
-        "cough_more_than_14_days": "",
-        "jaundice": "",
-        "unexplained_vaginal_bleeding": "",
-        "abnormal_vaginal_discharge": "",
-        "intake_of_phenobarbital_or_rifampicin": "",
-        "is_the_client_a_smoker": "",
-        "with_disability": "",
-        "disability_specification": ""
-      },
-      "obstretical_history": {
-        "pregnancy_no_p": "",
-        "pregnancy_no_g": "",
-        "full_term": "",
-        "premature": "",
-        "abortion": "",
-        "living_children": "",
-        "last_delivery_date": "",
-        "last_delivery_type": "",
-        "last_menstrual_period": "",
-        "previous_menstrual_period": "",
-        "menstrual_flow": "",
-        "dysmenorrhea": "",
-        "hydatidiform_mole": "",
-        "ectopic_pregnancy_history": ""
-      },
-      "risks_for_sti": {
-        "abnormal_discharge_from_the_genital_area": "",
-        "specify_if_yes": "",
-        "sores_or_ulcers_in_the_genital_area": "",
-        "pain_or_burning_sensation_in_the_genital_area": "",
-        "history_of_treatment_for_sti": "",
-        "hiv_aids_pelvic_inflammatory_disease": ""
-      },
-      "risks_for_vaw": {
-        "unpleasant_relationship_with_partner": "",
-        "partner_does_not_approve_of_the_visit_to_fp_clinic": "",
-        "history_of_domestic_violence_or_vaw": "",
-        "referred_to": "",
-        "others_specify": ""
-      },
-      "physical_examination": {
-        "weight": "",
-        "height": "",
-        "blood_pressure": "",
-        "pulse_rate": "",
-        "skin": "",
-        "conjunctiva": "",
-        "neck": "",
-        "breast": "",
-        "abdomen": "",
-        "extremities": "",
-        "pelvic_examination": "",
-        "cervical_abnormalities": "",
-        "cervical_consistency": "",
-        "uterine_position": "",
-        "uterine_depth": ""
-      },
-      "selected_client_type": "New Acceptor",
-      "assessment_records": []
-    },
-    {
       "id": 2,
       "client_id": "",
       "philhealth_no": "",
@@ -1119,18 +983,68 @@
       "method_currently_used": "COC",
       "other_method_currently_used": "",
       "medical_history": {
-        "severe_headaches_migraine": "",
-        "history_of_stroke_heart_attack_hypertension": "",
-        "non_traumatic_hematoma_frequent_bruishing_or_gum_bleeding": "",
-        "current_or_history_of_breast_cancer_breast_mass": "",
-        "severe_chest_pain": "",
-        "cough_more_than_14_days": "",
-        "jaundice": "",
-        "unexplained_vaginal_bleeding": "",
-        "abnormal_vaginal_discharge": "",
-        "intake_of_phenobarbital_or_rifampicin": "",
-        "is_the_client_a_smoker": "",
-        "with_disability": "",
+        "items": [
+          {
+            "id": 1,
+            "text": "severe headaches / migraine",
+            "value": ""
+          },
+          {
+            "id": 2,
+            "text": "history of stroke / heart attack / hypertension",
+            "value": ""
+          },
+          {
+            "id": 3,
+            "text": "non-traumatic hematoma / frequent bruising or gum bleeding",
+            "value": ""
+          },
+          {
+            "id": 4,
+            "text": "current or history of breast cancer / breat mass",
+            "value": ""
+          },
+          {
+            "id": 5,
+            "text": "severe chest pain",
+            "value": ""
+          },
+          {
+            "id": 6,
+            "text": "cough for more than 14 days",
+            "value": ""
+          },
+          {
+            "id": 7,
+            "text": "jaundice",
+            "value": ""
+          },
+          {
+            "id": 8,
+            "text": "unexpected vaginal bleeding",
+            "value": ""
+          },
+          {
+            "id": 9,
+            "text": "abnormal vaginal discharge",
+            "value": ""
+          },
+          {
+            "id": 10,
+            "text": "intake of phenobarbital (anti-seizure) or rifampicin(anti-TB)",
+            "value": ""
+          },
+          {
+            "id": 11,
+            "text": "is client a SMOKER?",
+            "value": ""
+          },
+          {
+            "id": 12,
+            "text": "with disability?",
+            "value": ""
+          }
+        ],
         "disability_specification": ""
       },
       "obstretical_history": {
@@ -1153,22 +1067,55 @@
         "ectopic_pregnancy_history": ""
       },
       "risks_for_sti": {
-        "abnormal_discharge_from_the_genital_area": "",
-        "specify_if_yes": "",
-        "sores_or_ulcers_in_the_genital_area": "",
-        "pain_or_burning_sensation_in_the_genital_area": "",
-        "history_of_treatment_for_sti": "",
-        "hiv_aids_pelvic_inflammatory_disease": ""
+        "items": [
+          {
+            "id": 1,
+            "text": "abnormal discharge from the genital area",
+            "value": ""
+          },
+          {
+            "id": 2,
+            "text": "sores or ulcers in the genital area",
+            "value": ""
+          },
+          {
+            "id": 3,
+            "text": "pain or burning sensation in the genital area",
+            "value": ""
+          },
+          {
+            "id": 4,
+            "text": "history of treatment for sexually transmitted infections",
+            "value": ""
+          },
+          {
+            "id": 5,
+            "text": "HIV / AIDS / Pelvic inflammatory disease",
+            "value": ""
+          }
+        ],
+        "abnormal_discharge_from_genital_area": ""
       },
       "risks_for_vaw": {
-        "unpleasant_relationship_with_partner": "",
-        "partner_does_not_approve_of_the_visit_to_fp_clinic": "",
-        "history_of_domestic_violence_or_vaw": "",
-        "referred_to": {
-          "id": 1,
-          "name": "DSWD"
-        },
-        "others_specify": ""
+        "items": [
+          {
+            "id": 1,
+            "text": "unpleasant relationship with partner",
+            "value": ""
+          },
+          {
+            "id": 2,
+            "text": "partner does not approve of the visit to FP clinic",
+            "value": ""
+          },
+          {
+            "id": 3,
+            "text": "history of domestic violence or VAW",
+            "value": ""
+          }
+        ],
+        "reffered_to": "",
+        "others": ""
       },
       "physical_examination": {
         "weight": "",
@@ -1181,13 +1128,439 @@
         "breast": "",
         "abdomen": "",
         "extremities": "",
-        "pelvic_examination": "",
-        "cervical_abnormalities": "",
-        "cervical_consistency": "",
-        "uterine_position": "",
-        "uterine_depth": ""
+        "pelvic_examination": {
+          "pelvic": "",
+          "cervical_tenderness": false,
+          "adnexal_mass_tenderness": false,
+          "cervical_abnormalities": "",
+          "cervical_consistency": "",
+          "uterine_position": "",
+          "uterine_depth": ""
+        }
       },
-      "assessment_records": []
+      "assessment_records": [],
+      "four_ps": true
+    },
+    {
+      "id": 3,
+      "client_id": "1",
+      "philhealth_no": "2",
+      "nhts": true,
+      "four_ps": false,
+      "last_name": "3",
+      "given_name": "3",
+      "middle_initial": "",
+      "dob": "",
+      "age": "",
+      "educational_attainment": "",
+      "occupation": "",
+      "address": "",
+      "contact_number": "",
+      "civil_status": {
+        "id": 1,
+        "name": "Single"
+      },
+      "religion": "",
+      "spouse": {
+        "last_name": "",
+        "first_name": "",
+        "middle_initial": "",
+        "dob": "",
+        "age": "",
+        "occupation": ""
+      },
+      "living_children_no": "",
+      "plan_to_have_more_children": "",
+      "average_monthly_income": "",
+      "selected_client_type": {
+        "id": 1,
+        "name": "New Acceptor"
+      },
+      "reason_for_fp": {
+        "id": 1,
+        "name": "Spacing"
+      },
+      "other_reason": "",
+      "selected_current_user": {
+        "id": 1,
+        "name": "Changing Method"
+      },
+      "current_user_reason": {
+        "id": 1,
+        "name": "Medical Condition"
+      },
+      "reason_side_effects": "",
+      "method_currently_used": {
+        "id": 1,
+        "name": "COC"
+      },
+      "other_method_currently_used": "",
+      "medical_history": {
+        "items": [
+          {
+            "id": 1,
+            "text": "severe headaches / migraine",
+            "value": ""
+          },
+          {
+            "id": 2,
+            "text": "history of stroke / heart attack / hypertension",
+            "value": ""
+          },
+          {
+            "id": 3,
+            "text": "non-traumatic hematoma / frequent bruising or gum bleeding",
+            "value": ""
+          },
+          {
+            "id": 4,
+            "text": "current or history of breast cancer / breat mass",
+            "value": ""
+          },
+          {
+            "id": 5,
+            "text": "severe chest pain",
+            "value": ""
+          },
+          {
+            "id": 6,
+            "text": "cough for more than 14 days",
+            "value": ""
+          },
+          {
+            "id": 7,
+            "text": "jaundice",
+            "value": ""
+          },
+          {
+            "id": 8,
+            "text": "unexpected vaginal bleeding",
+            "value": ""
+          },
+          {
+            "id": 9,
+            "text": "abnormal vaginal discharge",
+            "value": ""
+          },
+          {
+            "id": 10,
+            "text": "intake of phenobarbital (anti-seizure) or rifampicin(anti-TB)",
+            "value": ""
+          },
+          {
+            "id": 11,
+            "text": "is client a SMOKER?",
+            "value": ""
+          },
+          {
+            "id": 12,
+            "text": "with disability?",
+            "value": ""
+          }
+        ],
+        "disability_specification": ""
+      },
+      "obstretical_history": {
+        "pregnancy_no_p": "",
+        "pregnancy_no_g": "",
+        "full_term": "",
+        "premature": "",
+        "abortion": "",
+        "living_children": "",
+        "last_delivery_date": "",
+        "last_delivery_type": {
+          "id": 1,
+          "name": "Vaginal"
+        },
+        "last_menstrual_period": "",
+        "previous_menstrual_period": "",
+        "menstrual_flow": {
+          "id": 1,
+          "name": "scanty (1-2 pads per day)"
+        },
+        "dysmenorrhea": "",
+        "hydatidiform_mole": "",
+        "ectopic_pregnancy_history": ""
+      },
+      "risks_for_sti": {
+        "items": [
+          {
+            "id": 1,
+            "text": "abnormal discharge from the genital area",
+            "value": ""
+          },
+          {
+            "id": 2,
+            "text": "sores or ulcers in the genital area",
+            "value": ""
+          },
+          {
+            "id": 3,
+            "text": "pain or burning sensation in the genital area",
+            "value": ""
+          },
+          {
+            "id": 4,
+            "text": "history of treatment for sexually transmitted infections",
+            "value": ""
+          },
+          {
+            "id": 5,
+            "text": "HIV / AIDS / Pelvic inflammatory disease",
+            "value": ""
+          }
+        ],
+        "abnormal_discharge_from_genital_area": ""
+      },
+      "risks_for_vaw": {
+        "items": [
+          {
+            "id": 1,
+            "text": "unpleasant relationship with partner",
+            "value": ""
+          },
+          {
+            "id": 2,
+            "text": "partner does not approve of the visit to FP clinic",
+            "value": ""
+          },
+          {
+            "id": 3,
+            "text": "history of domestic violence or VAW",
+            "value": ""
+          }
+        ],
+        "reffered_to": "",
+        "others": ""
+      },
+      "physical_examination": {
+        "weight": "",
+        "height": "",
+        "blood_pressure": "",
+        "pulse_rate": "",
+        "skin": "",
+        "conjunctiva": "",
+        "neck": "",
+        "breast": "",
+        "abdomen": "",
+        "extremities": "",
+        "pelvic_examination": {
+          "pelvic": "",
+          "cervical_tenderness": false,
+          "adnexal_mass_tenderness": false,
+          "cervical_abnormalities": "",
+          "cervical_consistency": "",
+          "uterine_position": "",
+          "uterine_depth": ""
+        }
+      },
+      "assessment_records": [],
+      "4ps": ""
+    },
+    {
+      "id": 4,
+      "client_id": "1",
+      "philhealth_no": "2",
+      "nhts": true,
+      "four_ps": true,
+      "last_name": "3",
+      "given_name": "4",
+      "middle_initial": "5",
+      "dob": "2022-04-27",
+      "age": "6",
+      "educational_attainment": "7",
+      "occupation": "8",
+      "address": "9",
+      "contact_number": "0fg5",
+      "civil_status": "Married",
+      "religion": "12",
+      "spouse": {
+        "last_name": "q",
+        "first_name": "w",
+        "middle_initial": "e",
+        "dob": "2022-05-03",
+        "age": "r",
+        "occupation": "t"
+      },
+      "living_children_no": "11",
+      "plan_to_have_more_children": {
+        "id": 1,
+        "name": "No"
+      },
+      "average_monthly_income": "2323",
+      "selected_client_type": "Current User",
+      "reason_for_fp": "Others",
+      "other_reason": "1d",
+      "selected_current_user": "Changing Clinic",
+      "current_user_reason": "Medical Condition",
+      "reason_side_effects": "54",
+      "method_currently_used": "Others",
+      "other_method_currently_used": "rttttr",
+      "medical_history": {
+        "items": [
+          {
+            "id": 1,
+            "text": "severe headaches / migraine",
+            "value": "yes"
+          },
+          {
+            "id": 2,
+            "text": "history of stroke / heart attack / hypertension",
+            "value": "yes"
+          },
+          {
+            "id": 3,
+            "text": "non-traumatic hematoma / frequent bruising or gum bleeding",
+            "value": "yes"
+          },
+          {
+            "id": 4,
+            "text": "current or history of breast cancer / breat mass",
+            "value": "yes"
+          },
+          {
+            "id": 5,
+            "text": "severe chest pain",
+            "value": "yes"
+          },
+          {
+            "id": 6,
+            "text": "cough for more than 14 days",
+            "value": "yes"
+          },
+          {
+            "id": 7,
+            "text": "jaundice",
+            "value": "yes"
+          },
+          {
+            "id": 8,
+            "text": "unexpected vaginal bleeding",
+            "value": "yes"
+          },
+          {
+            "id": 9,
+            "text": "abnormal vaginal discharge",
+            "value": "yes"
+          },
+          {
+            "id": 10,
+            "text": "intake of phenobarbital (anti-seizure) or rifampicin(anti-TB)",
+            "value": "yes"
+          },
+          {
+            "id": 11,
+            "text": "is client a SMOKER?",
+            "value": "yes"
+          },
+          {
+            "id": 12,
+            "text": "with disability?",
+            "value": "yes"
+          }
+        ],
+        "disability_specification": "b"
+      },
+      "obstretical_history": {
+        "pregnancy_no_p": "weer",
+        "pregnancy_no_g": "1223",
+        "full_term": "z",
+        "premature": "x",
+        "abortion": "c",
+        "living_children": "v",
+        "last_delivery_date": "2022-05-19",
+        "last_delivery_type": {
+          "id": 1,
+          "name": "Vaginal"
+        },
+        "last_menstrual_period": "2022-05-26",
+        "previous_menstrual_period": "2022-05-20",
+        "menstrual_flow": "moderate (3-5 pads per day)",
+        "dysmenorrhea": true,
+        "hydatidiform_mole": true,
+        "ectopic_pregnancy_history": true
+      },
+      "risks_for_sti": {
+        "items": [
+          {
+            "id": 1,
+            "text": "abnormal discharge from the genital area",
+            "value": "yes"
+          },
+          {
+            "id": 2,
+            "text": "sores or ulcers in the genital area",
+            "value": "no"
+          },
+          {
+            "id": 3,
+            "text": "pain or burning sensation in the genital area",
+            "value": "no"
+          },
+          {
+            "id": 4,
+            "text": "history of treatment for sexually transmitted infections",
+            "value": "no"
+          },
+          {
+            "id": 5,
+            "text": "HIV / AIDS / Pelvic inflammatory disease",
+            "value": "no"
+          }
+        ],
+        "abnormal_discharge_from_genital_area": "penis"
+      },
+      "risks_for_vaw": {
+        "items": [
+          {
+            "id": 1,
+            "text": "unpleasant relationship with partner",
+            "value": "yes"
+          },
+          {
+            "id": 2,
+            "text": "partner does not approve of the visit to FP clinic",
+            "value": "no"
+          },
+          {
+            "id": 3,
+            "text": "history of domestic violence or VAW",
+            "value": "yes"
+          }
+        ],
+        "reffered_to": "Others",
+        "others": "1we"
+      },
+      "physical_examination": {
+        "weight": "a",
+        "height": "sd",
+        "blood_pressure": "x",
+        "pulse_rate": "xc",
+        "skin": "normal",
+        "conjunctiva": "pale",
+        "neck": "normal",
+        "breast": "nipple discharge",
+        "abdomen": "normal",
+        "extremities": "normal",
+        "pelvic_examination": {
+          "pelvic": "abdominal discharge",
+          "cervical_tenderness": true,
+          "adnexal_mass_tenderness": true,
+          "cervical_abnormalities": "polyp or cyst",
+          "cervical_consistency": "soft",
+          "uterine_position": "mid",
+          "uterine_depth": "5456"
+        }
+      },
+      "assessment_records": [
+        {
+          "medical_findings": "sdsf",
+          "method_accepted": "xvcb",
+          "service_provider_name": "cvb",
+          "follow_up_visit_date": "",
+          "date_of_visit": "2022-05-23"
+        }
+      ]
     }
   ]
 }

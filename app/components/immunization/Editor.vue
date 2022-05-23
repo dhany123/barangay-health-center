@@ -365,9 +365,16 @@
             </template>
 
             <template v-slot:[`item.actions`]="{ item }">
-              <v-icon medium class="mr-2" color="red" @click="deleteItem(item)">
-                mdi-delete
-              </v-icon>
+              <v-btn icon :disabled="readOnly">
+                <v-icon
+                  medium
+                  class="mr-2"
+                  color="red"
+                  @click="deleteItem(item)"
+                >
+                  mdi-delete
+                </v-icon>
+              </v-btn>
             </template>
           </v-data-table>
         </v-form>

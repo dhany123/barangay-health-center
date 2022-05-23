@@ -43,13 +43,13 @@
                 </v-col>
 
                 <v-col cols="12" md="4" class="d-flex align-center">
-                  <v-checkbox class="mr-6 mt-4" dense value="form.nhts">
+                  <v-checkbox class="mr-6 mt-4" dense v-model="form.nhts">
                     <template v-slot:label>
                       <div class="text-subtitle-2 mt-1">NHTS?</div>
                     </template>
                   </v-checkbox>
 
-                  <v-checkbox class="mt-4" dense value="form.4ps">
+                  <v-checkbox class="mt-4" dense v-model="form.four_ps">
                     <template v-slot:label>
                       <div class="text-subtitle-2 mt-1">4Ps?</div>
                     </template>
@@ -201,6 +201,7 @@
                   <v-text-field
                     outlined
                     dense
+                    type="date"
                     v-model="form.spouse.dob"
                   ></v-text-field>
                 </v-col>
@@ -238,11 +239,14 @@
 
                 <v-col cols="12" md="4" class="mt-n2">
                   <label class="label">Plan to have more children</label>
-                  <v-text-field
+                  <v-select
+                    :items="yesOrNo"
+                    v-model="form.plan_to_have_more_children"
+                    item-text="name"
                     outlined
                     dense
-                    v-model="form.plan_to_have_more_children"
-                  ></v-text-field>
+                    :rules="[rules.required]"
+                  ></v-select>
                 </v-col>
 
                 <v-col cols="12" md="4" class="mt-n2">
@@ -361,7 +365,7 @@
                 <v-col cols="12">
                   <v-data-table
                     :headers="medicalHistoryHeaders"
-                    :items="medical_history_questions"
+                    :items="form.medical_history.items"
                     class="elevation-0"
                     item-key="id"
                     disable-pagination
@@ -583,7 +587,7 @@
                 <v-col cols="12">
                   <v-data-table
                     :headers="risksForSTIHeaders"
-                    :items="risks_for_sti_questions"
+                    :items="form.risks_for_sti.items"
                     class="elevation-0"
                     item-key="id"
                     disable-pagination
@@ -604,7 +608,10 @@
                           row
                           dense
                           class="mt-n2 mb-n6 ml-2"
-                          v-model="form.risks_for_sti.specify_if_yes"
+                          v-model="
+                            form.risks_for_sti
+                              .abnormal_discharge_from_genital_area
+                          "
                         >
                           <v-radio value="vagina">
                             <template v-slot:label>
@@ -653,7 +660,7 @@
                 <v-col cols="12">
                   <v-data-table
                     :headers="risksForVAWHeaders"
-                    :items="risks_for_vaw_questions"
+                    :items="form.risks_for_vaw.items"
                     class="elevation-0"
                     item-key="id"
                     disable-pagination
@@ -674,7 +681,7 @@
                           <label> Referred to:</label>
                           <v-select
                             :items="referredToOrganizations"
-                            v-model="selectedOrganization"
+                            v-model="form.risks_for_vaw.reffered_to"
                             item-text="name"
                             outlined
                             dense
@@ -685,10 +692,14 @@
                         <v-col
                           cols="12"
                           md="8"
-                          v-if="selectedOrganization === 'Others'"
+                          v-if="form.risks_for_vaw.reffered_to === 'Others'"
                         >
                           <label> Specify:</label>
-                          <v-text-field outlined dense></v-text-field>
+                          <v-text-field
+                            outlined
+                            dense
+                            v-model="form.risks_for_vaw.others"
+                          ></v-text-field>
                         </v-col>
                       </v-row>
                     </template>
@@ -832,37 +843,55 @@
                     <label> PELVIC EXAMINATION (For IUD acceptors) </label>
                     <v-row align="center">
                       <v-col cols="12" md="4">
-                        <v-checkbox dense>
+                        <v-radio-group
+                          v-model="
+                            form.physical_examination.pelvic_examination.pelvic
+                          "
+                        >
+                          <v-radio
+                            v-for="item in pelvicItems"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.name"
+                          ></v-radio>
+                        </v-radio-group>
+                        <v-checkbox
+                          dense
+                          class="mt-n4"
+                          v-model="
+                            form.physical_examination.pelvic_examination
+                              .cervical_tenderness
+                          "
+                        >
                           <template v-slot:label>
-                            <div class="text-subtitle-2 mt-1">normal</div>
+                            <div class="text-subtitle-2">
+                              cervical tenderness
+                            </div>
                           </template>
                         </v-checkbox>
-                        <v-checkbox dense>
+                        <v-checkbox
+                          dense
+                          class="mt-n4"
+                          v-model="
+                            form.physical_examination.pelvic_examination
+                              .adnexal_mass_tenderness
+                          "
+                        >
                           <template v-slot:label>
-                            <div class="text-subtitle-2 mt-1">mass</div>
-                          </template>
-                        </v-checkbox>
-                        <v-checkbox dense>
-                          <template v-slot:label>
-                            <div class="text-subtitle-2 mt-1">
-                              abdominal discharge
+                            <div class="text-subtitle-2">
+                              adnexal mass / tenderness
                             </div>
                           </template>
                         </v-checkbox>
                       </v-col>
                       <v-col cols="12" md="4">
-                        <v-checkbox dense>
-                          <template v-slot:label>
-                            <div class="text-subtitle-2 mt-1">
-                              cervical tenderness
-                            </div>
-                          </template>
-                        </v-checkbox>
-
                         <label> cervical abnormalities </label>
                         <v-select
                           :items="cervical_abnormalities"
-                          v-model="form.physical_examination.pelvic_examination"
+                          v-model="
+                            form.physical_examination.pelvic_examination
+                              .cervical_abnormalities
+                          "
                           item-text="name"
                           outlined
                           dense
@@ -871,25 +900,23 @@
                         <label> cervical consistency </label>
                         <v-select
                           :items="cervical_consistency"
-                          v-model="form.physical_examination.pelvic_examination"
+                          v-model="
+                            form.physical_examination.pelvic_examination
+                              .cervical_consistency
+                          "
                           item-text="name"
                           outlined
                           dense
                         ></v-select>
                       </v-col>
                       <v-col cols="12" md="4">
-                        <v-checkbox dense>
-                          <template v-slot:label>
-                            <div class="text-subtitle-2 mt-1">
-                              adnexal mass / tenderness
-                            </div>
-                          </template>
-                        </v-checkbox>
-
                         <label> uterine position </label>
                         <v-select
                           :items="uterine_position"
-                          v-model="form.physical_examination.pelvic_examination"
+                          v-model="
+                            form.physical_examination.pelvic_examination
+                              .uterine_position
+                          "
                           item-text="name"
                           outlined
                           dense
@@ -899,7 +926,10 @@
                         <v-text-field
                           outlined
                           dense
-                          v-model="form.physical_examination.blood_pressure"
+                          v-model="
+                            form.physical_examination.pelvic_examination
+                              .uterine_depth
+                          "
                           suffix="cm"
                         ></v-text-field>
                       </v-col>
@@ -998,18 +1028,20 @@
                     style="width: 98%"
                   >
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" @click="onAddAssessmentClick">
+                    <v-btn
+                      color="primary"
+                      @click="onAddAssessmentClick"
+                      :disabled="readOnly"
+                    >
                       Add
                     </v-btn>
                   </div>
                 </template>
                 <template v-slot:[`item.actions`]="{ item }">
-                  <v-btn icon>
-                    <v-icon color="green">mdi-pencil</v-icon>
-                  </v-btn>
-
-                  <v-btn icon>
-                    <v-icon color="red">mdi-delete</v-icon>
+                  <v-btn icon :disabled="readOnly">
+                    <v-icon color="red" @click="deleteRecord(item)"
+                      >mdi-delete</v-icon
+                    >
                   </v-btn>
                 </template>
               </v-data-table>
@@ -1412,6 +1444,21 @@ export default {
         },
       ],
 
+      pelvicItems: [
+        {
+          id: 1,
+          name: "normal",
+        },
+        {
+          id: 2,
+          name: "mass",
+        },
+        {
+          id: 3,
+          name: "abdominal discharge",
+        },
+      ],
+
       medicalHistoryHeaders: [
         {
           text: "Does the client have any of the following",
@@ -1424,78 +1471,6 @@ export default {
           value: "options",
           sortable: false,
           align: "center",
-        },
-      ],
-
-      medical_history_questions: [
-        {
-          id: 1,
-          text: "severe headaches / migraine",
-          value: "severe_headaches_migraine",
-        },
-
-        {
-          id: 2,
-          text: "history of stroke / heart attack / hypertension",
-          value: "history_of_stroke_heart_attack_hypertension",
-        },
-        {
-          id: 3,
-          text: "non-traumatic hematoma / frequent bruising or gum bleeding",
-          value: "traumatic_hematoma_frequent_bruishing_or_gum_bleeding",
-        },
-        {
-          id: 4,
-          text: "current or history of breast cancer / breat mass",
-          value: "current_or_history_of_breast_cancer_breast_mass",
-        },
-
-        {
-          id: 5,
-          text: "severe chest pain",
-          value: "severe_chest_pain",
-        },
-
-        {
-          id: 6,
-          text: "cough for more than 14 days",
-          value: "cough_more_than_14_days",
-        },
-
-        {
-          id: 7,
-          text: "jaundice",
-          value: "jaundice",
-        },
-
-        {
-          id: 8,
-          text: "unexpected vaginal bleeding",
-          value: "unexplained_vaginal_bleeding",
-        },
-
-        {
-          id: 9,
-          text: "abnormal vaginal discharge",
-          value: "abnormal_vaginal_discharge",
-        },
-
-        {
-          id: 10,
-          text: "intake of phenobarbital (anti-seizure) or rifampicin(anti-TB)",
-          value: "intake_of_phenobarbital_or_rifampicin",
-        },
-
-        {
-          id: 11,
-          text: "is client a SMOKER?",
-          value: "is_the_client_a_smoker",
-        },
-
-        {
-          id: 12,
-          text: "with disability?",
-          value: "with_disability",
         },
       ],
 
@@ -1514,38 +1489,6 @@ export default {
         },
       ],
 
-      risks_for_sti_questions: [
-        {
-          id: 1,
-          text: "abnormal discharge from the genital area",
-          value: "abnormal_discharge_from_the_genital_area",
-        },
-
-        {
-          id: 2,
-          text: "sores or ulcers in the genital area",
-          value: "sores_or_ulcers_in_the_genital_area",
-        },
-
-        {
-          id: 3,
-          text: "pain or burning sensation in the genital area",
-          value: "pain_or_burning_sensation_in_the_genital_area",
-        },
-
-        {
-          id: 4,
-          text: "history of treatment for sexually transmitted infections",
-          value: "history_of_treatment_for_sti",
-        },
-
-        {
-          id: 5,
-          text: "HIV / AIDS / Pelvic inflammatory disease",
-          value: "hiv_aids_pelvic_inflammatory_disease",
-        },
-      ],
-
       risksForVAWHeaders: [
         {
           text: "",
@@ -1558,26 +1501,6 @@ export default {
           value: "options",
           sortable: false,
           align: "center",
-        },
-      ],
-
-      risks_for_vaw_questions: [
-        {
-          id: 1,
-          text: "unpleasant relationship with partner",
-          value: "yes",
-        },
-
-        {
-          id: 2,
-          text: "partner does not approve of the visit to FP clinic",
-          value: "yes",
-        },
-
-        {
-          id: 3,
-          text: "history of domestic violence or VAW",
-          value: "",
         },
       ],
 
@@ -1624,43 +1547,6 @@ export default {
         },
       ],
 
-      familyPlanningAssesmentItems: [
-        {
-          id: 1,
-          date_of_visit: "DSWD",
-          medical_findings: "",
-          method_accepted: "",
-          service_provider_name: "",
-          follow_up_visit_date: "",
-        },
-        {
-          id: 2,
-          date_of_visit: "DSWD",
-          medical_findings: "",
-          method_accepted: "",
-          service_provider_name: "",
-          follow_up_visit_date: "",
-        },
-
-        {
-          id: 3,
-          date_of_visit: "DSWD",
-          medical_findings: "",
-          method_accepted: "",
-          service_provider_name: "",
-          follow_up_visit_date: "",
-        },
-
-        {
-          id: 4,
-          date_of_visit: "DSWD",
-          medical_findings: "",
-          method_accepted: "",
-          service_provider_name: "",
-          follow_up_visit_date: "",
-        },
-      ],
-
       assessment_record: {
         medical_findings: "",
         method_accepted: "",
@@ -1680,6 +1566,10 @@ export default {
     addAssessmentRecord() {
       this.form.assessment_records.push({ ...this.assessment_record });
       this.showAssessmentDialog = false;
+    },
+
+    deleteRecord(item) {
+      this.form.assessment_records.splice(item, 1);
     },
 
     add() {
@@ -1737,8 +1627,8 @@ export default {
             id: "",
             client_id: "",
             philhealth_no: "",
-            nhts: "",
-            "4ps": "",
+            nhts: false,
+            four_ps: false,
             last_name: "",
             given_name: "",
             middle_initial: "",
@@ -1759,7 +1649,7 @@ export default {
               occupation: "",
             },
             living_children_no: "",
-            plan_to_have_more_children: "",
+            plan_to_have_more_children: this.yesOrNo[0],
             average_monthly_income: "",
             selected_client_type: this.clientTypes[0],
             reason_for_fp: this.newAcceptorReason[0],
@@ -1770,20 +1660,71 @@ export default {
             method_currently_used: this.methodCurrentlyUsedItems[0],
             other_method_currently_used: "",
             medical_history: {
-              severe_headaches_migraine: "",
-              history_of_stroke_heart_attack_hypertension: "",
-              non_traumatic_hematoma_frequent_bruishing_or_gum_bleeding: "",
-              current_or_history_of_breast_cancer_breast_mass: "",
-              severe_chest_pain: "",
-              cough_more_than_14_days: "",
-              jaundice: "",
-              unexplained_vaginal_bleeding: "",
-              abnormal_vaginal_discharge: "",
-              intake_of_phenobarbital_or_rifampicin: "",
-              is_the_client_a_smoker: "",
-              with_disability: "",
+              items: [
+                {
+                  id: 1,
+                  text: "severe headaches / migraine",
+                  value: "",
+                },
+                {
+                  id: 2,
+                  text: "history of stroke / heart attack / hypertension",
+                  value: "",
+                },
+                {
+                  id: 3,
+                  text: "non-traumatic hematoma / frequent bruising or gum bleeding",
+                  value: "",
+                },
+                {
+                  id: 4,
+                  text: "current or history of breast cancer / breat mass",
+                  value: "",
+                },
+                {
+                  id: 5,
+                  text: "severe chest pain",
+                  value: "",
+                },
+                {
+                  id: 6,
+                  text: "cough for more than 14 days",
+                  value: "",
+                },
+                {
+                  id: 7,
+                  text: "jaundice",
+                  value: "",
+                },
+                {
+                  id: 8,
+                  text: "unexpected vaginal bleeding",
+                  value: "",
+                },
+                {
+                  id: 9,
+                  text: "abnormal vaginal discharge",
+                  value: "",
+                },
+                {
+                  id: 10,
+                  text: "intake of phenobarbital (anti-seizure) or rifampicin(anti-TB)",
+                  value: "",
+                },
+                {
+                  id: 11,
+                  text: "is client a SMOKER?",
+                  value: "",
+                },
+                {
+                  id: 12,
+                  text: "with disability?",
+                  value: "",
+                },
+              ],
               disability_specification: "",
             },
+
             obstretical_history: {
               pregnancy_no_p: "",
               pregnancy_no_g: "",
@@ -1801,36 +1742,77 @@ export default {
               ectopic_pregnancy_history: "",
             },
             risks_for_sti: {
-              abnormal_discharge_from_the_genital_area: "",
-              specify_if_yes: "",
-              sores_or_ulcers_in_the_genital_area: "",
-              pain_or_burning_sensation_in_the_genital_area: "",
-              history_of_treatment_for_sti: "",
-              hiv_aids_pelvic_inflammatory_disease: "",
+              items: [
+                {
+                  id: 1,
+                  text: "abnormal discharge from the genital area",
+                  value: "",
+                },
+                {
+                  id: 2,
+                  text: "sores or ulcers in the genital area",
+                  value: "",
+                },
+                {
+                  id: 3,
+                  text: "pain or burning sensation in the genital area",
+                  value: "",
+                },
+                {
+                  id: 4,
+                  text: "history of treatment for sexually transmitted infections",
+                  value: "",
+                },
+                {
+                  id: 5,
+                  text: "HIV / AIDS / Pelvic inflammatory disease",
+                  value: "",
+                },
+              ],
+              abnormal_discharge_from_genital_area: "",
             },
+
             risks_for_vaw: {
-              unpleasant_relationship_with_partner: "",
-              partner_does_not_approve_of_the_visit_to_fp_clinic: "",
-              history_of_domestic_violence_or_vaw: "",
-              referred_to: this.referredToOrganizations[0],
-              others_specify: "",
+              items: [
+                {
+                  id: 1,
+                  text: "unpleasant relationship with partner",
+                  value: "",
+                },
+                {
+                  id: 2,
+                  text: "partner does not approve of the visit to FP clinic",
+                  value: "",
+                },
+                {
+                  id: 3,
+                  text: "history of domestic violence or VAW",
+                  value: "",
+                },
+              ],
+              reffered_to: "",
+              others: "",
             },
             physical_examination: {
               weight: "",
               height: "",
               blood_pressure: "",
               pulse_rate: "",
-              skin: "",
-              conjunctiva: "",
-              neck: "",
-              breast: "",
-              abdomen: "",
-              extremities: "",
-              pelvic_examination: "",
-              cervical_abnormalities: "",
-              cervical_consistency: "",
-              uterine_position: "",
-              uterine_depth: "",
+              skin: this.skin[0],
+              conjunctiva: this.conjunctiva[0],
+              neck: this.neck[0],
+              breast: this.breast[0],
+              abdomen: this.abdomen[0],
+              extremities: this.extremities[0],
+              pelvic_examination: {
+                pelvic: "",
+                cervical_tenderness: false,
+                adnexal_mass_tenderness: false,
+                cervical_abnormalities: "",
+                cervical_consistency: "",
+                uterine_position: "",
+                uterine_depth: "",
+              },
             },
             assessment_records: [],
           },
