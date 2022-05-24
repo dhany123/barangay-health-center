@@ -348,350 +348,91 @@
   ],
   "immunizations": [
     {
-      "id": 3,
-      "family_record_no": "",
-      "name": "5",
-      "dob": "2022-05-10",
+      "id": 1,
+      "family_record_no": "1",
+      "name": "Joe Dane",
+      "dob": "2022-04-27",
       "sex": "Male",
-      "mothers_name": "",
-      "fathers_occupation": "",
-      "address": "",
+      "mothers_name": "Baddet Dane",
+      "fathers_occupation": "Farmer",
+      "address": "Sampaguita Street, Ilocos City",
       "past_history": {
-        "delivery": {
-          "id": 1,
-          "name": "Normal"
-        },
-        "specify": "",
-        "birth_order_no": "",
-        "birth_type": {
-          "id": 1,
-          "name": "Single"
-        },
-        "delivered_by": {
-          "id": 1,
-          "name": "Midwife"
-        },
-        "others": "",
-        "past_disease": "",
-        "age_teething_started": "",
-        "sit_with_support": "",
-        "stand_without_abnormality": "",
-        "walk_first_step": ""
-      },
-      "immunization_record": {
-        "bcg": "",
-        "scar": {
-          "id": 1,
-          "name": "No"
-        },
-        "pentavalent_1": "",
-        "pentavalent_2": "",
-        "pentavalent_3": "",
-        "opv_1": "",
-        "opv_2": "",
-        "opv_3": "",
-        "pcv_1": "",
-        "pcv_2": "",
-        "pcv_3": "",
-        "measles": "",
-        "mmr": "",
-        "records": [
-          {
-            "id": "",
-            "date": "",
-            "complaints_diagnosis": "",
-            "treatment": ""
-          }
-        ]
-      }
-    },
-    {
-      "id": 4,
-      "family_record_no": "",
-      "name": "68",
-      "dob": "2022-05-18",
-      "sex": "Male",
-      "mothers_name": "",
-      "fathers_occupation": "",
-      "address": "",
-      "past_history": {
-        "delivery": {
-          "id": 1,
-          "name": "Normal"
-        },
-        "specify": "",
-        "birth_order_no": "",
-        "birth_type": {
-          "id": 1,
-          "name": "Single"
-        },
-        "delivered_by": {
-          "id": 1,
-          "name": "Midwife"
-        },
-        "others": "",
-        "past_disease": "",
-        "age_teething_started": "",
-        "sit_with_support": "",
-        "stand_without_abnormality": "",
-        "walk_first_step": ""
-      },
-      "immunization_record": {
-        "bcg": "",
-        "scar": {
-          "id": 1,
-          "name": "No"
-        },
-        "pentavalent_1": "",
-        "pentavalent_2": "",
-        "pentavalent_3": "",
-        "opv_1": "",
-        "opv_2": "",
-        "opv_3": "",
-        "pcv_1": "",
-        "pcv_2": "",
-        "pcv_3": "",
-        "measles": "",
-        "mmr": "",
-        "records": [
-          {
-            "id": "",
-            "date": "",
-            "complaints_diagnosis": "",
-            "treatment": ""
-          }
-        ]
-      }
-    },
-    {
-      "id": 5,
-      "family_record_no": "",
-      "name": "hj",
-      "dob": "2022-05-13",
-      "sex": "Male",
-      "mothers_name": "",
-      "fathers_occupation": "",
-      "address": "",
-      "past_history": {
-        "delivery": {
-          "id": 1,
-          "name": "Normal"
-        },
-        "specify": "",
-        "birth_order_no": "",
-        "birth_type": {
-          "id": 1,
-          "name": "Single"
-        },
-        "delivered_by": {
-          "id": 1,
-          "name": "Midwife"
-        },
-        "others": "",
-        "past_disease": "",
-        "age_teething_started": "",
-        "sit_with_support": "",
-        "stand_without_abnormality": "",
-        "walk_first_step": ""
-      },
-      "immunization_record": {
-        "bcg": "",
-        "scar": {
-          "id": 1,
-          "name": "No"
-        },
-        "pentavalent_1": "",
-        "pentavalent_2": "",
-        "pentavalent_3": "",
-        "opv_1": "",
-        "opv_2": "",
-        "opv_3": "",
-        "pcv_1": "",
-        "pcv_2": "",
-        "pcv_3": "",
-        "measles": "",
-        "mmr": "",
-        "records": [
-          {
-            "id": "",
-            "date": "",
-            "complaints_diagnosis": "",
-            "treatment": ""
-          }
-        ]
-      }
-    },
-    {
-      "id": 6,
-      "family_record_no": "",
-      "name": "oyip",
-      "dob": "2022-05-12",
-      "sex": "Male",
-      "mothers_name": "",
-      "fathers_occupation": "",
-      "address": "",
-      "past_history": {
-        "delivery": {
-          "id": 1,
-          "name": "Normal"
-        },
-        "specify": "",
-        "birth_order_no": "",
-        "birth_type": {
-          "id": 1,
-          "name": "Single"
-        },
-        "delivered_by": {
-          "id": 1,
-          "name": "Midwife"
-        },
-        "others": "",
-        "past_disease": "",
-        "age_teething_started": "",
-        "sit_with_support": "",
-        "stand_without_abnormality": "",
-        "walk_first_step": ""
-      },
-      "immunization_record": {
-        "bcg": "",
-        "scar": {
-          "id": 1,
-          "name": "No"
-        },
-        "pentavalent_1": "",
-        "pentavalent_2": "",
-        "pentavalent_3": "",
-        "opv_1": "",
-        "opv_2": "",
-        "opv_3": "",
-        "pcv_1": "",
-        "pcv_2": "",
-        "pcv_3": "",
-        "measles": "",
-        "mmr": "",
-        "records": [
-          {
-            "id": "",
-            "date": "",
-            "complaints_diagnosis": "",
-            "treatment": ""
-          }
-        ]
-      }
-    },
-    {
-      "id": 7,
-      "stocks": [
-        {
-          "id": "",
-          "quantity": "",
-          "date_received": "",
-          "supplier_name": "",
-          "expiry_date": ""
-        }
-      ],
-      "date": "",
-      "complaints_diagnosis": "",
-      "treatment": "",
-      "family_record_no": "12",
-      "name": "k",
-      "dob": "2022-05-04",
-      "sex": "Male",
-      "mothers_name": "f",
-      "fathers_occupation": "i",
-      "address": "f",
-      "past_history": {
-        "delivery": "Normal",
-        "specify": "q",
+        "delivery": "Abnormal",
+        "specify": "adhd",
         "birth_order_no": "1",
-        "birth_type": "Multiple",
-        "delivered_by": "Midwife",
-        "others": "2",
-        "past_disease": "w",
-        "age_teething_started": "9",
-        "sit_with_support": "2",
-        "stand_without_abnormality": "0",
-        "walk_first_step": "8"
-      },
-      "immunization_record": {
-        "bcg": "2022-05-01",
-        "scar": "No",
-        "pentavalent_1": "2022-05-02",
-        "pentavalent_2": "2022-05-03",
-        "pentavalent_3": "2022-05-04",
-        "opv_1": "2022-05-05",
-        "opv_2": "2022-05-06",
-        "opv_3": "2022-05-07",
-        "pcv_1": "2022-05-08",
-        "pcv_2": "2022-05-09",
-        "pcv_3": "2022-05-10",
-        "measles": "2022-05-11",
-        "mmr": "2022-05-12",
-        "records": [
-          {
-            "date": "2022-05-27",
-            "complaints_diagnosis": "s",
-            "treatment": "d"
-          }
-        ]
-      }
-    },
-    {
-      "id": 8,
-      "stocks": [
-        {
-          "id": "",
-          "quantity": "",
-          "date_received": "",
-          "supplier_name": "",
-          "expiry_date": ""
-        }
-      ],
-      "date": "",
-      "complaints_diagnosis": "",
-      "treatment": ""
-    },
-    {
-      "id": 9,
-      "family_record_no": "",
-      "name": "sd",
-      "dob": "2022-05-20",
-      "sex": "Male",
-      "mothers_name": "",
-      "fathers_occupation": "",
-      "address": "",
-      "past_history": {
-        "delivery": "Normal",
-        "specify": "",
-        "birth_order_no": "",
         "birth_type": "Single",
         "delivered_by": "Midwife",
+        "others": "e",
+        "past_disease": "None",
+        "age_teething_started": "4mons old",
+        "sit_with_support": "3yrs old",
+        "stand_without_abnormality": "3yrs old",
+        "walk_first_step": "4yrs old"
+      },
+      "immunization_record": {
+        "bcg": "2022-05-03",
+        "scar": "No",
+        "pentavalent_1": "2022-05-01",
+        "pentavalent_2": "2022-05-02",
+        "pentavalent_3": "2022-05-03",
+        "opv_1": "2022-05-04",
+        "opv_2": "2022-05-05",
+        "opv_3": "2022-05-06",
+        "pcv_1": "2022-05-07",
+        "pcv_2": "2022-05-08",
+        "pcv_3": "2022-05-09",
+        "measles": "2022-05-10",
+        "mmr": "2022-05-11",
+        "records": [
+          {
+            "date": "2022-05-03",
+            "complaints_diagnosis": "None",
+            "treatment": "None"
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "family_record_no": "2",
+      "name": "Michael Cee",
+      "dob": "2022-04-24",
+      "sex": "Female",
+      "mothers_name": "Cassandra Cee",
+      "fathers_occupation": "Architect",
+      "address": "Capiz ",
+      "past_history": {
+        "delivery": "Normal",
+        "specify": "",
+        "birth_order_no": "1",
+        "birth_type": "Multiple",
+        "delivered_by": "Doctor",
         "others": "",
-        "past_disease": "",
+        "past_disease": "None",
         "age_teething_started": "",
         "sit_with_support": "",
         "stand_without_abnormality": "",
         "walk_first_step": ""
       },
       "immunization_record": {
-        "bcg": "",
+        "bcg": "2022-05-08",
         "scar": "No",
-        "pentavalent_1": "",
-        "pentavalent_2": "",
-        "pentavalent_3": "",
-        "opv_1": "",
-        "opv_2": "",
-        "opv_3": "",
-        "pcv_1": "",
-        "pcv_2": "",
-        "pcv_3": "",
-        "measles": "",
-        "mmr": "",
+        "pentavalent_1": "2022-05-09",
+        "pentavalent_2": "2022-05-10",
+        "pentavalent_3": "2022-05-11",
+        "opv_1": "2022-05-12",
+        "opv_2": "2022-05-13",
+        "opv_3": "2022-05-14",
+        "pcv_1": "2022-05-15",
+        "pcv_2": "2022-05-16",
+        "pcv_3": "2022-05-17",
+        "measles": "2022-05-18",
+        "mmr": "2022-05-19",
         "records": [
           {
-            "date": "2022-05-18",
-            "complaints_diagnosis": "sad",
-            "treatment": "sadfg"
+            "date": "2022-05-20",
+            "complaints_diagnosis": "None",
+            "treatment": "None"
           }
         ]
       }
@@ -700,213 +441,28 @@
   "maternal_records": [
     {
       "id": 1,
-      "family_no": "",
-      "name": "df",
-      "husband": "",
-      "address": "",
-      "occupation": "",
-      "age": "",
-      "dob": "",
-      "height": "",
-      "abortion_no": "",
-      "convulsions": "",
-      "abnormal_deliveries": "",
-      "labor_more_than_24hrs": "",
-      "other_health_problems": "",
-      "edema": "",
-      "still_births": "",
-      "post_partum_hemorrhage": "",
-      "birth_weight_2500_grams": "",
-      "family_planning_history": [
-        {
-          "id": "",
-          "date": "",
-          "methods": "",
-          "remarks": ""
-        }
-      ],
-      "tt_history": {
-        "tt_1": "",
-        "tt_2": "",
-        "tt_3": "",
-        "tt_4": "",
-        "tt_5": "",
-        "remarks": "",
-        "last_delivery": ""
-      },
-      "present_pregnancy": {
-        "lmp": "",
-        "edc": "",
-        "g": "",
-        "p": "",
-        "ante_partum_visits": [
-          {
-            "id": 1,
-            "date": "",
-            "ut_wt": "",
-            "bp": "",
-            "fundic_ht": "",
-            "presentation_fhb": "",
-            "hb": "",
-            "urine": "",
-            "exam_sugar_1": "",
-            "exam_sugar_2": ""
-          }
-        ]
-      }
-    },
-    {
-      "id": 2,
-      "family_no": "sda",
-      "name": "sd",
-      "husband": "df",
-      "address": "7jkh",
-      "occupation": "7",
-      "age": "78",
-      "dob": "2022-04-28",
-      "height": "hkj",
-      "abortion_no": "j",
-      "convulsions": "7",
-      "abnormal_deliveries": "7",
-      "labor_more_than_24hrs": "8",
-      "other_health_problems": "",
-      "edema": "7",
-      "still_births": "8",
-      "post_partum_hemorrhage": "67",
-      "birth_weight_2500_grams": "7",
-      "family_planning_history": [],
-      "tt_history": {
-        "tt_1": "2022-04-26",
-        "tt_2": "2022-04-19",
-        "tt_3": "2022-04-22",
-        "tt_4": "2022-04-26",
-        "tt_5": "2022-04-15",
-        "remarks": "ghg",
-        "last_delivery": "2022-04-05"
-      },
-      "present_pregnancy": {
-        "lmp": "2022-04-15",
-        "edc": "2022-04-27",
-        "g": "t",
-        "p": "y",
-        "ante_partum_visits": []
-      }
-    },
-    {
-      "id": 3,
-      "family_no": "5",
-      "name": "3",
-      "husband": "3",
-      "address": "",
-      "occupation": "",
-      "age": "",
-      "dob": "",
-      "height": "",
-      "abortion_no": "",
-      "convulsions": "",
-      "abnormal_deliveries": "",
-      "labor_more_than_24hrs": "",
-      "other_health_problems": "",
-      "edema": "",
-      "still_births": "",
-      "post_partum_hemorrhage": "",
-      "birth_weight_2500_grams": "",
-      "family_planning_history": [
-        {
-          "id": "",
-          "methods": "",
-          "remarks": ""
-        }
-      ],
-      "tt_history": {
-        "tt_1": "",
-        "tt_2": "",
-        "tt_3": "",
-        "tt_4": "",
-        "tt_5": "",
-        "remarks": "",
-        "last_delivery": ""
-      },
-      "present_pregnancy": {
-        "lmp": "",
-        "edc": "",
-        "g": "",
-        "p": "",
-        "ante_partum_visits": [
-          {
-            "id": 1,
-            "date": "",
-            "ut_wt": "",
-            "bp": "",
-            "fundic_ht": "",
-            "hb": "",
-            "urine": "",
-            "exam_sugar": ""
-          }
-        ]
-      }
-    },
-    {
-      "id": 4,
-      "family_no": "4",
-      "name": "4",
-      "husband": "4",
-      "address": "",
-      "occupation": "",
-      "age": "",
-      "dob": "",
-      "height": "",
-      "abortion_no": "",
-      "convulsions": "",
-      "abnormal_deliveries": "",
-      "labor_more_than_24hrs": "",
-      "other_health_problems": "",
-      "edema": "",
-      "still_births": "",
-      "post_partum_hemorrhage": "",
-      "birth_weight_2500_grams": "",
-      "family_planning_history": [],
-      "tt_history": {
-        "tt_1": "",
-        "tt_2": "",
-        "tt_3": "",
-        "tt_4": "",
-        "tt_5": "",
-        "remarks": "",
-        "last_delivery": ""
-      },
-      "present_pregnancy": {
-        "lmp": "",
-        "edc": "",
-        "g": "",
-        "p": "",
-        "ante_partum_visits": []
-      }
-    },
-    {
-      "id": 5,
       "family_no": "1",
-      "name": "2",
-      "husband": "3",
-      "address": "7",
-      "occupation": "4",
-      "age": "5",
-      "dob": "2022-05-18",
-      "height": "6",
-      "abortion_no": "8",
-      "convulsions": "10",
-      "abnormal_deliveries": "12",
-      "labor_more_than_24hrs": "14",
-      "other_health_problems": "16",
-      "edema": "9",
-      "still_births": "11",
-      "post_partum_hemorrhage": "13",
-      "birth_weight_2500_grams": "15",
+      "name": "Camilla Lopez",
+      "husband": "Sandro Cortex",
+      "address": "New York, Ilocos Norte",
+      "occupation": "Manicurist",
+      "age": "23",
+      "dob": "1999-04-06",
+      "height": "5'4",
+      "abortion_no": "none",
+      "convulsions": "no",
+      "abnormal_deliveries": "no",
+      "labor_more_than_24hrs": "no",
+      "other_health_problems": "no",
+      "edema": "no",
+      "still_births": "no",
+      "post_partum_hemorrhage": "no",
+      "birth_weight_2500_grams": "yes",
       "family_planning_history": [
         {
-          "date": "2022-05-12",
-          "methods": "a",
-          "remarks": "b"
+          "date": "2022-05-10",
+          "methods": "pills",
+          "remarks": "2 box"
         }
       ],
       "tt_history": {
@@ -915,567 +471,227 @@
         "tt_3": "2022-05-03",
         "tt_4": "2022-05-04",
         "tt_5": "2022-05-05",
-        "remarks": "c",
-        "last_delivery": "2022-05-06"
+        "remarks": "no remarks",
+        "last_delivery": "2022-05-07"
       },
       "present_pregnancy": {
-        "lmp": "2022-05-07",
-        "edc": "2022-05-08",
-        "g": "d",
-        "p": "e",
+        "lmp": "2022-05-03",
+        "edc": "2022-05-11",
+        "g": "1",
+        "p": "1",
         "ante_partum_visits": [
           {
-            "date": "2022-05-13",
-            "ut_wt": "f",
-            "bp": "g",
-            "fundic_ht": "h",
-            "presentation_fhb": "i",
-            "hb": "j",
-            "urine": "k",
-            "exam_sugar_1": "l",
-            "exam_sugar_2": "m"
+            "date": "2022-05-19",
+            "ut_wt": "1",
+            "bp": "80/120",
+            "fundic_ht": "2",
+            "presentation_fhb": "3",
+            "hb": "4",
+            "urine": "3",
+            "exam_sugar_1": "3",
+            "exam_sugar_2": "4"
           }
         ]
-      }
+      },
+      "delivery": {
+        "date": "2022-05-11",
+        "time": "11:24",
+        "place": "New York Emergency Hospital",
+        "attended_by": "Doc Ramirez",
+        "designation": "Hospital",
+        "is_baby_normal": "yes",
+        "specify_baby": ""
+      },
+      "date_of_first_visit": "2022-05-03",
+      "pregnancy_term": "1st Trimester"
+    },
+    {
+      "id": 2,
+      "family_no": "2",
+      "name": "Korina Basques",
+      "husband": "Lucio Basques",
+      "address": "Sitio Maupot",
+      "occupation": "Homemaker",
+      "age": "34",
+      "dob": "1988-01-26",
+      "height": "5'1",
+      "abortion_no": "0",
+      "convulsions": "none",
+      "abnormal_deliveries": "no",
+      "labor_more_than_24hrs": "yes",
+      "other_health_problems": "Ulcer",
+      "edema": "none",
+      "still_births": "yes",
+      "post_partum_hemorrhage": "yes",
+      "birth_weight_2500_grams": "yes",
+      "family_planning_history": [
+        {
+          "date": "2022-05-03",
+          "methods": "condom",
+          "remarks": "2packs"
+        }
+      ],
+      "tt_history": {
+        "tt_1": "2022-05-03",
+        "tt_2": "2022-05-04",
+        "tt_3": "2022-05-05",
+        "tt_4": "2022-05-06",
+        "tt_5": "2022-05-07",
+        "remarks": "remarks",
+        "last_delivery": "2022-05-08"
+      },
+      "present_pregnancy": {
+        "lmp": "2022-05-25",
+        "edc": "2022-05-25",
+        "g": "1",
+        "p": "1",
+        "ante_partum_visits": [
+          {
+            "date": "2022-05-19",
+            "ut_wt": "1",
+            "bp": "100/120",
+            "fundic_ht": "2",
+            "presentation_fhb": "2",
+            "hb": "3",
+            "urine": "4",
+            "exam_sugar_1": "6",
+            "exam_sugar_2": "8"
+          }
+        ]
+      },
+      "delivery": {
+        "date": "2022-05-17",
+        "time": "00:25",
+        "place": "Luzon Emergency Hospital",
+        "attended_by": "Doc Glasper",
+        "designation": "Hospital",
+        "is_baby_normal": "no",
+        "specify_baby": "adhd"
+      },
+      "date_of_first_visit": "2022-05-18",
+      "pregnancy_term": "3rd Trimester"
     }
   ],
   "family_planning": [
     {
-      "id": 2,
-      "client_id": "",
-      "philhealth_no": "",
-      "nhts": "",
-      "4ps": "",
-      "last_name": "h",
-      "given_name": "jhkll",
-      "middle_initial": "",
-      "dob": "",
-      "age": "",
-      "educational_attainment": "",
-      "occupation": "",
-      "address": "",
-      "contact_number": "",
-      "civil_status": "Single",
-      "religion": "",
-      "spouse": {
-        "last_name": "",
-        "first_name": "",
-        "middle_initial": "",
-        "dob": "",
-        "age": "",
-        "occupation": ""
-      },
-      "living_children_no": "",
-      "plan_to_have_more_children": "",
-      "average_monthly_income": "",
-      "selected_client_type": "New Acceptor",
-      "reason_for_fp": "Spacing",
-      "other_reason": "",
-      "selected_current_user": {
-        "id": 1,
-        "name": "Changing Method"
-      },
-      "current_user_reason": {
-        "id": 1,
-        "name": "Medical Condition"
-      },
-      "reason_side_effects": "",
-      "method_currently_used": "COC",
-      "other_method_currently_used": "",
-      "medical_history": {
-        "items": [
-          {
-            "id": 1,
-            "text": "severe headaches / migraine",
-            "value": ""
-          },
-          {
-            "id": 2,
-            "text": "history of stroke / heart attack / hypertension",
-            "value": ""
-          },
-          {
-            "id": 3,
-            "text": "non-traumatic hematoma / frequent bruising or gum bleeding",
-            "value": ""
-          },
-          {
-            "id": 4,
-            "text": "current or history of breast cancer / breat mass",
-            "value": ""
-          },
-          {
-            "id": 5,
-            "text": "severe chest pain",
-            "value": ""
-          },
-          {
-            "id": 6,
-            "text": "cough for more than 14 days",
-            "value": ""
-          },
-          {
-            "id": 7,
-            "text": "jaundice",
-            "value": ""
-          },
-          {
-            "id": 8,
-            "text": "unexpected vaginal bleeding",
-            "value": ""
-          },
-          {
-            "id": 9,
-            "text": "abnormal vaginal discharge",
-            "value": ""
-          },
-          {
-            "id": 10,
-            "text": "intake of phenobarbital (anti-seizure) or rifampicin(anti-TB)",
-            "value": ""
-          },
-          {
-            "id": 11,
-            "text": "is client a SMOKER?",
-            "value": ""
-          },
-          {
-            "id": 12,
-            "text": "with disability?",
-            "value": ""
-          }
-        ],
-        "disability_specification": ""
-      },
-      "obstretical_history": {
-        "pregnancy_no_p": "",
-        "pregnancy_no_g": "",
-        "full_term": "",
-        "premature": "",
-        "abortion": "",
-        "living_children": "",
-        "last_delivery_date": "",
-        "last_delivery_type": "Vaginal",
-        "last_menstrual_period": "",
-        "previous_menstrual_period": "",
-        "menstrual_flow": {
-          "id": 1,
-          "name": "scanty (1-2 pads per day)"
-        },
-        "dysmenorrhea": "",
-        "hydatidiform_mole": "",
-        "ectopic_pregnancy_history": ""
-      },
-      "risks_for_sti": {
-        "items": [
-          {
-            "id": 1,
-            "text": "abnormal discharge from the genital area",
-            "value": ""
-          },
-          {
-            "id": 2,
-            "text": "sores or ulcers in the genital area",
-            "value": ""
-          },
-          {
-            "id": 3,
-            "text": "pain or burning sensation in the genital area",
-            "value": ""
-          },
-          {
-            "id": 4,
-            "text": "history of treatment for sexually transmitted infections",
-            "value": ""
-          },
-          {
-            "id": 5,
-            "text": "HIV / AIDS / Pelvic inflammatory disease",
-            "value": ""
-          }
-        ],
-        "abnormal_discharge_from_genital_area": ""
-      },
-      "risks_for_vaw": {
-        "items": [
-          {
-            "id": 1,
-            "text": "unpleasant relationship with partner",
-            "value": ""
-          },
-          {
-            "id": 2,
-            "text": "partner does not approve of the visit to FP clinic",
-            "value": ""
-          },
-          {
-            "id": 3,
-            "text": "history of domestic violence or VAW",
-            "value": ""
-          }
-        ],
-        "reffered_to": "",
-        "others": ""
-      },
-      "physical_examination": {
-        "weight": "",
-        "height": "",
-        "blood_pressure": "",
-        "pulse_rate": "",
-        "skin": "",
-        "conjunctiva": "",
-        "neck": "",
-        "breast": "",
-        "abdomen": "",
-        "extremities": "",
-        "pelvic_examination": {
-          "pelvic": "",
-          "cervical_tenderness": false,
-          "adnexal_mass_tenderness": false,
-          "cervical_abnormalities": "",
-          "cervical_consistency": "",
-          "uterine_position": "",
-          "uterine_depth": ""
-        }
-      },
-      "assessment_records": [],
-      "four_ps": true
-    },
-    {
-      "id": 3,
+      "id": 1,
       "client_id": "1",
-      "philhealth_no": "2",
-      "nhts": true,
-      "four_ps": false,
-      "last_name": "3",
-      "given_name": "3",
-      "middle_initial": "",
-      "dob": "",
-      "age": "",
-      "educational_attainment": "",
-      "occupation": "",
-      "address": "",
-      "contact_number": "",
-      "civil_status": {
-        "id": 1,
-        "name": "Single"
-      },
-      "religion": "",
+      "philhealth_no": "123",
+      "nhts": false,
+      "four_ps": true,
+      "last_name": "Lumin",
+      "given_name": "Veta",
+      "middle_initial": "O",
+      "dob": "1995-06-21",
+      "age": "26",
+      "educational_attainment": "High School Graduate",
+      "occupation": "Adviser",
+      "address": "Cordillera Street, Mailog City ",
+      "contact_number": "09124369845",
+      "civil_status": "Married",
+      "religion": "Catholic",
       "spouse": {
-        "last_name": "",
-        "first_name": "",
-        "middle_initial": "",
-        "dob": "",
-        "age": "",
-        "occupation": ""
+        "last_name": "Lumin",
+        "first_name": "Volter",
+        "middle_initial": "P",
+        "dob": "1995-03-15",
+        "age": "27",
+        "occupation": "Farmer"
       },
-      "living_children_no": "",
-      "plan_to_have_more_children": "",
-      "average_monthly_income": "",
-      "selected_client_type": {
-        "id": 1,
-        "name": "New Acceptor"
-      },
+      "living_children_no": "3",
+      "plan_to_have_more_children": "Yes",
+      "average_monthly_income": "20,000",
+      "selected_client_type": "Current User",
       "reason_for_fp": {
         "id": 1,
         "name": "Spacing"
       },
       "other_reason": "",
-      "selected_current_user": {
-        "id": 1,
-        "name": "Changing Method"
-      },
-      "current_user_reason": {
-        "id": 1,
-        "name": "Medical Condition"
-      },
-      "reason_side_effects": "",
-      "method_currently_used": {
-        "id": 1,
-        "name": "COC"
-      },
+      "selected_current_user": "Changing Method",
+      "current_user_reason": "Side Effects",
+      "reason_side_effects": "u",
+      "method_currently_used": "Implant",
       "other_method_currently_used": "",
       "medical_history": {
         "items": [
           {
             "id": 1,
             "text": "severe headaches / migraine",
-            "value": ""
+            "value": "no"
           },
           {
             "id": 2,
             "text": "history of stroke / heart attack / hypertension",
-            "value": ""
+            "value": "no"
           },
           {
             "id": 3,
             "text": "non-traumatic hematoma / frequent bruising or gum bleeding",
-            "value": ""
+            "value": "no"
           },
           {
             "id": 4,
             "text": "current or history of breast cancer / breat mass",
-            "value": ""
+            "value": "no"
           },
           {
             "id": 5,
             "text": "severe chest pain",
-            "value": ""
+            "value": "no"
           },
           {
             "id": 6,
             "text": "cough for more than 14 days",
-            "value": ""
+            "value": "no"
           },
           {
             "id": 7,
             "text": "jaundice",
-            "value": ""
+            "value": "no"
           },
           {
             "id": 8,
             "text": "unexpected vaginal bleeding",
-            "value": ""
+            "value": "no"
           },
           {
             "id": 9,
             "text": "abnormal vaginal discharge",
-            "value": ""
+            "value": "no"
           },
           {
             "id": 10,
             "text": "intake of phenobarbital (anti-seizure) or rifampicin(anti-TB)",
-            "value": ""
+            "value": "no"
           },
           {
             "id": 11,
             "text": "is client a SMOKER?",
-            "value": ""
+            "value": "no"
           },
           {
             "id": 12,
             "text": "with disability?",
-            "value": ""
+            "value": "no"
           }
         ],
         "disability_specification": ""
       },
       "obstretical_history": {
-        "pregnancy_no_p": "",
-        "pregnancy_no_g": "",
-        "full_term": "",
-        "premature": "",
-        "abortion": "",
-        "living_children": "",
-        "last_delivery_date": "",
+        "pregnancy_no_p": "3",
+        "pregnancy_no_g": "3",
+        "full_term": "3",
+        "premature": "0",
+        "abortion": "0",
+        "living_children": "3",
+        "last_delivery_date": "2022-05-04",
         "last_delivery_type": {
           "id": 1,
           "name": "Vaginal"
         },
-        "last_menstrual_period": "",
-        "previous_menstrual_period": "",
-        "menstrual_flow": {
-          "id": 1,
-          "name": "scanty (1-2 pads per day)"
-        },
-        "dysmenorrhea": "",
-        "hydatidiform_mole": "",
-        "ectopic_pregnancy_history": ""
-      },
-      "risks_for_sti": {
-        "items": [
-          {
-            "id": 1,
-            "text": "abnormal discharge from the genital area",
-            "value": ""
-          },
-          {
-            "id": 2,
-            "text": "sores or ulcers in the genital area",
-            "value": ""
-          },
-          {
-            "id": 3,
-            "text": "pain or burning sensation in the genital area",
-            "value": ""
-          },
-          {
-            "id": 4,
-            "text": "history of treatment for sexually transmitted infections",
-            "value": ""
-          },
-          {
-            "id": 5,
-            "text": "HIV / AIDS / Pelvic inflammatory disease",
-            "value": ""
-          }
-        ],
-        "abnormal_discharge_from_genital_area": ""
-      },
-      "risks_for_vaw": {
-        "items": [
-          {
-            "id": 1,
-            "text": "unpleasant relationship with partner",
-            "value": ""
-          },
-          {
-            "id": 2,
-            "text": "partner does not approve of the visit to FP clinic",
-            "value": ""
-          },
-          {
-            "id": 3,
-            "text": "history of domestic violence or VAW",
-            "value": ""
-          }
-        ],
-        "reffered_to": "",
-        "others": ""
-      },
-      "physical_examination": {
-        "weight": "",
-        "height": "",
-        "blood_pressure": "",
-        "pulse_rate": "",
-        "skin": "",
-        "conjunctiva": "",
-        "neck": "",
-        "breast": "",
-        "abdomen": "",
-        "extremities": "",
-        "pelvic_examination": {
-          "pelvic": "",
-          "cervical_tenderness": false,
-          "adnexal_mass_tenderness": false,
-          "cervical_abnormalities": "",
-          "cervical_consistency": "",
-          "uterine_position": "",
-          "uterine_depth": ""
-        }
-      },
-      "assessment_records": [],
-      "4ps": ""
-    },
-    {
-      "id": 4,
-      "client_id": "1",
-      "philhealth_no": "2",
-      "nhts": true,
-      "four_ps": true,
-      "last_name": "3",
-      "given_name": "4",
-      "middle_initial": "5",
-      "dob": "2022-04-27",
-      "age": "6",
-      "educational_attainment": "7",
-      "occupation": "8",
-      "address": "9",
-      "contact_number": "0fg5",
-      "civil_status": "Married",
-      "religion": "12",
-      "spouse": {
-        "last_name": "q",
-        "first_name": "w",
-        "middle_initial": "e",
-        "dob": "2022-05-03",
-        "age": "r",
-        "occupation": "t"
-      },
-      "living_children_no": "11",
-      "plan_to_have_more_children": {
-        "id": 1,
-        "name": "No"
-      },
-      "average_monthly_income": "2323",
-      "selected_client_type": "Current User",
-      "reason_for_fp": "Others",
-      "other_reason": "1d",
-      "selected_current_user": "Changing Clinic",
-      "current_user_reason": "Medical Condition",
-      "reason_side_effects": "54",
-      "method_currently_used": "Others",
-      "other_method_currently_used": "rttttr",
-      "medical_history": {
-        "items": [
-          {
-            "id": 1,
-            "text": "severe headaches / migraine",
-            "value": "yes"
-          },
-          {
-            "id": 2,
-            "text": "history of stroke / heart attack / hypertension",
-            "value": "yes"
-          },
-          {
-            "id": 3,
-            "text": "non-traumatic hematoma / frequent bruising or gum bleeding",
-            "value": "yes"
-          },
-          {
-            "id": 4,
-            "text": "current or history of breast cancer / breat mass",
-            "value": "yes"
-          },
-          {
-            "id": 5,
-            "text": "severe chest pain",
-            "value": "yes"
-          },
-          {
-            "id": 6,
-            "text": "cough for more than 14 days",
-            "value": "yes"
-          },
-          {
-            "id": 7,
-            "text": "jaundice",
-            "value": "yes"
-          },
-          {
-            "id": 8,
-            "text": "unexpected vaginal bleeding",
-            "value": "yes"
-          },
-          {
-            "id": 9,
-            "text": "abnormal vaginal discharge",
-            "value": "yes"
-          },
-          {
-            "id": 10,
-            "text": "intake of phenobarbital (anti-seizure) or rifampicin(anti-TB)",
-            "value": "yes"
-          },
-          {
-            "id": 11,
-            "text": "is client a SMOKER?",
-            "value": "yes"
-          },
-          {
-            "id": 12,
-            "text": "with disability?",
-            "value": "yes"
-          }
-        ],
-        "disability_specification": "b"
-      },
-      "obstretical_history": {
-        "pregnancy_no_p": "weer",
-        "pregnancy_no_g": "1223",
-        "full_term": "z",
-        "premature": "x",
-        "abortion": "c",
-        "living_children": "v",
-        "last_delivery_date": "2022-05-19",
-        "last_delivery_type": {
-          "id": 1,
-          "name": "Vaginal"
-        },
-        "last_menstrual_period": "2022-05-26",
-        "previous_menstrual_period": "2022-05-20",
-        "menstrual_flow": "moderate (3-5 pads per day)",
+        "last_menstrual_period": "2022-05-11",
+        "previous_menstrual_period": "2022-05-11",
+        "menstrual_flow": "scanty (1-2 pads per day)",
         "dysmenorrhea": true,
         "hydatidiform_mole": true,
         "ectopic_pregnancy_history": true
@@ -1485,7 +701,7 @@
           {
             "id": 1,
             "text": "abnormal discharge from the genital area",
-            "value": "yes"
+            "value": "no"
           },
           {
             "id": 2,
@@ -1508,7 +724,253 @@
             "value": "no"
           }
         ],
-        "abnormal_discharge_from_genital_area": "penis"
+        "abnormal_discharge_from_genital_area": ""
+      },
+      "risks_for_vaw": {
+        "items": [
+          {
+            "id": 1,
+            "text": "unpleasant relationship with partner",
+            "value": "no"
+          },
+          {
+            "id": 2,
+            "text": "partner does not approve of the visit to FP clinic",
+            "value": "no"
+          },
+          {
+            "id": 3,
+            "text": "history of domestic violence or VAW",
+            "value": "no"
+          }
+        ],
+        "reffered_to": "",
+        "others": ""
+      },
+      "physical_examination": {
+        "weight": "55",
+        "height": "5'6",
+        "blood_pressure": "80/100",
+        "pulse_rate": "60",
+        "skin": "normal",
+        "conjunctiva": {
+          "id": 1,
+          "name": "normal"
+        },
+        "neck": {
+          "id": 1,
+          "name": "normal"
+        },
+        "breast": {
+          "id": 1,
+          "name": "normal"
+        },
+        "abdomen": {
+          "id": 1,
+          "name": "normal"
+        },
+        "extremities": {
+          "id": 1,
+          "name": "normal"
+        },
+        "pelvic_examination": {
+          "pelvic": "normal",
+          "cervical_tenderness": false,
+          "adnexal_mass_tenderness": false,
+          "cervical_abnormalities": "",
+          "cervical_consistency": "",
+          "uterine_position": "",
+          "uterine_depth": "9"
+        }
+      },
+      "assessment_records": [
+        {
+          "medical_findings": "9",
+          "method_accepted": "Pills",
+          "service_provider_name": "Dianee",
+          "follow_up_visit_date": "2022-05-27",
+          "date_of_visit": "2022-05-10"
+        }
+      ],
+      "is_client_not_pregnant_questions": [
+        {
+          "id": 1,
+          "text": "1. Did you have a baby less than six(6) months ago, are you fully or nearly-fully breastfeeding, and have you had no menstrual period since then?",
+          "value": "no"
+        },
+        {
+          "id": 2,
+          "text": "2. Have you abstained from sexualintercourse since your last menstrual period or delivery? ",
+          "value": "no"
+        },
+        {
+          "id": 3,
+          "text": "3. Have you had a baby in the last four (4) weeks?",
+          "value": "no"
+        },
+        {
+          "id": 4,
+          "text": "4. Did your last menstrual period sart within the past seven(7) days>",
+          "value": "no"
+        },
+        {
+          "id": 5,
+          "text": "5. Have you had miscarriage or abortion in the last seven(7) days?",
+          "value": "no"
+        }
+      ],
+      "method_accapted": "Pills",
+      "registration_date": "2022-05-19"
+    },
+    {
+      "id": 2,
+      "client_id": "2",
+      "philhealth_no": "3",
+      "nhts": true,
+      "four_ps": false,
+      "last_name": "Viola",
+      "given_name": "Raven",
+      "middle_initial": "H",
+      "dob": "2000-07-12",
+      "age": "21",
+      "educational_attainment": "College Graduate",
+      "occupation": "Sales Clerk",
+      "address": "Lopez Street, Magandang City",
+      "contact_number": "09365821584",
+      "civil_status": {
+        "id": 1,
+        "name": "Single"
+      },
+      "religion": "Aglipay",
+      "spouse": {
+        "last_name": "",
+        "first_name": "",
+        "middle_initial": "",
+        "dob": "",
+        "age": "",
+        "occupation": ""
+      },
+      "living_children_no": "1",
+      "plan_to_have_more_children": "Yes",
+      "average_monthly_income": "10000",
+      "selected_client_type": "Current User",
+      "reason_for_fp": "Spacing",
+      "other_reason": "",
+      "selected_current_user": "Changing Method",
+      "current_user_reason": "Side Effects",
+      "reason_side_effects": "",
+      "method_currently_used": "IUD(Interval)",
+      "other_method_currently_used": "",
+      "medical_history": {
+        "items": [
+          {
+            "id": 1,
+            "text": "severe headaches / migraine",
+            "value": "yes"
+          },
+          {
+            "id": 2,
+            "text": "history of stroke / heart attack / hypertension",
+            "value": "no"
+          },
+          {
+            "id": 3,
+            "text": "non-traumatic hematoma / frequent bruising or gum bleeding",
+            "value": "no"
+          },
+          {
+            "id": 4,
+            "text": "current or history of breast cancer / breat mass",
+            "value": "no"
+          },
+          {
+            "id": 5,
+            "text": "severe chest pain",
+            "value": "yes"
+          },
+          {
+            "id": 6,
+            "text": "cough for more than 14 days",
+            "value": "yes"
+          },
+          {
+            "id": 7,
+            "text": "jaundice",
+            "value": "no"
+          },
+          {
+            "id": 8,
+            "text": "unexpected vaginal bleeding",
+            "value": "yes"
+          },
+          {
+            "id": 9,
+            "text": "abnormal vaginal discharge",
+            "value": "yes"
+          },
+          {
+            "id": 10,
+            "text": "intake of phenobarbital (anti-seizure) or rifampicin(anti-TB)",
+            "value": "no"
+          },
+          {
+            "id": 11,
+            "text": "is client a SMOKER?",
+            "value": "no"
+          },
+          {
+            "id": 12,
+            "text": "with disability?",
+            "value": "yes"
+          }
+        ],
+        "disability_specification": "blind left eyee"
+      },
+      "obstretical_history": {
+        "pregnancy_no_p": "1",
+        "pregnancy_no_g": "1",
+        "full_term": "",
+        "premature": "0",
+        "abortion": "0",
+        "living_children": "1",
+        "last_delivery_date": "2022-05-04",
+        "last_delivery_type": "Cesarian Section",
+        "last_menstrual_period": "2022-05-11",
+        "previous_menstrual_period": "2022-05-11",
+        "menstrual_flow": "moderate (3-5 pads per day)",
+        "dysmenorrhea": true,
+        "hydatidiform_mole": "",
+        "ectopic_pregnancy_history": ""
+      },
+      "risks_for_sti": {
+        "items": [
+          {
+            "id": 1,
+            "text": "abnormal discharge from the genital area",
+            "value": "no"
+          },
+          {
+            "id": 2,
+            "text": "sores or ulcers in the genital area",
+            "value": "no"
+          },
+          {
+            "id": 3,
+            "text": "pain or burning sensation in the genital area",
+            "value": "no"
+          },
+          {
+            "id": 4,
+            "text": "history of treatment for sexually transmitted infections",
+            "value": "no"
+          },
+          {
+            "id": 5,
+            "text": "HIV / AIDS / Pelvic inflammatory disease",
+            "value": "no"
+          }
+        ],
+        "abnormal_discharge_from_genital_area": ""
       },
       "risks_for_vaw": {
         "items": [
@@ -1520,7 +982,7 @@
           {
             "id": 2,
             "text": "partner does not approve of the visit to FP clinic",
-            "value": "no"
+            "value": "yes"
           },
           {
             "id": 3,
@@ -1528,39 +990,68 @@
             "value": "yes"
           }
         ],
-        "reffered_to": "Others",
-        "others": "1we"
+        "reffered_to": "DSWD",
+        "others": ""
       },
       "physical_examination": {
-        "weight": "a",
-        "height": "sd",
-        "blood_pressure": "x",
-        "pulse_rate": "xc",
-        "skin": "normal",
+        "weight": "12",
+        "height": "5'0",
+        "blood_pressure": "80/1120",
+        "pulse_rate": "45",
+        "skin": "pale",
         "conjunctiva": "pale",
-        "neck": "normal",
+        "neck": "neck mass",
         "breast": "nipple discharge",
-        "abdomen": "normal",
-        "extremities": "normal",
+        "abdomen": "abdominal mass",
+        "extremities": "edema",
         "pelvic_examination": {
-          "pelvic": "abdominal discharge",
-          "cervical_tenderness": true,
-          "adnexal_mass_tenderness": true,
-          "cervical_abnormalities": "polyp or cyst",
-          "cervical_consistency": "soft",
-          "uterine_position": "mid",
-          "uterine_depth": "5456"
+          "pelvic": "normal",
+          "cervical_tenderness": false,
+          "adnexal_mass_tenderness": false,
+          "cervical_abnormalities": "",
+          "cervical_consistency": "",
+          "uterine_position": "",
+          "uterine_depth": ""
         }
       },
       "assessment_records": [
         {
-          "medical_findings": "sdsf",
-          "method_accepted": "xvcb",
-          "service_provider_name": "cvb",
-          "follow_up_visit_date": "",
-          "date_of_visit": "2022-05-23"
+          "medical_findings": "d",
+          "method_accepted": "iud",
+          "service_provider_name": "obgyne",
+          "follow_up_visit_date": "2022-05-11",
+          "date_of_visit": "2022-05-18"
         }
-      ]
+      ],
+      "is_client_not_pregnant_questions": [
+        {
+          "id": 1,
+          "text": "1. Did you have a baby less than six(6) months ago, are you fully or nearly-fully breastfeeding, and have you had no menstrual period since then?",
+          "value": "no"
+        },
+        {
+          "id": 2,
+          "text": "2. Have you abstained from sexualintercourse since your last menstrual period or delivery? ",
+          "value": "no"
+        },
+        {
+          "id": 3,
+          "text": "3. Have you had a baby in the last four (4) weeks?",
+          "value": "no"
+        },
+        {
+          "id": 4,
+          "text": "4. Did your last menstrual period sart within the past seven(7) days>",
+          "value": "no"
+        },
+        {
+          "id": 5,
+          "text": "5. Have you had miscarriage or abortion in the last seven(7) days?",
+          "value": "no"
+        }
+      ],
+      "method_accapted": "COC",
+      "registration_date": "2022-04-24"
     }
   ]
 }

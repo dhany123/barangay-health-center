@@ -108,12 +108,14 @@
             </v-col>
 
             <v-col cols="12" md="6">
-              <label class="label">Specify</label>
-              <v-text-field
-                outlined
-                dense
-                v-model="form.past_history.specify"
-              ></v-text-field>
+              <div v-if="form.past_history.delivery == 'Abnormal'">
+                <label class="label">Specify</label>
+                <v-text-field
+                  outlined
+                  dense
+                  v-model="form.past_history.specify"
+                ></v-text-field>
+              </div>
             </v-col>
 
             <v-col cols="12" md="6">
@@ -148,12 +150,14 @@
             </v-col>
 
             <v-col cols="12" md="6">
-              <label class="label">Specify</label>
-              <v-text-field
-                outlined
-                dense
-                v-model="form.past_history.others"
-              ></v-text-field>
+              <div v-if="form.past_history.delivered_by === 'Others'">
+                <label class="label">Specify</label>
+                <v-text-field
+                  outlined
+                  dense
+                  v-model="form.past_history.others"
+                ></v-text-field>
+              </div>
             </v-col>
 
             <v-col cols="12">
@@ -166,46 +170,48 @@
             </v-col>
           </v-row>
 
-          <div class="text-center text-body-1 font-weight-bold">
-            FILL-UP ONLY FOR 2 YEARS OLD WITH ABNORMALITY
-          </div>
-          <v-divider></v-divider>
-          <v-row dense class="mt-2">
-            <v-col cols="12" md="6">
-              <label class="label">Age Teething Started</label>
-              <v-text-field
-                outlined
-                dense
-                v-model="form.past_history.age_teething_started"
-              ></v-text-field>
-            </v-col>
+          <template v-if="form.past_history.delivery == 'Abnormal'">
+            <div class="text-center text-body-1 font-weight-bold">
+              FILL-UP ONLY FOR 2 YEARS OLD WITH ABNORMALITY
+            </div>
+            <v-divider></v-divider>
+            <v-row dense class="mt-2">
+              <v-col cols="12" md="6">
+                <label class="label">Age Teething Started</label>
+                <v-text-field
+                  outlined
+                  dense
+                  v-model="form.past_history.age_teething_started"
+                ></v-text-field>
+              </v-col>
 
-            <v-col cols="12" md="6">
-              <label class="label">Sit with Support</label>
-              <v-text-field
-                outlined
-                dense
-                v-model="form.past_history.sit_with_support"
-              ></v-text-field>
-            </v-col>
+              <v-col cols="12" md="6">
+                <label class="label">Sit with Support</label>
+                <v-text-field
+                  outlined
+                  dense
+                  v-model="form.past_history.sit_with_support"
+                ></v-text-field>
+              </v-col>
 
-            <v-col cols="12" md="6">
-              <label class="label">Stand without abnormality</label>
-              <v-text-field
-                outlined
-                dense
-                v-model="form.past_history.stand_without_abnormality"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" md="6">
-              <label class="label">Walk First Step</label>
-              <v-text-field
-                outlined
-                dense
-                v-model="form.past_history.walk_first_step"
-              ></v-text-field>
-            </v-col>
-          </v-row>
+              <v-col cols="12" md="6">
+                <label class="label">Stand without abnormality</label>
+                <v-text-field
+                  outlined
+                  dense
+                  v-model="form.past_history.stand_without_abnormality"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" md="6">
+                <label class="label">Walk First Step</label>
+                <v-text-field
+                  outlined
+                  dense
+                  v-model="form.past_history.walk_first_step"
+                ></v-text-field>
+              </v-col>
+            </v-row>
+          </template>
 
           <div class="text-center text-body-1 font-weight-bold">
             IMMUNIZATION RECORD
@@ -431,7 +437,7 @@ export default {
 
       birthTypeItems: ["Single", "Multiple"],
 
-      deliveredByItems: ["Midwife", "Hilot", "Doctor"],
+      deliveredByItems: ["Midwife", "Hilot", "Doctor", "Others"],
 
       yesOrNo: ["No", "Yes"],
 
@@ -480,7 +486,6 @@ export default {
     },
     onAddClick() {
       this.form.immunization_record.records.push({ ...this.record });
-      console.log(this.form.immunization_record.records);
       this.showEditor = false;
     },
 

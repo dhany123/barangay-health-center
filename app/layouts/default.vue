@@ -12,68 +12,10 @@
       <v-list>
         <v-list-item>
           <v-list-item-content>
-            <!-- <v-img
-              :src="require('@/assets/images/logo.png')"
-              max-height="120px"
-              max-width="200px"
-              class="mx-auto"
-            ></v-img> -->
-
             <p class="text-center">Barangay Health Center</p>
           </v-list-item-content>
         </v-list-item>
       </v-list>
-      <!-- <v-divider></v-divider> -->
-
-      <!-- <v-list-group
-        class="mx-3"
-        active-class="settings-menu"
-        :value="true"
-        prepend-icon="mdi-account-group"
-      >
-        <template v-slot:activator>
-          <v-list-item-title class="ml-n5">Residents</v-list-item-title>
-        </template>
-        <v-list>
-          <v-list-item
-            class="pl-4 ml-10"
-            v-for="(menu, i) in residentsMenu"
-            :key="i"
-            link
-            :to="menu.href"
-            active-class="active-list"
-            exact
-          >
-            <v-list-item-title v-text="menu.title"></v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-list-group>
-
-      <v-list-group
-        class="mx-3"
-        active-class="settings-menu"
-        :value="true"
-        prepend-icon="mdi-medical-bag"
-      >
-        <template v-slot:activator>
-          <v-list-item-title class="ml-n5 mr-n6"
-            >Medicine Stocks</v-list-item-title
-          >
-        </template>
-        <v-list>
-          <v-list-item
-            class="pl-4 ml-10 pr-n6"
-            v-for="(menu, i) in medicinesMenu"
-            :key="i"
-            link
-            :to="menu.href"
-            active-class="active-list"
-            exact
-          >
-            <v-list-item-title v-text="menu.title"></v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-list-group> -->
 
       <v-list class="mx-3">
         <v-list-item active-class="active-list" to="/immunization">
@@ -108,30 +50,29 @@
         </v-list-item>
       </v-list>
 
-      <!-- <v-list class="mx-3">
-        <v-list-item active-class="active-list" to="">
-          <v-list-item-icon>
-            <v-icon>mdi-pill</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content class="ml-n5">
+      <v-list-group
+        class="mx-3 white--text"
+        :value="true"
+        prepend-icon="mdi-file-chart"
+      >
+        <template v-slot:activator>
+          <v-list-item-title class="ml-n5">Reports</v-list-item-title>
+        </template>
+        <v-list>
+          <v-list-item
+            v-for="(item, i) in reportItems"
+            :key="i"
+            link
+            :to="item.href"
+            active-class="active-list"
+          >
             <v-list-item-title
-              >Non-communicable disease prevention and control
-              services</v-list-item-title
-            >
-          </v-list-item-content>
-        </v-list-item>
-      </v-list> -->
-
-      <v-list class="mx-3">
-        <v-list-item active-class="active-list">
-          <v-list-item-icon>
-            <v-icon>mdi-file-chart</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content class="ml-n5">
-            <v-list-item-title>Reports</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
+              class="ml-8"
+              v-text="item.title"
+            ></v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-list-group>
     </v-navigation-drawer>
     <v-app-bar app color="#fff" elevation="1">
       <v-app-bar-nav-icon @click="toggleDrawer" />
@@ -182,51 +123,11 @@ export default {
       selectedItem: "",
       mini: false,
       dialog: false,
-      items: [
-        // { title: "Dashboard", href: "", icon: "mdi-view-dashboard" },
+      reportItems: [
         {
-          title: "Residents",
-          href: `/residents`,
-
-          icon: "mdi-account-group",
+          title: "List for Family Planning",
+          href: `/reports/list-for-family-planning-services`,
         },
-
-        {
-          title: "Medicine Stocks",
-          href: `/medicine`,
-
-          icon: "mdi-medical-bag",
-        },
-
-        {
-          title: "Reports",
-          href: `/services`,
-
-          icon: "mdi-file-chart",
-        },
-
-        {
-          title: "Reports",
-          href: `/services`,
-
-          icon: "mdi-file-chart",
-        },
-      ],
-
-      residentsMenu: [
-        { title: "All Residents", href: "/residents" },
-        { title: "0-71 months ", href: "/residents/children" },
-        { title: "4Ps", href: "/residents/4Ps" },
-        { title: "BP Monitoring", href: "/residents/bp-monitoring" },
-        { title: "Pregnancy Record", href: "/residents/pregancy-record" },
-        { title: "Birth Registry", href: "/residents/birth-registry" },
-      ],
-
-      medicinesMenu: [
-        { title: "Medicine Details", href: "/medicine/detail" },
-        { title: "Release Form", href: "/medicine/release-form" },
-        { title: "Medicine Records", href: "/medicine/records" },
-        { title: "Removed Medicine", href: "/medicine/removed" },
       ],
 
       account: [

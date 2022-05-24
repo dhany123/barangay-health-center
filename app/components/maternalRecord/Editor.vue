@@ -27,15 +27,36 @@
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="8">
             <v-form ref="form-resident" :readonly="readOnly">
-              <v-row dense>
+              <v-row dense align="end">
                 <v-col cols="12" md="6">
                   <label class="label"> Family No.</label>
                   <v-text-field
                     outlined
                     dense
                     v-model="form.family_no"
+                  ></v-text-field>
+                </v-col>
+
+                <v-col cols="12" md="3">
+                  <label class="label"> Date of First Visit</label>
+                  <v-text-field
+                    outlined
+                    dense
+                    type="date"
+                    v-model="form.date_of_first_visit"
                     :rules="[rules.required]"
                   ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="3">
+                  <label class="label">Term</label>
+                  <v-select
+                    outlined
+                    dense
+                    :items="termsItems"
+                    v-model="form.pregnancy_term"
+                    item-text="name"
+                    :rules="[rules.required]"
+                  ></v-select>
                 </v-col>
               </v-row>
 
@@ -252,16 +273,16 @@
                 mobile-breakpoint="0"
               >
                 <template v-slot:[`item.action`]="{ item }">
-                 <v-btn icon :disabled="readOnly">
+                  <v-btn icon :disabled="readOnly">
                     <v-icon
-                    medium
-                    class="mr-2"
-                    color="red"
-                    @click="deleteFamilyPlanningRecord(item)"
-                  >
-                    mdi-delete
-                  </v-icon>
-                 </v-btn>
+                      medium
+                      class="mr-2"
+                      color="red"
+                      @click="deleteFamilyPlanningRecord(item)"
+                    >
+                      mdi-delete
+                    </v-icon>
+                  </v-btn>
                 </template>
               </v-data-table>
 
@@ -423,18 +444,102 @@
                       <td>{{ item.exam_sugar_1 }}</td>
                       <td>{{ item.exam_sugar_2 }}</td>
                       <td>
-                       <v-btn icon :disabled="readOnly">
+                        <v-btn icon :disabled="readOnly">
                           <v-icon
-                          color="red"
-                          @click="deleteAntePartumRecord(item)"
-                          >mdi-delete</v-icon
-                        >
-                       </v-btn>
+                            color="red"
+                            @click="deleteAntePartumRecord(item)"
+                            >mdi-delete</v-icon
+                          >
+                        </v-btn>
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
+
+              <div class="text-center text-body-1 font-weight-bold mt-6">
+                DELIVERY
+              </div>
+              <v-divider class="mb-4"></v-divider>
+
+              <v-row align="center" dense>
+                <v-col cols="12" md="3">
+                  <label class="label">Date</label>
+                  <v-text-field
+                    outlined
+                    dense
+                    v-model="form.delivery.date"
+                    type="date"
+                  ></v-text-field>
+                </v-col>
+
+                <v-col cols="12" md="3">
+                  <label class="label">Time</label>
+                  <v-text-field
+                    outlined
+                    dense
+                    type="time"
+                    v-model="form.delivery.time"
+                  ></v-text-field>
+                </v-col>
+
+                <v-col cols="12" md="3">
+                  <label class="label">Attended by</label>
+                  <v-text-field
+                    outlined
+                    dense
+                    v-model="form.delivery.attended_by"
+                  ></v-text-field>
+                </v-col>
+
+                <v-col cols="12" md="3">
+                  <label class="label">Designation</label>
+                  <v-text-field
+                    outlined
+                    dense
+                    v-model="form.delivery.designation"
+                  ></v-text-field>
+                </v-col>
+
+                <v-col cols="12" md="6">
+                  <label class="label">Place</label>
+                  <v-textarea outlined rows="2" v-model="form.delivery.place">
+                  </v-textarea>
+                </v-col>
+
+                <v-col cols="12" md="3">
+                  <v-radio-group
+                    v-model="form.delivery.is_baby_normal"
+                    row
+                    dense
+                    class="mt-n2 mb-n6"
+                  >
+                    <v-radio value="yes">
+                      <template v-slot:label>
+                        <div class="ml-n2">Normal</div>
+                      </template>
+                    </v-radio>
+                    <v-radio value="no" class="ml-6">
+                      <template v-slot:label>
+                        <div class="ml-n2">Abnormal</div>
+                      </template>
+                    </v-radio>
+                  </v-radio-group>
+                </v-col>
+
+                <v-col
+                  cols="12"
+                  md="3"
+                  v-if="form.delivery.is_baby_normal === 'no'"
+                >
+                  <label class="label">Specify</label>
+                  <v-text-field
+                    outlined
+                    dense
+                    v-model="form.delivery.specify_baby"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
             </v-form>
           </v-col>
         </v-row>
@@ -486,6 +591,20 @@ export default {
       },
       form: null,
       family_planning_history: [],
+      termsItems: [
+        {
+          id: 1,
+          name: "1st Trimester",
+        },
+        {
+          id: 2,
+          name: "2nd Trimester",
+        },
+        {
+          id: 3,
+          name: "3rd Trimester",
+        },
+      ],
       genders: [
         {
           id: 1,
@@ -577,6 +696,7 @@ export default {
       this.form.family_planning_history.push({
         ...this.family_planning_record,
       });
+      this.family_planning_record = [];
     },
 
     deleteFamilyPlanningRecord(item) {
@@ -653,6 +773,8 @@ export default {
           ...{
             id: null,
             family_no: "",
+            date_of_first_visit: "",
+            pregnancy_term: "",
             name: "",
             husband: "",
             address: "",
@@ -687,6 +809,15 @@ export default {
               g: "",
               p: "",
               ante_partum_visits: [],
+            },
+            delivery: {
+              date: "",
+              time: "",
+              place: "",
+              attended_by: "",
+              designation: "",
+              is_baby_normal: "",
+              specify_baby: "",
             },
           },
           ...val,

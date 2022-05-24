@@ -936,6 +936,28 @@
                     </v-row>
                   </v-col>
                 </v-row>
+
+                <v-col cols="12">
+                  <v-divider></v-divider>
+                </v-col>
+
+                <v-col cols="12" md="6">
+                  <label> Method Accepted</label>
+                  <v-text-field
+                    outlined
+                    dense
+                    v-model="form.method_accapted"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="3">
+                  <label> Date Accepted</label>
+                  <v-text-field
+                    outlined
+                    dense
+                    type="date"
+                    v-model="form.registration_date"
+                  ></v-text-field>
+                </v-col>
               </v-row>
 
               <v-col cols="12">
@@ -1045,6 +1067,48 @@
                   </v-btn>
                 </template>
               </v-data-table>
+
+              <v-col cols="12">
+                <v-divider></v-divider>
+
+                <div class="mt-1">
+                  <b>How to be Reasonably Sure a Client is Not Pregnant</b>
+                </div>
+              </v-col>
+
+              <v-col cols="12">
+                <v-data-table
+                  :headers="isResidentPregnantHeaders"
+                  :items="form.is_client_not_pregnant_questions"
+                  class="elevation-0"
+                  item-key="id"
+                  disable-pagination
+                  hide-default-footer
+                  mobile-breakpoint="0"
+                  hide-default-header
+                >
+                  <template v-slot:[`item.options`]="{ item }">
+                    <v-radio-group
+                      v-model="item.value"
+                      row
+                      dense
+                      class="mt-n2 mb-n6"
+                      style="width: 130px"
+                    >
+                      <v-radio value="yes">
+                        <template v-slot:label>
+                          <div class="ml-n2">Yes</div>
+                        </template>
+                      </v-radio>
+                      <v-radio value="no">
+                        <template v-slot:label>
+                          <div class="ml-n2">No</div>
+                        </template>
+                      </v-radio>
+                    </v-radio-group>
+                  </template>
+                </v-data-table>
+              </v-col>
             </v-col>
           </v-row>
         </v-form>
@@ -1547,6 +1611,21 @@ export default {
         },
       ],
 
+      isResidentPregnantHeaders: [
+        {
+          text: "",
+          value: "text",
+          sortable: false,
+        },
+
+        {
+          text: "",
+          value: "options",
+          sortable: false,
+          align: "center",
+        },
+      ],
+
       assessment_record: {
         medical_findings: "",
         method_accepted: "",
@@ -1652,12 +1731,12 @@ export default {
             plan_to_have_more_children: this.yesOrNo[0],
             average_monthly_income: "",
             selected_client_type: this.clientTypes[0],
-            reason_for_fp: this.newAcceptorReason[0],
+            reason_for_fp: "",
             other_reason: "",
-            selected_current_user: this.currentUserType[0],
-            current_user_reason: this.currentUserReason[0],
+            selected_current_user:"",
+            current_user_reason:"",
             reason_side_effects: "",
-            method_currently_used: this.methodCurrentlyUsedItems[0],
+            method_currently_used: "",
             other_method_currently_used: "",
             medical_history: {
               items: [
@@ -1814,7 +1893,37 @@ export default {
                 uterine_depth: "",
               },
             },
+
+            method_accapted: "",
+            registration_date: "",
             assessment_records: [],
+            is_client_not_pregnant_questions: [
+              {
+                id: 1,
+                text: "1. Did you have a baby less than six(6) months ago, are you fully or nearly-fully breastfeeding, and have you had no menstrual period since then?",
+                value: "",
+              },
+              {
+                id: 2,
+                text: "2. Have you abstained from sexualintercourse since your last menstrual period or delivery? ",
+                value: "",
+              },
+              {
+                id: 3,
+                text: "3. Have you had a baby in the last four (4) weeks?",
+                value: "",
+              },
+              {
+                id: 4,
+                text: "4. Did your last menstrual period sart within the past seven(7) days>",
+                value: "",
+              },
+              {
+                id: 5,
+                text: "5. Have you had miscarriage or abortion in the last seven(7) days?",
+                value: "",
+              },
+            ],
           },
           ...val,
         };
